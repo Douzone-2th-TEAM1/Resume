@@ -2,8 +2,6 @@
 
 > 사용자가 이력서 템플릿을 설정할 수 있는 사이트
 
-<br/>
-
 ## 👩‍🎨 스토리보드 및 디자인 시안
 
 [피그마 바로가기 ❯❯](https://www.figma.com/file/ohyqyTXrCwDdLpyqqw3wqH/Resume?node-id=0%3A1)
