@@ -1,44 +1,44 @@
 import SQ from 'sequelize';
 import { sequelize } from '../db/dbConnection.js';
+import { Users } from '../data/users.js';
 const DataTypes = SQ.DataTypes;
 
-export const Users = sequelize.define(
-  'user',
+export const Resumes = sequelize.define(
+  'resume',
   {
-    id: {
+    r_id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
       allowNull: false,
       primaryKey: true,
     },
-    email: {
+    title: {
       type: DataTypes.STRING(45),
       allowNull: false,
     },
-    pwd: {
+    photo: {
+      type: DataTypes.STRING(255),
+      allowNull: false,
+    },
+    department: {
       type: DataTypes.STRING(45),
       allowNull: false,
     },
-    name: {
-      type: DataTypes.STRING(45),
+    portfolio: {
+      type: DataTypes.STRING(255),
       allowNull: false,
     },
-    phone: {
-      type: DataTypes.STRING(45),
+    template: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    created_date: {
+      type: DataTypes.DATEONLY,
       allowNull: false,
     },
   },
   { timestamps: false }
 );
-
-export async function findByEmail(email) {
-  return Users.findOne({ where: { email } });
-}
-
-export async function findById(id) {
-  return Users.findByPk(id);
-}
-
-export async function createUser(user) {
-  return Users.create(user).then((data) => data.dataValues.id);
-}
+Resumes.belongsTo(Users, {
+  foreignKey: 'u_id',
+});
