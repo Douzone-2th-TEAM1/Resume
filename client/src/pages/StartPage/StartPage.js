@@ -1,7 +1,11 @@
 import React from 'react';
-import { style } from './StartPageStyle';
+import { Background, style } from './StartPageStyle';
 export const StartPage = () => {
-  return <Container>TEST</Container>;
+  return (
+    <Container>
+      <Background></Background>
+    </Container>
+  );
 };
 
 const { Container } = style;
