@@ -1,5 +1,4 @@
 import { createGlobalStyle } from 'styled-components';
-
 export const GlobalStyles = createGlobalStyle` 
     a{
         text-decoration: none;
@@ -15,6 +14,8 @@ export const GlobalStyles = createGlobalStyle`
         font-size: 14px;
         background-color: #fff;
         color: #000;
+        height:0px;
+        
     }
     input, button {
         background-color: transparent;
