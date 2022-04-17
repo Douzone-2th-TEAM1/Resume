@@ -116,11 +116,11 @@ export const SubTitle = styled.h2`
 export const StartBtn = styled.button`
   cursor: pointer;
   transition: all 0.5s;
-  border: 5px solid #ffff;
+  border: 5px solid white;
   width: 300px;
   font-size: 30px;
   padding: 20px;
-  color: #ffff;
+  color: white;
   border-radius: 28px;
   font-weight: bold;
   &:hover {

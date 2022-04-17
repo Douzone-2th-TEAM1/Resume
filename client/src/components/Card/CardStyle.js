@@ -29,7 +29,7 @@ const Container = styled.div`
   overflow-y: scroll;
   bottom: 0;
   min-width: 900px;
-  min-height: ${(props) => props.ht};
+  height: ${(props) => props.ht};
   /* top: 50vh; */
   /* top: 50vh; */
   transition-property: all;
