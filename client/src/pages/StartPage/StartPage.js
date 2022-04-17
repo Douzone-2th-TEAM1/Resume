@@ -11,14 +11,14 @@ export const StartPage = () => {
   return (
     <Container>
       <TopBackground>
-        <Title>RESU</Title>
+        <Title data-text={'RESU'}>RESU</Title>
         <SubTitleContainer>
           <SubTitle color="#334257">나만의 이력서</SubTitle>
           <SubTitle color="#000">를 경험해보세요.</SubTitle>
         </SubTitleContainer>
       </TopBackground>
       <Background>
-        <Title2>ME</Title2>
+        <Title2 data-text={'ME'}>ME</Title2>
         <StartBtn onClick={onClickBtn}>Get Started</StartBtn>
       </Background>
     </Container>

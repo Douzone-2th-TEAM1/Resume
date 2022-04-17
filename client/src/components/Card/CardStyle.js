@@ -7,12 +7,12 @@ const BobOnHover = keyframes`
     transform: translateY(-8px);
   }
   50% {
-    -webkit-transform: translateY(-4px);
-    transform: translateY(-4px);
+    -webkit-transform: translateY(-8px);
+    transform: translateY(-8px);
   }
   100% {
-    -webkit-transform: translateY(-5px);
-    transform: translateY(-5px);
+    -webkit-transform: translateY(-8px);
+    transform: translateY(-8px);
   }
 
 `;

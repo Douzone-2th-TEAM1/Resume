@@ -5,7 +5,7 @@ import Card from 'components/Card';
 export const MainPage = () => {
   const [height, setHeight] = useState('400px');
   const onClickIcon = () => {
-    setHeight('1000px');
+    setHeight('880px');
   };
   return (
     <Container>

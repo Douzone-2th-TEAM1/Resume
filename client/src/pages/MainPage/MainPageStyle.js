@@ -35,7 +35,7 @@ export const BttomTriangle = styled.div`
 `;
 
 const fadeout = (ht) => {
-  if (ht === '1000px') {
+  if (ht === '880px') {
     return keyframes`
     from{
     opacity:1
