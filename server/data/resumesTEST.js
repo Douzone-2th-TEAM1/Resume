@@ -72,5 +72,5 @@ export async function ResumesQnAs() {
 export async function ResumesTechs() {
   return Resumes.findAll({ include: [Techs] });
 }
-
+ 
 // 이렇게 하는거 맞는지 확인좀 부탁드림다
