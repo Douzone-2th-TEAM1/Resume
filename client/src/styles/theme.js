@@ -2,7 +2,7 @@ import { css } from 'styled-components';
 
 const flexSet = (justify = 'center', item = 'center', direction = 'row') => css`
   display: flex;
-  justify-contents: ${justify};
+  justify-content: ${justify};
   align-items: ${item};
   flex-direction: ${direction};
 `;
