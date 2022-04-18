@@ -52,42 +52,44 @@ Resumes.belongsTo(Users, {
 });
 
 export async function ResumesAwards(r_id) {
-  return Resumes.findAll(
-    { where: [(r_id: this.r_id)] },
-    { include: [Awards] }
-  );
+  return Resumes.findAll({
+    include: [{ model: Awards }],
+    where: { r_id: r_id },
+  });
 }
 export async function ResumesCareers(r_id) {
-  return Resumes.findAll(
-    { where: [(r_id: this.r_id)] },
-    { include: [Careers] }
-  );
+  return Resumes.findAll({
+    include: [{ model: Careers }],
+    where: { r_id: r_id },
+  });
 }
 export async function ResumesCertifications(r_id) {
-  return Resumes.findAll(
-    { where: [(r_id: this.r_id)] },
-    { include: [Certifications] }
-  );
+  return Resumes.findAll({
+    include: [{ model: Certifications }],
+    where: { r_id: r_id },
+  });
 }
 export async function ResumesEducations(r_id) {
-  return Resumes.findAll(
-    { where: [(r_id: this.r_id)] },
-    { include: [Educations] }
-  );
+  return Resumes.findAll({
+    include: [{ model: Educations }],
+    where: { r_id: r_id },
+  });
 }
 export async function ResumesProjects(r_id) {
-  return Resumes.findAll(
-    { where: [(r_id: this.r_id)] },
-    { include: [Projects] }
-  );
+  return Resumes.findAll({
+    include: [{ model: Projects }],
+    where: { r_id: r_id },
+  });
 }
 export async function ResumesQnAs(r_id) {
-  return Resumes.findAll(
-    { where: [(r_id: this.r_id)] },
-    { include: [QnAs] });
+  return Resumes.findAll({
+    include: [{ model: QnAs }],
+    where: { r_id: r_id },
+  });
 }
 export async function ResumesTechs(r_id) {
-  return Resumes.findAll(
-    { where: [(r_id: this.r_id)] },
-    { include: [Techs] });
+  return Resumes.findAll({
+    include: [{ model: Techs }],
+    where: { r_id: r_id },
+  });
 }
