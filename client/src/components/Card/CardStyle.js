@@ -26,18 +26,20 @@ const BobOnHoverFloat = keyframes`
 
 const Container = styled.div`
   position: absolute;
-  overflow-y: scroll;
+  overflow-y: auto;
   bottom: 0;
   min-width: 900px;
   height: ${(props) => props.ht};
-  /* top: 50vh; */
-  /* top: 50vh; */
   transition-property: all;
   transition-duration: 2s;
   z-index: 1;
   background-color: white;
   border-radius: 20px 20px 0px 0px;
   box-shadow: 5px 6px 20px #000025;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 const IconLayout = styled.div`

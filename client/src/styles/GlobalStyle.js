@@ -10,8 +10,9 @@ export const GlobalStyles = createGlobalStyle`
         box-sizing: border-box;
     }
     body {
-        /* overflow-y:hidden; */
+        /* overflow-y:scroll; */
         min-width:1400px;
+        /* min-height:800px; */
         font-family: 'Noto Sans KR', sans-serif;
         font-size: 14px;
         background-color: #fff;
