@@ -6,6 +6,7 @@ import helmet from 'helmet';
 import { sequelize } from './db/dbConnection.js';
 import { config } from './config.js';
 import accountsRouter from './router/accountsRouter.js';
+import usersRouter from './router/usersRouter.js';
 
 const app = express();
 
@@ -18,7 +19,7 @@ app.use(morgan('tiny'));
 app.use('/accounts', accountsRouter);
 
 // 회원 정보 수정, 탈퇴
-// app.use('/users', accountsRouter);
+app.use('/users', usersRouter);
 
 sequelize.sync().then(() => {
   app.listen(config.host.port);
