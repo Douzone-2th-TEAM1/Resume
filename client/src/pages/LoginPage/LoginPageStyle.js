@@ -24,6 +24,10 @@ const moveRight = (flag) => {
   }
 };
 
+const test = keyframes`
+
+`;
+
 export const Container = styled.div`
   ${({ theme }) => theme.flexSet()}
   width:100%;
@@ -168,7 +172,7 @@ export const EnterForm = styled.div`
 `;
 export const Text5 = styled.div`
   font-size: 20px;
-  font-weight:bolder;
+  font-weight: bolder;
 `;
 export const Enter1 = styled.input`
   width: 100%;
@@ -181,7 +185,7 @@ export const Enter1 = styled.input`
 export const Text6 = styled.div`
   margin-top: 5%;
   font-size: 20px;
-  font-weight:bolder;
+  font-weight: bolder;
 `;
 export const Enter2 = styled.input`
   border: black 1px solid;
@@ -196,12 +200,16 @@ export const Btn2 = styled.button`
   width: 100%;
   border: white 3px solid;
   border-radius: 5px;
-  border-color:white;
+  border-color: #334257;
   color: white;
   font-size: 32px;
   height: 80px;
-  background-color: #9e9e9e;
+  background-color: #334257;
   margin-top: 5%;
+  &:disabled {
+    background-color: #9e9e9e;
+    border: none;
+  }
 `;
 // -------------------------------------------
 export const LeftForm2 = styled.div`
@@ -276,9 +284,13 @@ export const Btn3 = styled.button`
   color: white;
   font-size: 32px;
   height: 80px;
-  background-color: #9e9e9e;
+  background-color: #334257;
   margin-top: 5%;
-  border-color:white;
+  border-color: #334257;
+  &:disabled {
+    background-color: #9e9e9e;
+    border: none;
+  }
 `;
 // -------------------------------------------
 export const RightForm2 = styled.div`

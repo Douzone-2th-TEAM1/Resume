@@ -1,5 +1,6 @@
 import { click } from '@testing-library/user-event/dist/click';
-import React, { useState } from 'react';
+import { isDisabled } from '@testing-library/user-event/dist/utils';
+import React, { useEffect, useState } from 'react';
 import { style } from './LoginPageStyle';
 
 export const LoginPage = () => {
@@ -8,7 +9,45 @@ export const LoginPage = () => {
     if (clickBtn === false) setClickBtn(true);
     else setClickBtn(false);
   };
-
+  // ----------------------------------------------------------------------------------
+  const [formInput, setFormInput] = useState({
+    id: '',
+    pw: '',
+  });
+  const [isDisabled, setIsDisabled] = useState(true);
+  const handleLoginInput = (e) => {
+    const { value, name } = e.target;
+    setFormInput({ ...formInput, [name]: value });
+  };
+  useEffect(() => {
+    if (formInput.id.length >= 1 && formInput.pw.length >= 1) setIsDisabled(false);
+    else setIsDisabled(true);
+  }, [formInput]);
+  // ----------------------------------------------------------------------------------
+  const [formSign, setFormSign] = useState({
+    email: '',
+    pwd: '',
+    pwdc: '',
+    nick: '',
+    tel: '',
+  });
+  const [isDisabled2, setIsDisabled2] = useState(true);
+  const handleSignInput = (e) => {
+    const { value, name } = e.target;
+    setFormSign({ ...formSign, [name]: value });
+  };
+  useEffect(() => {
+    if (
+      formSign.email.length >= 1 &&
+      formSign.pwd.length >= 1 &&
+      formSign.pwdc.length >= 1 &&
+      formSign.nick.length >= 1 &&
+      formSign.tel.length >= 1
+    )
+      setIsDisabled2(false);
+    else setIsDisabled2(true);
+  }, [formSign]);
+  // ----------------------------------------------------------------------------------
   return (
     <Container>
       <Background clickBtn={clickBtn} />
@@ -35,11 +74,13 @@ export const LoginPage = () => {
           </Text4>
           <EnterForm>
             <Text5>이메일</Text5>
-            <Enter1 />
+            {/* 로그인_이메일 입력 */}
+            <Enter1 name="id" onChange={handleLoginInput} value={formInput.id} />
             <Text6>비밀번호</Text6>
-            <Enter2 type="password"></Enter2>
+            {/* 로그인_비밀번호 입력 */}
+            <Enter2 name="pw" onChange={handleLoginInput} value={formInput.pw} type="password" />
           </EnterForm>
-          <Btn2>로그인</Btn2>
+          <Btn2 disabled={isDisabled}>로그인</Btn2>
         </RightForm1>
       )}
       {/* -------------------------------- */}
@@ -48,25 +89,25 @@ export const LoginPage = () => {
           <Text2_1>회원가입하기</Text2_1>
           <EnterForm2>
             <Text2_2>이메일</Text2_2>
-            <Enter3 />
+            <Enter3 name="email" onChange={handleSignInput} value={formSign.email} />
             <br />
             <br />
             <Text2_2>비밀번호</Text2_2>
-            <Enter3 type="password" />
+            <Enter3 name="pwd" onChange={handleSignInput} value={formSign.pwd} type="password" />
             <br />
             <br />
             <Text2_2>비밀번호 확인</Text2_2>
-            <Enter3 type="password" />
+            <Enter3 name="pwdc" onChange={handleSignInput} value={formSign.pwdc} type="password" />
             <br />
             <br />
             <Text2_2>이름</Text2_2>
-            <Enter3 />
+            <Enter3 name="nick" onChange={handleSignInput} value={formSign.nick} />
             <br />
             <br />
             <Text2_2>연락처</Text2_2>
-            <Enter3 />
+            <Enter3 name="tel" onChange={handleSignInput} value={formSign.tel} />
           </EnterForm2>
-          <Btn3>회원가입</Btn3>
+          <Btn3 disabled={isDisabled2}>회원가입</Btn3>
         </LeftForm2>
       )}
       {clickBtn && (
