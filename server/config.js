@@ -10,6 +10,10 @@ function required(key, defaultValue = undefined) {
 }
 
 export const config = {
+  jwt: {
+    secretKey: required('JWT_SECRET'),
+    expiresInSec: parseInt(required('JWT_EXPIRES_SEC')),
+  },
   host: {
     port: parseInt(required('HOST_PORT')),
   },

@@ -1,20 +1,9 @@
-// import jwt from 'jsonwebtoken';
+import jwt from 'jsonwebtoken';
 import {} from 'express-async-errors';
 import { config } from '../config.js';
 import * as usersTable from '../data/users.js';
 
-import * as resumesTable from '../data/resumes.js'; // 테이블 생성 테스트 끝나면 지우기
-import * as tempTable from '../data/temp.js'; // 테이블 생성 테스트 끝나면 지우기
-import * as wordsTable from '../data/words.js'; // 테이블 생성 테스트 끝나면 지우기
-
-import * as awardsTable from '../data/resumes/awards.js'; // 테이블 생성 테스트 끝나면 지우기
-import * as careersTable from '../data/resumes/careers.js'; // 테이블 생성 테스트 끝나면 지우기
-import * as certificationsTable from '../data/resumes/certification.js'; // 테이블 생성 테스트 끝나면 지우기
-import * as educationsTable from '../data/resumes/educations.js'; // 테이블 생성 테스트 끝나면 지우기
-import * as projectsTable from '../data/resumes/projects.js'; // 테이블 생성 테스트 끝나면 지우기
-import * as qnasTable from '../data/resumes/qnas.js'; // 테이블 생성 테스트 끝나면 지우기
-import * as techsTable from '../data/resumes/techs.js'; // 테이블 생성 테스트 끝나면 지우기
-
+// 회원가입
 export async function signup(req, res) {
   const { email, pwd, name, phone } = req.body;
   const found = await usersTable.findByEmail(email);
@@ -28,7 +17,31 @@ export async function signup(req, res) {
     name,
     phone,
   });
-  // const token = createJwtToken(userId);
-  // res.status(201).json({ token, email });
-  res.status(201).json({ userId });
+  res.status(201);
+}
+
+// 로그인
+export async function login(req, res) {
+  const { email, pwd } = req.body;
+  const user = await usersTable.findByEmail(email);
+  if (!user) {
+    return res.status(401).json({ message: 'Invalid user or password' });
+  }
+  const isValidPassword = pwd === user.pwd;
+  if (!isValidPassword) {
+    return res.status(401).json({ message: 'Invalid user or password' });
+  }
+  const token = createJwtToken(user.id);
+  res.status(200).json({ token, email });
+}
+
+// 로그인 토큰 생성
+function createJwtToken(id) {
+  return jwt.sign(
+    { id }, //
+    config.jwt.secretKey, //
+    {
+      expiresIn: config.jwt.expiresInSec,
+    }
+  );
 }

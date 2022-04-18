@@ -14,7 +14,11 @@ app.use(helmet());
 app.use(cors());
 app.use(morgan('tiny'));
 
+// 회원가입, 로그인
 app.use('/accounts', accountsRouter);
+
+// 회원 정보 수정, 탈퇴
+// app.use('/users', accountsRouter);
 
 sequelize.sync().then(() => {
   app.listen(config.host.port);
