@@ -11,13 +11,13 @@ export async function signup(req, res) {
     return res.status(409).json({ message: `${email} already exists` });
   }
 
-  const userId = await usersTable.createUser({
+  const id = await usersTable.createUser({
     email,
     pwd,
     name,
     phone,
   });
-  res.status(201).json({ userId });
+  res.status(201).json({ id });
 }
 
 // 로그인

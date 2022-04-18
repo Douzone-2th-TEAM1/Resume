@@ -1,9 +1,9 @@
 import SQ from 'sequelize';
 import { sequelize } from '../db/dbConnection.js';
-import { Users } from '../data/users.js';
+import { Users } from './users.js';
 const DataTypes = SQ.DataTypes;
 
-export const Temp = sequelize.define(
+export const Temps = sequelize.define(
   'temp',
   {
     temp_data: {
@@ -12,6 +12,12 @@ export const Temp = sequelize.define(
   },
   { timestamps: false }
 );
-Temp.belongsTo(Users, {
+Temps.belongsTo(Users, {
   foreignKey: 'u_id',
 });
+
+export async function findByuId(u_id) {
+  return Temps.findOne({
+    where: { u_id: u_id },
+  });
+}
