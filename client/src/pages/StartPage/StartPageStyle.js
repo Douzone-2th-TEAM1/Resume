@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { keyframes } from 'styled-components';
-import theme from 'styles/theme';
 
 export const Container = styled.div`
   height: 100vh;
@@ -19,7 +18,7 @@ export const Background = styled.div`
   position: relative;
   width: 100%;
   height: 50%;
-  background-color: #334257;
+  background-color: ${({ theme }) => theme.colorSet.PRIMARY};
   /* @media ${({ theme }) => theme.device.tablet} {
     height: 100px;
   } */
@@ -39,7 +38,7 @@ const animate = keyframes`
 
 export const Title = styled.h1`
   font-size: 175px;
-  -webkit-text-stroke: 0.3vw #383d52;
+  -webkit-text-stroke: 0.3vw ${({ theme }) => theme.colorSet.PRIMARY};
   text-transform: uppercase;
 
   letter-spacing: 5px;
@@ -60,8 +59,8 @@ export const Title = styled.h1`
     width: 0;
     height: 100%;
     z-index: 1;
-    -webkit-text-stroke: 0vw #383d52;
-    color: #383d52;
+    -webkit-text-stroke: 0vw ${({ theme }) => theme.colorSet.PRIMARY};
+    color: ${({ theme }) => theme.colorSet.PRIMARY};
     overflow: hidden;
     animation: ${animate} 2s linear;
     animation-fill-mode: forwards;
@@ -79,7 +78,7 @@ export const Title2 = styled.h1`
   /* -moz-transform:rotate(90deg); */
   transform: rotate(90deg);
   transform-orgin: left top;
-  color: white;
+  color: ${({ theme }) => theme.colorSet.SECONDARY};
   position: absolute;
   left: 250px;
   top: -1px;
@@ -91,8 +90,8 @@ export const Title2 = styled.h1`
     width: 0;
     height: 100%;
     z-index: 1;
-    -webkit-text-stroke: 0vw white;
-    color: #dfdfde;
+    -webkit-text-stroke: 0vw ${({ theme }) => theme.colorSet.SECONDARY};
+    color: ${({ theme }) => theme.colorSet.PRIMIARY_DISABLED};
     overflow: hidden;
     animation: ${animate} 2s linear;
     animation-delay: 2s;
@@ -116,16 +115,16 @@ export const SubTitle = styled.h2`
 export const StartBtn = styled.button`
   cursor: pointer;
   transition: all 0.5s;
-  border: 5px solid white;
+  border: 5px solid ${({ theme }) => theme.colorSet.SECONDARY};
   width: 300px;
   font-size: 30px;
   padding: 20px;
-  color: white;
+  color: ${({ theme }) => theme.colorSet.SECONDARY};
   border-radius: 28px;
   font-weight: bold;
   &:hover {
-    background-color: white;
-    color: #334257;
+    background-color: ${({ theme }) => theme.colorSet.SECONDARY};
+    color: ${({ theme }) => theme.colorSet.PRIMARY};
   }
 `;
 

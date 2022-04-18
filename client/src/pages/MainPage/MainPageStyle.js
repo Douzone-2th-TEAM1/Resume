@@ -14,7 +14,7 @@ export const TopTriangle = styled.div`
   left: 0px;
   width: 0px;
   height: 0px;
-  border-bottom: 360px solid #334257;
+  border-bottom: 360px solid ${({ theme }) => theme.colorSet.PRIMARY};
   border-left: 0px solid transparent;
   border-right: 180px solid transparent;
   transform: rotate(90deg);
@@ -28,8 +28,8 @@ export const BttomTriangle = styled.div`
   top: 10vh;
   width: 0px;
   height: 0px;
-  border-bottom: 0px solid #334257;
-  border-top: 90vh solid #334257;
+  border-bottom: 0px solid ${({ theme }) => theme.colorSet.PRIMARY};
+  border-top: 90vh solid ${({ theme }) => theme.colorSet.PRIMARY};
   border-left: 0px solid transparent;
   border-right: 1200px solid transparent;
 `;
@@ -46,7 +46,7 @@ const fadeout = (ht) => {
   }
 };
 export const MainTitle = styled.h1`
-  color: #334257;
+  color: ${({ theme }) => theme.colorSet.PRIMARY};
   font-size: 43px;
   font-weight: 600px;
   letter-spacing: 10;

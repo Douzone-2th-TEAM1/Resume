@@ -17,5 +17,13 @@ const device = {
   laptop: `screen and (max-width:${deviceSize.laptop})`,
 };
 
-const theme = { flexSet, device };
+const colorSet = {
+  PRIMARY: '#383d52',
+  PRIMIARY_DISABLED: '#cdcdcd',
+  SECONDARY: '#ffff',
+
+  ERROR: '#FF0000',
+  SUCCESS: '#287D3C',
+};
+const theme = { flexSet, device, colorSet };
 export default theme;
