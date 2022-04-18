@@ -9,7 +9,7 @@ export const Card = ({ onClickIcon, height }) => {
         <FaAngleDoubleUp size="50" color="#cdcdcd" />
       </IconLayout>
 
-      <div style={{ height: '120vh', width: '100%', backgroundColor: 'blue' }}></div>
+      <div style={{ height: '120vh', width: '100%' }}>testtest</div>
     </Container>
   );
 };

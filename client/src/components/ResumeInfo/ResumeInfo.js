@@ -1,8 +1,8 @@
 import React from 'react';
 import { style } from './ResumeInfoStyle';
-export const ResumeInfo = ({ title }) => {
+export const ResumeInfo = ({ title, flag }) => {
   return (
-    <Layout>
+    <Layout flag={flag}>
       <MenuTitle>{title}</MenuTitle>
     </Layout>
   );

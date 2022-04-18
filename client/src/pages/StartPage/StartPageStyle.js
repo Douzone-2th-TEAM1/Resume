@@ -91,7 +91,7 @@ export const Title2 = styled.h1`
     height: 100%;
     z-index: 1;
     -webkit-text-stroke: 0vw ${({ theme }) => theme.colorSet.SECONDARY};
-    color: ${({ theme }) => theme.colorSet.PRIMIARY_DISABLED};
+    color: ${({ theme }) => theme.colorSet.PRIMARY_DISABLED.DEFAULT};
     overflow: hidden;
     animation: ${animate} 2s linear;
     animation-delay: 2s;
