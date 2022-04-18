@@ -17,7 +17,7 @@ export async function signup(req, res) {
     name,
     phone,
   });
-  res.status(201);
+  res.status(201).json({ userId });
 }
 
 // 로그인
