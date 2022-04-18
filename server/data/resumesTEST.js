@@ -53,41 +53,41 @@ Resumes.belongsTo(Users, {
 
 export async function ResumesAwards(r_id) {
   return Resumes.findAll(
-    { where: [(r_id = this.r_id)] },
+    { where: [(r_id: this.r_id)] },
     { include: [Awards] }
   );
 }
 export async function ResumesCareers(r_id) {
   return Resumes.findAll(
-    { where: [(r_id = this.r_id)] },
+    { where: [(r_id: this.r_id)] },
     { include: [Careers] }
   );
 }
 export async function ResumesCertifications(r_id) {
   return Resumes.findAll(
-    { where: [(r_id = this.r_id)] },
+    { where: [(r_id: this.r_id)] },
     { include: [Certifications] }
   );
 }
 export async function ResumesEducations(r_id) {
   return Resumes.findAll(
-    { where: [(r_id = this.r_id)] },
+    { where: [(r_id: this.r_id)] },
     { include: [Educations] }
   );
 }
 export async function ResumesProjects(r_id) {
   return Resumes.findAll(
-    { where: [(r_id = this.r_id)] },
+    { where: [(r_id: this.r_id)] },
     { include: [Projects] }
   );
 }
 export async function ResumesQnAs(r_id) {
   return Resumes.findAll(
-    { where: [(r_id = this.r_id)] },
+    { where: [(r_id: this.r_id)] },
     { include: [QnAs] });
 }
 export async function ResumesTechs(r_id) {
   return Resumes.findAll(
-    { where: [(r_id = this.r_id)] },
+    { where: [(r_id: this.r_id)] },
     { include: [Techs] });
 }
