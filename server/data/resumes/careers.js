@@ -27,3 +27,13 @@ export const Careers = sequelize.define(
 Careers.belongsTo(Resumes, {
   foreignKey: 'r_id',
 });
+
+export async function findAllById(id) {
+  return Careers.findAll({
+    where: { r_id: id },
+  });
+}
+
+export async function createCareer(career) {
+  return Careers.create(career).then((data) => data.dataValues);
+}

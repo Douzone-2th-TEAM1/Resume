@@ -6,7 +6,7 @@ import * as usersTable from '../data/users.js';
 export async function findUser(req, res) {
   const id = req.id;
   const found = await usersTable.findById(id);
-  res.status(200).json({ resCode: 0 });
+  res.status(200).json({ resCode: 0, user: found });
 }
 
 // 회원 정보 수정

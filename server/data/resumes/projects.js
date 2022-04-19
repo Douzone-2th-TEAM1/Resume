@@ -27,3 +27,13 @@ export const Projects = sequelize.define(
 Projects.belongsTo(Resumes, {
   foreignKey: 'r_id',
 });
+
+export async function findAllById(id) {
+  return Projects.findAll({
+    where: { r_id: id },
+  });
+}
+
+export async function createProject(project) {
+  return Projects.create(project).then((data) => data.dataValues);
+}

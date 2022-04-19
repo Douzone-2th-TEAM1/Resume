@@ -23,3 +23,13 @@ export const Certifications = sequelize.define(
 Certifications.belongsTo(Resumes, {
   foreignKey: 'r_id',
 });
+
+export async function findAllById(id) {
+  return Certifications.findAll({
+    where: { r_id: id },
+  });
+}
+
+export async function createCertification(certification) {
+  return Certifications.create(certification).then((data) => data.dataValues);
+}

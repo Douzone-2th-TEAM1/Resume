@@ -19,3 +19,13 @@ export const QnAs = sequelize.define(
 QnAs.belongsTo(Resumes, {
   foreignKey: 'r_id',
 });
+
+export async function findAllById(id) {
+  return QnAs.findAll({
+    where: { r_id: id },
+  });
+}
+
+export async function createQnA(qna) {
+  return QnAs.create(qna).then((data) => data.dataValues);
+}

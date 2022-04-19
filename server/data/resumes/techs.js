@@ -16,3 +16,13 @@ export const Techs = sequelize.define(
 Techs.belongsTo(Resumes, {
   foreignKey: 'r_id',
 });
+
+export async function findAllById(id) {
+  return Techs.findAll({
+    where: { r_id: id },
+  });
+}
+
+export async function createTech(tech) {
+  return Techs.create(tech).then((data) => data.dataValues);
+}

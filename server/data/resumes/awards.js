@@ -11,7 +11,7 @@ export const Awards = sequelize.define(
       allowNull: false,
     },
     awardDate: {
-      type: DataTypes.DATEONLY,
+      type: DataTypes.STRING(45),
       allowNull: false,
     },
     awardCntns: {
@@ -23,3 +23,13 @@ export const Awards = sequelize.define(
 Awards.belongsTo(Resumes, {
   foreignKey: 'r_id',
 });
+
+export async function findAllById(id) {
+  return Awards.findAll({
+    where: { r_id: id },
+  });
+}
+
+export async function createAward(award) {
+  return Awards.create(award).then((data) => data.dataValues);
+}
