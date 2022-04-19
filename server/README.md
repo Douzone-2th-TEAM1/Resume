@@ -47,6 +47,15 @@ body
 {
 }
 ```
+### 회원 정보 조회(/) - RES
+```javascript
+status(200)
+{
+  email: 이메일,
+  name: 이름,
+  phone: 연락처
+}
+```
 ### 회원 정보 수정(/edit) - REQ
 ```javascript
 body
@@ -56,9 +65,17 @@ body
   phone: 전화번호
 }
 ```
+### 회원 정보 수정(/edit) - RES
+```javascript
+status(200)
+```
 ### 회원 탈퇴(delete) - REQ
 ```javascript
 body
 {
 }
+```
+### 회원 탈퇴(delete) - RES
+```javascript
+status(200)
 ```
