@@ -50,6 +50,12 @@ export async function findAllById(id) {
   });
 }
 
+export async function findById(id) {
+  return Resumes.findOne({
+    where: { r_id: id },
+  });
+}
+
 export async function createResume(resume) {
   return Resumes.create(resume).then((data) => data.dataValues.r_id);
 }

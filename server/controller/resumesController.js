@@ -72,6 +72,32 @@ export async function saveResume(req, res) {
 // 이력서 조회
 export async function findAllResumes(req, res) {
   const id = req.id;
-  const resumes = await resumesTable.findAllById(id); // json으로 묶기
+  const resumes = await resumesTable.findAllById(id);
   res.status(200).json({ resCode: 0, resumes: resumes });
+}
+
+// 특정 이력서 조회 --------------------------------------- 작업중 보지말기
+export async function findResume(req, res) {
+  const { r_id } = req.body;
+  const resume = await resumesTable.findById(r_id);
+  const awards = await awardsTable.findAllById(r_id);
+  const careers = await careersTable.findAllById(r_id);
+  const certifications = await certificationsTable.findAllById(r_id);
+  const educations = await educationsTable.findAllById(r_id);
+  const projects = await projectsTable.findAllById(r_id);
+  const qnas = await qnasTable.findAllById(r_id);
+  const techs = await techsTable.findAllById(r_id);
+  res.status(200).json({
+    resCode: 0,
+    resume: {
+      resume,
+      awards,
+      careers,
+      certifications,
+      educations,
+      projects,
+      qnas,
+      techs,
+    },
+  });
 }
