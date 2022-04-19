@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import { keyframes } from 'styled-components';
 
 const moveRight = (flag) => {
-  console.log(flag);
   if (flag) {
     return keyframes`
       from{
@@ -24,10 +23,6 @@ const moveRight = (flag) => {
   }
 };
 
-const test = keyframes`
-
-`;
-
 export const Container = styled.div`
   ${({ theme }) => theme.flexSet()}
   width:100%;
@@ -36,7 +31,8 @@ export const Container = styled.div`
 `;
 // -------------------------------------------
 export const Background = styled.div`
-  border-top: 1080px solid #334257;
+  border-top: 1080px solid;
+  border-color: ${({ theme }) => theme.colorSet.PRIMARY};
   border-right: 200px solid transparent;
   border-left: 200px solid transparent;
   width: 95%;
@@ -57,40 +53,15 @@ export const LeftForm1 = styled.div`
   text-align: center;
   margin-top: 5%;
   margin-left: -4%;
-  -moz-animation: fadein 3s;
-  -webkit-animation: fadein 3s;
-  -o-animation: fadein 3s;
+  animation: fadein 4s;
   @keyframes fadein {
     from {
-        opacity: 0;
+      opacity: 0;
     }
     to {
-        opacity: 1;
+      opacity: 1;
     }
-}
-@-moz-keyframes fadein {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
-}
-@-webkit-keyframes fadein {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
-}
-@-o-keyframes fadein {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
+  }
 `;
 export const Text1 = styled.div`
   font-size: 55px;
@@ -121,40 +92,15 @@ export const RightForm1 = styled.div`
   text-align: center;
   margin-top: 3%;
   margin-left: 25%;
-  -moz-animation: fadein 3s;
-  -webkit-animation: fadein 3s;
-  -o-animation: fadein 3s;
+  animation: fadein 4s;
   @keyframes fadein {
     from {
-        opacity: 0;
+      opacity: 0;
     }
     to {
-        opacity: 1;
+      opacity: 1;
     }
-}
-@-moz-keyframes fadein {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
-}
-@-webkit-keyframes fadein {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
-}
-@-o-keyframes fadein {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
+  }
 `;
 export const Text3 = styled.div`
   font-size: 55px;
@@ -200,14 +146,15 @@ export const Btn2 = styled.button`
   width: 100%;
   border: white 3px solid;
   border-radius: 5px;
-  border-color: #334257;
+  border-color: ${({ theme }) => theme.colorSet.PRIMARY};
   color: white;
   font-size: 32px;
   height: 80px;
-  background-color: #334257;
+  background-color: ${({ theme }) => theme.colorSet.PRIMARY};
   margin-top: 5%;
+
   &:disabled {
-    background-color: #9e9e9e;
+    background-color: ${({ theme }) => theme.colorSet.PRIMARY_DISABLED.DEFAULT};
     border: none;
   }
 `;
@@ -220,35 +167,8 @@ export const LeftForm2 = styled.div`
   text-align: center;
   margin-top: 0%;
   margin-left: 0%;
-
-  -moz-animation: fadein 3s;
-  -webkit-animation: fadein 3s;
-  -o-animation: fadein 3s;
+  animation: fadein 4s;
   @keyframes fadein {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
-  @-moz-keyframes fadein {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
-  @-webkit-keyframes fadein {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
-  @-o-keyframes fadein {
     from {
       opacity: 0;
     }
@@ -267,7 +187,6 @@ export const EnterForm2 = styled.div`
   font-size: 20px;
   font-weight: bolder;
 `;
-export const Text2_2 = styled.div``;
 export const Enter3 = styled.input`
   border: 1px black solid;
   border-radius: 5px;
@@ -275,6 +194,44 @@ export const Enter3 = styled.input`
   height: 40px;
   font-size: 20px;
   padding-left: 5px;
+`;
+export const Enter4form = styled.div`
+  border: 1px black solid;
+  border-radius: 5px;
+  width: 500px;
+  height: 40px;
+  font-size: 20px;
+  padding-left: 5px;
+  float: left;
+`;
+export const PwdAl = styled.div`
+  float: right;
+  z-index: 3;
+  font-weight: lighter;
+  padding: 10px;
+  background-color: white;
+  border: gray 1px solid;
+  border-radius: 5px;
+  position: absolute;
+  margin-left: 500px;
+  margin-top: -2.3%;
+  opacity: 0.7;
+  font-size: 16px;
+`;
+export const Enter4 = styled.input`
+  width: 440px;
+  height: 40px;
+  font-size: 20px;
+  padding-left: 5px;
+`;
+export const Info = styled.button`
+  cursor: pointer;
+  size: 20px;
+  width: fit-content;
+  float: right;
+  color: black;
+  margin-right: 7px;
+  margin-top: 6px;
 `;
 export const Btn3 = styled.button`
   cursor: pointer;
@@ -284,13 +241,30 @@ export const Btn3 = styled.button`
   color: white;
   font-size: 32px;
   height: 80px;
-  background-color: #334257;
+  background-color: ${({ theme }) => theme.colorSet.PRIMARY};
   margin-top: 5%;
-  border-color: #334257;
+  border-color: ${({ theme }) => theme.colorSet.PRIMARY};
   &:disabled {
-    background-color: #9e9e9e;
+    background-color: ${({ theme }) => theme.colorSet.PRIMARY_DISABLED.DEFAULT};
     border: none;
   }
+`;
+export const Wrong = styled.div`
+  color: red;
+  font-weight: lighter;
+  font-size: 16px;
+`;
+export const Right = styled.div`
+  color: green;
+  font-weight: lighter;
+  font-size: 16px;
+`;
+export const Pass = styled.div`
+  color: green;
+  width: fit-content;
+  float: right;
+  margin-left: 15px;
+  margin-top:5px;
 `;
 // -------------------------------------------
 export const RightForm2 = styled.div`
@@ -299,42 +273,17 @@ export const RightForm2 = styled.div`
   color: white;
   width: fit-content;
   text-align: center;
-  margin-top: 0%;
+  margin-top: -2%;
   margin-left: 20%;
-  -moz-animation: fadein 3s;
-  -webkit-animation: fadein 3s;
-  -o-animation: fadein 3s;
+  animation: fadein 4s;
   @keyframes fadein {
     from {
-        opacity: 0;
+      opacity: 0;
     }
     to {
-        opacity: 1;
+      opacity: 1;
     }
-}
-@-moz-keyframes fadein {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
-}
-@-webkit-keyframes fadein {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
-}
-@-o-keyframes fadein {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
+  }
 `;
 export const Text2_3 = styled.div`
   font-size: 55px;
@@ -374,11 +323,17 @@ export const style = {
   LeftForm2,
   Text2_1,
   EnterForm2,
-  Text2_2,
   Enter3,
+  Enter4,
   Btn3,
   RightForm2,
   Text2_3,
   Text2_4,
   Btn4,
+  Info,
+  Enter4form,
+  PwdAl,
+  Wrong,
+  Right,
+  Pass,
 };
