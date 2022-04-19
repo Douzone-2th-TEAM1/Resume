@@ -17,6 +17,7 @@ const Layout = styled.div`
 `;
 
 const DropLayout = styled.div`
+  ${({ theme }) => theme.flexSet()};
   position: absolute;
   top: 43px;
   left: 0px;

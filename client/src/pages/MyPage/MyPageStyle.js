@@ -103,6 +103,9 @@ const CntntsLayout = styled.div`
   overflow-y: scroll;
   width: 100%;
   height: 70%;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 const Rectangle = styled.div`
