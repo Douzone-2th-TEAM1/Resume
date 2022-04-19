@@ -7,6 +7,7 @@ import { sequelize } from './db/dbConnection.js';
 import { config } from './config.js';
 import accountsRouter from './router/accountsRouter.js';
 import usersRouter from './router/usersRouter.js';
+import resumesRouter from './router/resumesRouter.js';
 
 const app = express();
 
@@ -20,6 +21,9 @@ app.use('/accounts', accountsRouter);
 
 // 회원 정보 수정, 탈퇴
 app.use('/users', usersRouter);
+
+// 이력서 관리
+app.use('/resumes', resumesRouter);
 
 sequelize.sync().then(() => {
   app.listen(config.host.port);

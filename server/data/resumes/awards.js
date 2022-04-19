@@ -1,4 +1,4 @@
-import SQ from 'sequelize';
+import SQ, { where } from 'sequelize';
 import { sequelize } from '../../db/dbConnection.js';
 import { Resumes } from '../resumes.js';
 const DataTypes = SQ.DataTypes;

@@ -44,13 +44,10 @@ export async function createUser(user) {
 }
 
 export async function updateUser(user) {
-  const { email, pwd, name, phone } = user;
-  return Users.update(
-    { pwd, name, phone },
-    { where: { email }, returning: true }
-  );
+  const { id, pwd, name, phone } = user;
+  return Users.update({ pwd, name, phone }, { where: { id }, returning: true });
 }
 
-export async function deleteUser(email) {
-  return Users.destroy({ where: { email } });
+export async function deleteUser(id) {
+  return Users.destroy({ where: { id } });
 }
