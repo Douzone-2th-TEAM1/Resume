@@ -45,7 +45,6 @@
 ```javascript
 body
 {
-  email: 이메일
 }
 ```
 ### 회원 정보 수정(/edit) - REQ
@@ -62,6 +61,5 @@ body
 ```javascript
 body
 {
-  email: 이메일
 }
 ```
