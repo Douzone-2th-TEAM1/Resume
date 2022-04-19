@@ -51,7 +51,6 @@ body
 ```javascript
 body
 {
-  email: 이메일,
   pwd: 비밀번호,
   name: 이름,
   phone: 전화번호
