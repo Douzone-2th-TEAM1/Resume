@@ -16,12 +16,12 @@ export async function saveResume(req, res) {
     template,
     created_date: Date.now(),
   });
-  res.status(200).json(resume);
+  res.status(200).json({ resCode: 0 });
 }
 
 // 이력서 조회
 export async function findAllResumes(req, res) {
   const id = req.id;
   const resumes = await resumesTable.findAllById(id); // json으로 묶기
-  res.status(200).json(resumes);
+  res.status(200).json({ resCode: 0, resumes: resumes });
 }

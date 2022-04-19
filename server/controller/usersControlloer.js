@@ -6,7 +6,7 @@ import * as usersTable from '../data/users.js';
 export async function findUser(req, res) {
   const id = req.id;
   const found = await usersTable.findById(id);
-  res.status(200).json(found);
+  res.status(200).json({ resCode: 0 });
 }
 
 // 회원 정보 수정
@@ -20,12 +20,12 @@ export async function updateUser(req, res) {
     name,
     phone,
   });
-  res.status(200).json({ message: `회원 정보가 수정 되었습니다.` }); // 204는 return 없을 때
+  res.status(200).json({ resCode: 0 }); // 204는 return 없을 때
 }
 
 // 회원 탈퇴
 export async function deleteUser(req, res) {
   const id = req.id;
   const deletedRow = await usersTable.deleteUser(id); // 얜 리턴 없나? - 일단 임시
-  res.status(200).json({ message: `탈퇴 되었습니다.` }); // 204는 return 없을 때
+  res.status(200).json({ resCode: 0 }); // 204는 return 없을 때
 }
