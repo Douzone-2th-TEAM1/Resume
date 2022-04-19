@@ -1,4 +1,3 @@
-import jwt from 'jsonwebtoken';
 import {} from 'express-async-errors';
 import { config } from '../config.js';
 import * as usersTable from '../data/users.js';

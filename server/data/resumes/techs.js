@@ -1,5 +1,5 @@
 import SQ from 'sequelize';
-import { sequelize } from '../../db/dbConnection.js';
+import { sequelize } from '../../connections/dbConnection.js';
 import { Resumes } from '../resumes.js';
 const DataTypes = SQ.DataTypes;
 

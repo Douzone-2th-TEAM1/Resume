@@ -3,7 +3,7 @@ import 'express-async-errors';
 import cors from 'cors';
 import morgan from 'morgan';
 import helmet from 'helmet';
-import { sequelize } from './db/dbConnection.js';
+import { sequelize } from './connections/dbConnection.js';
 import { config } from './config.js';
 import accountsRouter from './router/accountsRouter.js';
 import usersRouter from './router/usersRouter.js';

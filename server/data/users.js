@@ -1,5 +1,5 @@
 import SQ from 'sequelize';
-import { sequelize } from '../db/dbConnection.js';
+import { sequelize } from '../connections/dbConnection.js';
 const DataTypes = SQ.DataTypes;
 
 export const Users = sequelize.define(
@@ -40,7 +40,7 @@ export async function findById(id) {
 }
 
 export async function createUser(user) {
-  return Users.create(user).then((data) => data.dataValues.id);
+  return Users.create(user).then((data) => data.dataValues);
 }
 
 export async function updateUser(user) {

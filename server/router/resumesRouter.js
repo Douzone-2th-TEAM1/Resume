@@ -1,7 +1,7 @@
 import express from 'express';
 import {} from 'express-async-errors';
-import * as resumesController from '../controller/resumesController.js';
 import { isAuth } from '../middleware/auth.js';
+import * as resumesController from '../controller/resumesController.js';
 
 const router = express.Router();
 

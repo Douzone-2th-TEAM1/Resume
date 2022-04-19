@@ -10,6 +10,12 @@ function required(key, defaultValue = undefined) {
 }
 
 export const config = {
+  aws: {
+    accessKeyId: required('AWS_ACCESS_KEY_ID'),
+    secretAccessKey: required('AWS_SECRET_ACCESS_KEY'),
+    region: required('AWS_REGION'),
+    bucket: required('AWS_BUCKET'),
+  },
   jwt: {
     secretKey: required('JWT_SECRET'),
     expiresInSec: parseInt(required('JWT_EXPIRES_SEC')),

@@ -1,5 +1,5 @@
 import SQ from 'sequelize';
-import { sequelize } from '../db/dbConnection.js';
+import { sequelize } from '../connections/dbConnection.js';
 import { Users } from './users.js';
 //
 const DataTypes = SQ.DataTypes;
@@ -44,14 +44,14 @@ Resumes.belongsTo(Users, {
   foreignKey: 'u_id',
 });
 
-export async function findAllById(u_id) {
+export async function findAllById(id) {
   return Resumes.findAll({
-    where: { u_id: u_id },
+    where: { u_id: id },
   });
 }
 
 export async function createResume(resume) {
-  return Resumes.create(resume).then((data) => data.dataValues.r_id);
+  return Resumes.create(resume).then((data) => data.dataValues);
 }
 
 // export async function ResumesAwards(r_id) {
