@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { keyframes } from 'styled-components';
-
+import Image from 'assets/img1.jpg';
 const moveRight = (flag) => {
   if (flag) {
     return keyframes`
@@ -264,7 +264,7 @@ export const Pass = styled.div`
   width: fit-content;
   float: right;
   margin-left: 15px;
-  margin-top:5px;
+  margin-top: 5px;
 `;
 // -------------------------------------------
 export const RightForm2 = styled.div`
@@ -304,6 +304,48 @@ export const Btn4 = styled.button`
   margin-top: 10%;
 `;
 // -------------------------------------------
+export const Modal = styled.div`
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  opacity: 0.5;
+  z-index: 5;
+  position: absolute;
+  border: 5px solid black;
+`;
+export const Modal2 = styled.div`
+  width: 700px;
+  height: 700px;
+  background-color: white;
+  z-index: 6;
+  position: absolute;
+  border-radius: 10px;
+`;
+export const Modal3 = styled.div`
+  z-index: 6;
+  width: 80%;
+  height: 40%;
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-top: 10%;
+  background-image: url(${Image});
+  background-size:cover;
+`;
+export const MT1 = styled.div`
+  font-size: 32px;
+  text-align: center;
+  font-weight: bolder;
+  margin-top: 5%;
+`;
+export const MT2 = styled.div`
+  font-size: 16px;
+  text-align: center;
+  font-weight: bolder;
+  color: #9f9c9c;
+  margin-top: 5%;
+  line-height: 170%;
+`;
+// -------------------------------------------
 export const style = {
   Container,
   Background,
@@ -336,4 +378,9 @@ export const style = {
   Wrong,
   Right,
   Pass,
+  Modal,
+  Modal2,
+  Modal3,
+  MT1,
+  MT2,
 };

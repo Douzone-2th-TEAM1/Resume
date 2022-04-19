@@ -81,11 +81,26 @@ export const LoginPage = () => {
   }, [emailVal, pwdVal, pwdcVal, nickVal, telVal]);
 
   // -----------------------------------------------------------------------------------------------------------------------------------
+  const [signIn, setSignIn] = useState(false);
+  const signInComplete = () => {
+    setSignIn(true);
+  };
+  // -----------------------------------------------------------------------------------------------------------------------------------
   return (
     <Container>
+      {signIn && <Modal />}
+      {signIn && (
+        <Modal2>
+          <Modal3 />
+          <MT1>회원가입이 완료되었습니다!</MT1>
+          <MT2>
+            회원가입 절차가 완료되었습니다.
+            <br />
+            로그인하고 첫 이력서를 작성해보세요!
+          </MT2>
+        </Modal2>
+      )}
       <Background clickBtn={clickBtn} />
-      {/* -------------------------------- */}
-
       {!clickBtn && (
         <LeftForm1>
           <Text1>아직 계정이 없으신가요?</Text1>
@@ -167,11 +182,14 @@ export const LoginPage = () => {
             )}
             {!pwdVal && formSign.pwd.length >= 1 && (
               <Wrong>
-                <br/><br/>
+                <br />
+                <br />
                 사용할 수 없는 비밀번호에요.
               </Wrong>
             )}
-            <br/><br/>비밀번호 확인
+            <br />
+            <br />
+            비밀번호 확인
             <br />
             <Enter3
               name="pwdc"
@@ -219,7 +237,9 @@ export const LoginPage = () => {
               </Pass>
             )}
           </EnterForm2>
-          <Btn3 disabled={isDisabled2}>회원가입</Btn3>
+          <Btn3 disabled={isDisabled2} onClick={signInComplete}>
+            회원가입
+          </Btn3>
         </LeftForm2>
       )}
       {clickBtn && (
@@ -264,6 +284,10 @@ const {
   Enter4form,
   PwdAl,
   Wrong,
-  Right,
   Pass,
+  Modal,
+  Modal2,
+  Modal3,
+  MT1,
+  MT2,
 } = style;
