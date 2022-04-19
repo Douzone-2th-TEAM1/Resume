@@ -24,6 +24,7 @@ const colorSet = {
     OPACITY_70: '#cdcdcd70',
   },
   SECONDARY: '#ffff',
+  BORDER: '#a0a0a0',
 
   ERROR: '#FF0000',
   SUCCESS: '#287D3C',

@@ -39,15 +39,18 @@ const fadeout = (ht) => {
     return keyframes`
     from{
     opacity:1
+    display:none;
     }
     to{
       opacity:0
+
     }`;
   }
 };
 export const MainTitle = styled.h1`
   color: ${({ theme }) => theme.colorSet.PRIMARY};
   font-size: 43px;
+  display: block;
   font-weight: 600px;
   letter-spacing: 10;
   text-align: center;

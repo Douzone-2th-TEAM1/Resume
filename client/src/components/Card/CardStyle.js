@@ -36,7 +36,7 @@ const Container = styled.div`
   background-color: white;
   border-radius: 20px 20px 0px 0px;
   box-shadow: 5px 6px 20px #000025;
-
+  padding: 0px 64px;
   &::-webkit-scrollbar {
     display: none;
   }
@@ -65,7 +65,40 @@ const IconLayout = styled.div`
     animation-direction: normal, alternate;
   }
 `;
+
+const ItemWrapper = styled.div`
+  min-height: 120vh;
+`;
+
+const ItemLayout = styled.div`
+  ${({ theme }) => theme.flexSet()};
+  width: 100%;
+  height: 212px;
+`;
+
+const ItemInnerLayout = styled.div`
+  ${({ theme }) => theme.flexSet('space-between')};
+  width: ${(props) => props.width};
+  height: 100%;
+  /* background-color: wheat; */
+`;
+
+const Layout = styled.div`
+  width: 100%;
+`;
+
+const ItemTitle = styled.h1`
+  width: fit-content;
+  font-weight: bold;
+  font-size: 25px;
+`;
+
 export const style = {
   Container,
   IconLayout,
+  ItemWrapper,
+  ItemLayout,
+  ItemInnerLayout,
+  Layout,
+  ItemTitle,
 };
