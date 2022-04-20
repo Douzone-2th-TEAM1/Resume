@@ -98,6 +98,7 @@ export const LoginPage = () => {
             <br />
             로그인하고 첫 이력서를 작성해보세요!
           </MT2>
+          <MT3>로그인 화면으로</MT3>
         </Modal2>
       )}
       <Background clickBtn={clickBtn} />
@@ -290,4 +291,5 @@ const {
   Modal3,
   MT1,
   MT2,
+  MT3,
 } = style;

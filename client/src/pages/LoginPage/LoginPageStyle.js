@@ -329,7 +329,7 @@ export const Modal3 = styled.div`
   margin-right: 10%;
   margin-top: 10%;
   background-image: url(${Image});
-  background-size:cover;
+  background-size: cover;
 `;
 export const MT1 = styled.div`
   font-size: 32px;
@@ -344,6 +344,12 @@ export const MT2 = styled.div`
   color: #9f9c9c;
   margin-top: 5%;
   line-height: 170%;
+`;
+export const MT3 = styled.button`
+background-color:#00B2FF;
+border-radius: 5px;
+font-size: 36px;
+
 `;
 // -------------------------------------------
 export const style = {
@@ -383,4 +389,5 @@ export const style = {
   Modal3,
   MT1,
   MT2,
+  MT3,
 };
