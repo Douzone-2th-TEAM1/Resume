@@ -7,14 +7,14 @@ export const TechStack = ({
   disable,
   resetText,
   techDatas,
-  onChangeTech,
-  onChangeDelTech,
+  onInsertTech,
+  onChangeDelInfo,
   onChangeInput,
 }) => {
   const onClickEnter = (e) => {
     if (e.key === 'Enter') {
-      text && onChangeTech(text);
-      resetText();
+      text && onInsertTech(text);
+      resetText(e.target.id);
     }
   };
 
@@ -23,6 +23,7 @@ export const TechStack = ({
       <InnerLayout>
         <Title>기술스택</Title>
         <InputLayout
+          id="techs"
           value={text}
           placeholder="최대 5개까지 입력 가능"
           onKeyPress={onClickEnter}
@@ -33,7 +34,16 @@ export const TechStack = ({
       <InnerLayout2>
         {techDatas &&
           techDatas.map((item, index) => {
-            return <Label key={index} id={index} text={item} onChangeDelTech={onChangeDelTech} />;
+            return (
+              <Label
+                item={'techs'}
+                bgColor={'#92a9bd'}
+                key={index}
+                id={index}
+                text={item}
+                onChangeDelInfo={onChangeDelInfo}
+              />
+            );
           })}
       </InnerLayout2>
     </Layout>

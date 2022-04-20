@@ -71,15 +71,17 @@ const ItemWrapper = styled.div`
 `;
 
 const ItemLayout = styled.div`
-  ${({ theme }) => theme.flexSet('flex-start', 'center')};
+  ${({ theme }) => theme.flexSet('flex-start', 'flex-start')};
   width: 100%;
-  height: 400px;
+  margin: 30px 0px;
+  /* min-height: ${(props) => props.minHt}; */
 `;
 
 const ItemInnerLayout = styled.div`
-  ${({ theme }) => theme.flexSet('center', '', 'column')};
+  ${({ theme }) => theme.flexSet('space-between', 'center', 'column')};
   width: ${(props) => props.width};
   height: 100%;
+  /* min-height: 130px; */
   /* background-color: wheat; */
 `;
 
@@ -95,8 +97,39 @@ const ItemTitle = styled.h1`
 
 const Box = styled.div`
   ${({ theme }) => theme.flexSet('space-between', 'center')};
+  margin: 0px 0px 20px 0px;
   width: 100%;
   height: ${(props) => props.ht};
+`;
+
+const ImgLayout = styled.label`
+  ${({ theme }) => theme.flexSet()};
+  cursor: pointer;
+  margin: 0px 38px 5px 38px;
+  width: 150px;
+  height: 180px;
+  border: 2px solid ${({ theme }) => theme.colorSet.PRIMARY_DISABLED.DEFAULT};
+
+  h6 {
+    font-size: 13px;
+    color: ${({ theme }) => theme.colorSet.PRIMARY_DISABLED.DEFAULT};
+  }
+`;
+const ImgBtn = styled.input`
+  display: none;
+
+  padding: 5px;
+  width: 150px;
+  height: 100%;
+  color: white;
+  border-radius: 2px;
+  background-color: #78938a;
+  font-weight: bold;
+  font-size: 13px;
+
+  &:hover {
+    background-color: #78938a95;
+  }
 `;
 
 export const style = {
@@ -108,4 +141,6 @@ export const style = {
   Layout,
   ItemTitle,
   Box,
+  ImgLayout,
+  ImgBtn,
 };
