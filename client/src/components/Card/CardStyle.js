@@ -71,13 +71,13 @@ const ItemWrapper = styled.div`
 `;
 
 const ItemLayout = styled.div`
-  ${({ theme }) => theme.flexSet()};
+  ${({ theme }) => theme.flexSet('flex-start', 'center')};
   width: 100%;
-  height: 212px;
+  height: 400px;
 `;
 
 const ItemInnerLayout = styled.div`
-  ${({ theme }) => theme.flexSet('space-between')};
+  ${({ theme }) => theme.flexSet('center', '', 'column')};
   width: ${(props) => props.width};
   height: 100%;
   /* background-color: wheat; */
@@ -93,6 +93,12 @@ const ItemTitle = styled.h1`
   font-size: 25px;
 `;
 
+const Box = styled.div`
+  ${({ theme }) => theme.flexSet('space-between', 'center')};
+  width: 100%;
+  height: ${(props) => props.ht};
+`;
+
 export const style = {
   Container,
   IconLayout,
@@ -101,4 +107,5 @@ export const style = {
   ItemInnerLayout,
   Layout,
   ItemTitle,
+  Box,
 };
