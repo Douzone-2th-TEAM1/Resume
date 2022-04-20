@@ -37,3 +37,7 @@ export async function findAllById(id) {
 export async function createProject(project) {
   return Projects.create(project).then((data) => data.dataValues);
 }
+
+export async function deleteProject(id) {
+  return Projects.destroy({ where: { rid: id } });
+}

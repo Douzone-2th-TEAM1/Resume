@@ -88,19 +88,30 @@ export async function findResume(req, res) {
   // 위의 이력서 리스트에서 원하는 r_id만 전송 받음
   const id = req.id;
   const { r_id } = req.body;
-  const resume = await resumesTable.findById(id);
+  const { title, photo, department, portfolio, template } =
+    await resumesTable.findById(id);
   const awards = await awardsTable.findAllById(r_id);
-  // const careers = await careersTable.findAllById(r_id);
-  // const certifications = await certificationsTable.findAllById(r_id);
-  // const educations = await educationsTable.findAllById(r_id);
-  // const projects = await projectsTable.findAllById(r_id);
-  // const qnas = await qnasTable.findAllById(r_id);
-  // const techs = await techsTable.findAllById(r_id);
+  const careers = await careersTable.findAllById(r_id);
+  const certifications = await certificationsTable.findAllById(r_id);
+  const educations = await educationsTable.findAllById(r_id);
+  const projects = await projectsTable.findAllById(r_id);
+  const qnas = await qnasTable.findAllById(r_id);
+  const techs = await techsTable.findAllById(r_id);
 
   res.status(200).json({
     // 양식 수정 필요
     resCode: 0,
-    resume,
+    title,
+    photo,
+    department,
+    portfolio,
+    template,
     awards,
   });
+}
+
+export async function deleteResume(req, res) {
+  const { r_id } = req.body;
+  const deletedRow = await resumesTable.deleteResume(r_id);
+  res.status(200).json({ resCode: 0 }); // 204는 return 없을 때
 }

@@ -37,3 +37,7 @@ export async function findAllById(id) {
 export async function createCareer(career) {
   return Careers.create(career).then((data) => data.dataValues);
 }
+
+export async function deleteCareer(id) {
+  return Careers.destroy({ where: { rid: id } });
+}

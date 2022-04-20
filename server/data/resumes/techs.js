@@ -26,3 +26,7 @@ export async function findAllById(id) {
 export async function createTech(tech) {
   return Techs.create(tech).then((data) => data.dataValues);
 }
+
+export async function deleteTech(id) {
+  return Techs.destroy({ where: { rid: id } });
+}

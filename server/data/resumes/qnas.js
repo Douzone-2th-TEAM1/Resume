@@ -29,3 +29,7 @@ export async function findAllById(id) {
 export async function createQnA(qna) {
   return QnAs.create(qna).then((data) => data.dataValues);
 }
+
+export async function deleteQnA(id) {
+  return QnAs.destroy({ where: { rid: id } });
+}

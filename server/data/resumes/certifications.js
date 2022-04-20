@@ -33,3 +33,7 @@ export async function findAllById(id) {
 export async function createCertification(certification) {
   return Certifications.create(certification).then((data) => data.dataValues);
 }
+
+export async function deleteCertification(id) {
+  return Certifications.destroy({ where: { rid: id } });
+}

@@ -37,3 +37,7 @@ export async function findAllById(id) {
 export async function createEducation(education) {
   return Educations.create(education).then((data) => data.dataValues);
 }
+
+export async function deleteEducation(id) {
+  return Educations.destroy({ where: { rid: id } });
+}
