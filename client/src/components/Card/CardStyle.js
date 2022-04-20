@@ -71,7 +71,7 @@ const ItemWrapper = styled.div`
 `;
 
 const ItemLayout = styled.div`
-  ${({ theme }) => theme.flexSet()};
+  ${({ theme }) => theme.flexSet('flex-start', 'center')};
   width: 100%;
   height: 400px;
 `;

@@ -25,6 +25,7 @@ const TextLayout = styled.div`
 `;
 
 const IconLayout = styled.div`
+  cursor: pointer;
   width: auto;
   height: auto;
 `;

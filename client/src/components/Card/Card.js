@@ -3,6 +3,7 @@ import { style } from './CardStyle';
 import { FaAngleDoubleUp } from 'react-icons/fa';
 import Dropbox from 'components/DropBox';
 import TechStack from 'components/TechStack';
+import Certification from 'components/Certification';
 
 export const Card = ({ onClickIcon, height }) => {
   const [info, setInfo] = useState({
@@ -83,6 +84,10 @@ export const Card = ({ onClickIcon, height }) => {
             </Box>
           </ItemInnerLayout>
           <ItemInnerLayout width={'30%'}></ItemInnerLayout>
+        </ItemLayout>
+
+        <ItemLayout>
+          <Certification />
         </ItemLayout>
       </ItemWrapper>
     </Container>
