@@ -73,7 +73,7 @@ export async function saveResume(req, res) {
       techsTable.createTech(tech);
     }));
 
-  res.status(200).json({ resCode: 0 });
+  res.status(200).json({ resCode: 0, r_id: r_id });
 }
 
 // 이력서 조회
@@ -89,7 +89,7 @@ export async function findResume(req, res) {
   const id = req.id;
   const { r_id } = req.body;
   const resume = await resumesTable.findById(id);
-  const awards = await awardsTable.findAllById(id);
+  const awards = await awardsTable.findAllById(r_id);
   // const careers = await careersTable.findAllById(r_id);
   // const certifications = await certificationsTable.findAllById(r_id);
   // const educations = await educationsTable.findAllById(r_id);
