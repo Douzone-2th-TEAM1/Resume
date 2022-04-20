@@ -52,6 +52,15 @@ export async function findAllById(id) {
 
 export async function findById(id) {
   return Resumes.findOne({
+    attributes: [
+      'r_id',
+      'title',
+      'photo',
+      'department',
+      'portfolio',
+      'template',
+      'createdDate',
+    ],
     where: { r_id: id },
   });
 }

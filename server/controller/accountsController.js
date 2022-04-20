@@ -32,7 +32,7 @@ export async function login(req, res) {
     return res.status(401).json({ message: 'Invalid user or password' });
   }
   const token = createJwtToken(user.id);
-  res.status(200).json({ rescode: 0, token, email });
+  res.status(200).json({ resCode: 0, token, email });
 }
 
 // 로그인 토큰 생성

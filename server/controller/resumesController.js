@@ -28,7 +28,6 @@ export async function saveResume(req, res) {
   } = req.body;
 
   const r_id = await resumesTable.createResume({
-    // r_id를 받아와서 나머지 요소들 생성
     u_id: id,
     title,
     photo,
@@ -38,66 +37,70 @@ export async function saveResume(req, res) {
     createdDate: Date.now(),
   });
 
-  let test = await awards.map((item) => {
-    const award = Object.assign({ r_id: r_id }, item);
-    awardsTable.createAward(award);
-  });
-  // test = await careers.map((item) => {
-  //   const career = Object.assign({ r_id: r_id }, item);
-  //   careersTable.createCareer(career);
-  // });
-  // test = await certifications.map((item) => {
-  //   const certification = Object.assign({ r_id: r_id }, item);
-  //   certificationsTable.createCertification(certification);
-  // });
-  // test = await educations.map((item) => {
-  //   const education = Object.assign({ r_id: r_id }, item);
-  //   educationsTable.createEducation(education);
-  // });
-  // test = await projects.map((item) => {
-  //   const project = Object.assign({ r_id: r_id }, item);
-  //   projectsTable.createProject(project);
-  // });
-  // test = await qnas.map((item) => {
-  //   const qna = Object.assign({ r_id: r_id }, item);
-  //   qnasTable.createQnA(qna);
-  // });
-  // test = await techs.map((item) => {
-  //   const tech = Object.assign({ r_id: r_id }, item);
-  //   techsTable.createTech(tech);
-  // });
+  awards &&
+    (await awards.map((item) => {
+      const award = Object.assign({ r_id: r_id }, item);
+      awardsTable.createAward(award);
+    }));
+  careers &&
+    (await careers.map((item) => {
+      const career = Object.assign({ r_id: r_id }, item);
+      careersTable.createCareer(career);
+    }));
+  certifications &&
+    (await certifications.map((item) => {
+      const certification = Object.assign({ r_id: r_id }, item);
+      certificationsTable.createCertification(certification);
+    }));
+  educations &&
+    (await educations.map((item) => {
+      const education = Object.assign({ r_id: r_id }, item);
+      educationsTable.createEducation(education);
+    }));
+  projects &&
+    (await projects.map((item) => {
+      const project = Object.assign({ r_id: r_id }, item);
+      projectsTable.createProject(project);
+    }));
+  qnas &&
+    (await qnas.map((item) => {
+      const qna = Object.assign({ r_id: r_id }, item);
+      qnasTable.createQnA(qna);
+    }));
+  techs &&
+    (await techs.map((item) => {
+      const tech = Object.assign({ r_id: r_id }, item);
+      techsTable.createTech(tech);
+    }));
+
   res.status(200).json({ resCode: 0 });
 }
 
 // 이력서 조회
 export async function findAllResumes(req, res) {
   const id = req.id;
-  const resumes = await resumesTable.findAllById(id);
+  const resumes = await resumesTable.findAllById(id); // 사용자의 모든 이력서 리스트
   res.status(200).json({ resCode: 0, resumes: resumes });
 }
 
-// 특정 이력서 조회 --------------------------------------- 작업중 보지말기
+// 특정 이력서 조회
 export async function findResume(req, res) {
+  // 위의 이력서 리스트에서 원하는 r_id만 전송 받음
+  const id = req.id;
   const { r_id } = req.body;
-  const resume = await resumesTable.findById(r_id);
-  const awards = await awardsTable.findAllById(r_id);
-  const careers = await careersTable.findAllById(r_id);
-  const certifications = await certificationsTable.findAllById(r_id);
-  const educations = await educationsTable.findAllById(r_id);
-  const projects = await projectsTable.findAllById(r_id);
-  const qnas = await qnasTable.findAllById(r_id);
-  const techs = await techsTable.findAllById(r_id);
+  const resume = await resumesTable.findById(id);
+  const awards = await awardsTable.findAllById(id);
+  // const careers = await careersTable.findAllById(r_id);
+  // const certifications = await certificationsTable.findAllById(r_id);
+  // const educations = await educationsTable.findAllById(r_id);
+  // const projects = await projectsTable.findAllById(r_id);
+  // const qnas = await qnasTable.findAllById(r_id);
+  // const techs = await techsTable.findAllById(r_id);
+
   res.status(200).json({
+    // 양식 수정 필요
     resCode: 0,
-    resume: {
-      resume,
-      awards,
-      careers,
-      certifications,
-      educations,
-      projects,
-      qnas,
-      techs,
-    },
+    resume,
+    awards,
   });
 }

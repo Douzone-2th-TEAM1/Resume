@@ -5,8 +5,11 @@ import * as usersTable from '../data/users.js';
 // 회원 정보 조회
 export async function findUser(req, res) {
   const id = req.id;
-  const found = await usersTable.findById(id);
-  res.status(200).json({ resCode: 0, user: found });
+  const user = await usersTable.findById(id);
+  if (!user) {
+    return res.status(401).json({ message: 'Invalid user' });
+  }
+  res.status(200).json({ resCode: 0, user: user });
 }
 
 // 회원 정보 수정

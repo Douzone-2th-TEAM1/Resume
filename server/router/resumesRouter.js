@@ -11,4 +11,7 @@ router.post('/save', isAuth, resumesController.saveResume);
 // 이력서 조회
 router.post('/', isAuth, resumesController.findAllResumes);
 
+// 특정 이력서 조회
+router.post('/get', isAuth, resumesController.findResume);
+
 export default router;
