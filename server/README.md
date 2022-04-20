@@ -14,6 +14,7 @@ DB_PASSWORD = 사용자 비밀번호
 ```
 
 
+<br/>
 ## /accounts
 #### 회원가입(/signup) - REQ
 ```javascript
@@ -47,7 +48,7 @@ DB_PASSWORD = 사용자 비밀번호
 ```
 
 
-<br/><br/>
+<br/>
 ## /users
 #### Header 공통 사항
 ```javascript
@@ -95,7 +96,7 @@ DB_PASSWORD = 사용자 비밀번호
 ```
 
 
-<br/><br/>
+<br/>
 ## /resumes
 #### Header 공통 사항
 ```javascript
