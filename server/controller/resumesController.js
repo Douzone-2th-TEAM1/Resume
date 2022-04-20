@@ -86,10 +86,9 @@ export async function findAllResumes(req, res) {
 // 특정 이력서 조회
 export async function findResume(req, res) {
   // 위의 이력서 리스트에서 원하는 r_id만 전송 받음
-  const id = req.id;
   const { r_id } = req.body;
   const { title, photo, department, portfolio, template } =
-    await resumesTable.findById(id);
+    await resumesTable.findById(r_id);
   const awards = await awardsTable.findAllById(r_id);
   const careers = await careersTable.findAllById(r_id);
   const certifications = await certificationsTable.findAllById(r_id);
