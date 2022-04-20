@@ -164,6 +164,33 @@ DB_PASSWORD = 사용자 비밀번호
     techs: 기술 스택 내역 배열,
 }
 ```
+```javascript
+{
+    "resCode": 0,
+    "title": "이력서1-1",
+    "photo": "사진1-1",
+    "department": "직무1-1",
+    "portfolio": "포트폴리오1-1",
+    "template": 1,
+    "awards": [
+        {
+            "id": 1,
+            "awardName": "1-1",
+            "awardDate": "1-1",
+            "awardCntns": "1-1",
+            "r_id": 1
+        },
+        {
+            "id": 2,
+            "awardName": "1-2",
+            "awardDate": "1-2",
+            "awardCntns": "1-2",
+            "r_id": 1
+        }
+    ],
+    ...
+}
+```
 #### 이력서 삭제(/get) - REQ
 ```javascript
 {
