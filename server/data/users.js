@@ -28,7 +28,7 @@ export const Users = sequelize.define(
       allowNull: false,
     },
   },
-  { timestamps: false }
+  { timestamps: false, tableName: 'users' }
 );
 
 export async function findByEmail(email) {

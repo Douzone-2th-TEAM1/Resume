@@ -38,10 +38,11 @@ export const Resumes = sequelize.define(
       allowNull: false,
     },
   },
-  { timestamps: false }
+  { timestamps: false, tableName: 'resumes' }
 );
 Resumes.belongsTo(Users, {
   foreignKey: 'u_id',
+  onDelete: 'cascade',
 });
 
 export async function findAllById(id) {
@@ -70,5 +71,5 @@ export async function createResume(resume) {
 }
 
 export async function deleteResume(id) {
-  return Resumes.destroy({ where: { rid: id } });
+  return Resumes.destroy({ where: { r_id: id } });
 }

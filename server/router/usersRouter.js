@@ -12,6 +12,6 @@ router.post('/', isAuth, usersController.findUser);
 router.post('/edit', isAuth, usersController.updateUser);
 
 // 회원 탈퇴
-router.post('/delete', isAuth, usersController.deleteUser);
+router.post('/resign', isAuth, usersController.deleteUser);
 
 export default router;

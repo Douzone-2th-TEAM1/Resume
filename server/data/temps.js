@@ -10,7 +10,7 @@ export const Temps = sequelize.define(
       type: DataTypes.TEXT,
     },
   },
-  { timestamps: false }
+  { timestamps: false, tableName: 'temps' }
 );
 Temps.belongsTo(Users, {
   foreignKey: 'u_id',

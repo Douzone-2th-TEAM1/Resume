@@ -18,10 +18,11 @@ export const Awards = sequelize.define(
       type: DataTypes.STRING(1000),
     },
   },
-  { timestamps: false }
+  { timestamps: false, tableName: 'awards' }
 );
 Awards.belongsTo(Resumes, {
   foreignKey: 'r_id',
+  onDelete: 'cascade',
 });
 
 export async function findAllById(id) {
@@ -32,8 +33,4 @@ export async function findAllById(id) {
 
 export async function createAward(award) {
   return Awards.create(award).then((data) => data.dataValues);
-}
-
-export async function deleteAward(id) {
-  return Awards.destroy({ where: { rid: id } });
 }

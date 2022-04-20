@@ -22,10 +22,11 @@ export const Educations = sequelize.define(
       type: DataTypes.STRING(1000),
     },
   },
-  { timestamps: false }
+  { timestamps: false, tableName: 'educations' }
 );
 Educations.belongsTo(Resumes, {
   foreignKey: 'r_id',
+  onDelete: 'cascade',
 });
 
 export async function findAllById(id) {
@@ -36,8 +37,4 @@ export async function findAllById(id) {
 
 export async function createEducation(education) {
   return Educations.create(education).then((data) => data.dataValues);
-}
-
-export async function deleteEducation(id) {
-  return Educations.destroy({ where: { rid: id } });
 }

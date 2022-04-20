@@ -119,6 +119,9 @@ export async function findResume(req, res) {
 // 이력서 삭제
 export async function deleteResume(req, res) {
   const { r_id } = req.body;
-  const deletedRow = await resumesTable.deleteResume(r_id);
+  if (!r_id) {
+    return res.status(401).json({ message: 'Invalid r_id' });
+  }
+  await resumesTable.deleteResume(r_id);
   res.status(200).json({ resCode: 0 }); // 204는 return 없을 때
 }

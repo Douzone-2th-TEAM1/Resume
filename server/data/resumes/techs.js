@@ -11,10 +11,11 @@ export const Techs = sequelize.define(
       allowNull: false,
     },
   },
-  { timestamps: false }
+  { timestamps: false, tableName: 'techs' }
 );
 Techs.belongsTo(Resumes, {
   foreignKey: 'r_id',
+  onDelete: 'cascade',
 });
 
 export async function findAllById(id) {
@@ -25,8 +26,4 @@ export async function findAllById(id) {
 
 export async function createTech(tech) {
   return Techs.create(tech).then((data) => data.dataValues);
-}
-
-export async function deleteTech(id) {
-  return Techs.destroy({ where: { rid: id } });
 }

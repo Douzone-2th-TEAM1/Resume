@@ -18,10 +18,11 @@ export const Certifications = sequelize.define(
       allowNull: false,
     },
   },
-  { timestamps: false }
+  { timestamps: false, tableName: 'certifications' }
 );
 Certifications.belongsTo(Resumes, {
   foreignKey: 'r_id',
+  onDelete: 'cascade',
 });
 
 export async function findAllById(id) {
@@ -32,8 +33,4 @@ export async function findAllById(id) {
 
 export async function createCertification(certification) {
   return Certifications.create(certification).then((data) => data.dataValues);
-}
-
-export async function deleteCertification(id) {
-  return Certifications.destroy({ where: { rid: id } });
 }
