@@ -6,14 +6,14 @@ const DataTypes = SQ.DataTypes;
 export const Certifications = sequelize.define(
   'certification',
   {
-    certName: {
+    certiName: {
       type: DataTypes.STRING(45),
       allowNull: false,
     },
-    certScore: {
+    certiScore: {
       type: DataTypes.STRING(45),
     },
-    certDate: {
+    certiDate: {
       type: DataTypes.STRING(45),
       allowNull: false,
     },

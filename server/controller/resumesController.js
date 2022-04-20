@@ -107,9 +107,16 @@ export async function findResume(req, res) {
     portfolio,
     template,
     awards,
+    careers,
+    certifications,
+    educations,
+    projects,
+    qnas,
+    techs,
   });
 }
 
+// 이력서 삭제
 export async function deleteResume(req, res) {
   const { r_id } = req.body;
   const deletedRow = await resumesTable.deleteResume(r_id);
