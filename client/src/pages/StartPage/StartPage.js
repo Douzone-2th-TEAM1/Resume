@@ -1,19 +1,24 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { style } from './StartPageStyle';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 export const StartPage = () => {
   const storeDatas = useSelector((state) => state.ResumeReducer);
   const navigation = useNavigate();
+
+  const [img, setImg] = useState('');
   const onClickBtn = () => {
     navigation('/main');
   };
   useEffect(() => {
     storeDatas.info && console.log(storeDatas.info);
   }, []);
+
   return (
     <Container>
+      {/* <img src="http://192.168.2.26:8080/resumes/a461eb22fd97a25d1aa0398da095da85"></img> */}
       <TopBackground>
         <Title data-text={'RESU'}>RESU</Title>
         <SubTitleContainer>
