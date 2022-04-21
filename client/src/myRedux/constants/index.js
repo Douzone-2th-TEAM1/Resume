@@ -1,2 +1,2 @@
-import { ResumeActionType } from './action-type';
-export { ResumeActionType };
+import { ResumeActionType, AlertActionType } from './action-type';
+export { ResumeActionType, AlertActionType };

@@ -6,11 +6,15 @@ import ResignPage from 'pages/ResignPage';
 import Form1Page from 'pages/Form1Page';
 import Alert from 'components/Alert';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 
 function App() {
+  const dispatch = useDispatch();
+  const openAlert = useSelector((state) => state.AlertReducer);
+
   return (
     <BrowserRouter>
-      <Alert status={'success'} />
+      {openAlert.status && <Alert status={'success'} />}
       <Routes>
         <Route path="/" element={<StartPage />}></Route>
         <Route path="/signin" element={<LoginPage />}></Route>

@@ -3,3 +3,8 @@ export const ResumeActionType = {
   TEMP_INFO: 'TEMP_INFO',
   CANCEL_INFO: 'CANCEL_INFO',
 };
+
+export const AlertActionType = {
+  OPEN_ALERT: 'OPEN_ALERT',
+  CLOSE_ALERT: 'CLOSE_ALERT',
+};

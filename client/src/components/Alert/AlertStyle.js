@@ -1,4 +1,13 @@
 import styled from 'styled-components';
+import { keyframes } from 'styled-components';
+
+const fadein = keyframes`
+  from{
+    opacity:0
+  }to{
+    opacity:1
+  }
+`;
 
 const Layout = styled.div`
   ${({ theme }) => theme.flexSet('flex-start')};
@@ -14,7 +23,7 @@ const Layout = styled.div`
   color: ${({ status, theme }) =>
     status === 'success' ? theme.colorSet.SUCCESS.COLOR : theme.colorSet.ERROR};
   box-shadow: 0px 4px 4px #00000025;
-
+  animation: ${fadein} 1s;
   h5 {
     margin-left: 5%;
     font-size: 15px;
