@@ -5,7 +5,8 @@ export const Container = styled.div`
   ${({ theme }) => theme.flexSet('', 'center', 'column')}
   position: relative;
   min-width: 1200px;
-  height: 100vh;
+  height: 98vh;
+  overflow-x:hidden;
 `;
 
 export const TopTriangle = styled.div`
@@ -29,7 +30,7 @@ export const BttomTriangle = styled.div`
   width: 0px;
   height: 0px;
   border-bottom: 0px solid ${({ theme }) => theme.colorSet.PRIMARY};
-  border-top: 90vh solid ${({ theme }) => theme.colorSet.PRIMARY};
+  border-top: 88vh solid ${({ theme }) => theme.colorSet.PRIMARY};
   border-left: 0px solid transparent;
   border-right: 1200px solid transparent;
 `;

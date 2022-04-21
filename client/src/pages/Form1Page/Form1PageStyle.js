@@ -2,6 +2,7 @@ import styled from 'styled-components';
 // -------------------------------------------
 export const Container = styled.div`
   ${({ theme }) => theme.flexSet()}
+  overflow: scroll;
 `;
 // -------------------------------------------
 export const Form = styled.div`

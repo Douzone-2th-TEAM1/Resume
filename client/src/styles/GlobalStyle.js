@@ -11,7 +11,7 @@ export const GlobalStyles = createGlobalStyle`
     }
     body {
         /* overflow-y:scroll; */
-        overflow:hidden;
+      overflow:hidden;
         min-width:1400px;
         /* min-height:800px; */
         font-family: 'Noto Sans KR', sans-serif;

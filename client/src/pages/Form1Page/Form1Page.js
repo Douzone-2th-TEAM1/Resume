@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { style } from './Form1PageStyle';
 import { USERS } from 'utils/constants/users';
-import { RESUME } from 'utils/constants/resume';
+import { RESUMES } from 'utils/constants/resume';
 
 export const Form1Page = () => {
   return (
@@ -21,29 +21,29 @@ export const Form1Page = () => {
         <TopLeftForm>
           <LeftIndex1>TECH SKILLS</LeftIndex1>
           <LeftIndex2>
-            {RESUME.temp_data.awards &&
-              RESUME.temp_data.awards.map((item, index) => {
-                return <div key={index}>{item.awardCntns}</div>;
+            {RESUMES.temp_data.awards &&
+              RESUMES.temp_data.awards.map((item, index) => {
+                return<div key={index}>{item.awardCntns}</div>;
               })}
           </LeftIndex2>
           <LeftIndex1>CERTIFICATIONS</LeftIndex1>
           <LeftIndex2>
-            {RESUME.temp_data.certifications &&
-              RESUME.temp_data.certifications.map((item, index) => {
+            {RESUMES.temp_data.certifications &&
+              RESUMES.temp_data.certifications.map((item, index) => {
                 return <div key={index}>{item.certName}</div>;
               })}
           </LeftIndex2>
           <LeftIndex1>AWARDS</LeftIndex1>
           <LeftIndex2>
-            {RESUME.temp_data.awards &&
-              RESUME.temp_data.awards.map((item, index) => {
+            {RESUMES.temp_data.awards &&
+              RESUMES.temp_data.awards.map((item, index) => {
                 return <div key={index}>{item.awardCntns}</div>;
               })}
           </LeftIndex2>
           <LeftIndex1>CAREERS</LeftIndex1>
           <LeftIndex2>
-            {RESUME.temp_data.careers &&
-              RESUME.temp_data.careers.map((item, index) => {
+            {RESUMES.temp_data.careers &&
+              RESUMES.temp_data.careers.map((item, index) => {
                 return <div key={index}>{item.workCntns}</div>;
               })}
           </LeftIndex2>
@@ -62,7 +62,7 @@ export const Form1Page = () => {
         {/* ------------------------- */}
         <BottomForm>
           <FreeForm1>
-            <FF_Logo></FF_Logo>
+            <FF_Logo>지원 동기</FF_Logo>
             <FF_Data />
           </FreeForm1>
           <FreeForm2>

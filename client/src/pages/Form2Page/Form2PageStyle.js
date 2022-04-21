@@ -2,6 +2,7 @@ import styled from 'styled-components';
 // -------------------------------------------
 export const Container = styled.div`
   ${({ theme }) => theme.flexSet()}
+  /* overflow-y: auto; */
 `;
 export const Form = styled.div`
   position: relative;
@@ -25,13 +26,13 @@ export const Photo = styled.div`
   margin-top: 100px;
   border: 1px solid;
   border-radius: 50%;
-  background-color: #E2E2E2;
+  background-color: #e2e2e2;
 `;
 export const LF_Form = styled.div`
   /* border: 1px white dotted; */
   margin-top: 90px;
   margin-left: 45px;
-  width: 300px;
+  width: 400px;
   height: 173px;
 `;
 export const LF_Logo = styled.div`
@@ -44,7 +45,13 @@ export const LF_Data = styled.div`
   height: 30px;
   margin-top: 10px;
   font-size: 25px;
-  color:white
+  font-weight: bold;
+  color: white;
+
+  display: block;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 `;
 // -------------------------------------------
 export const RightForm = styled.div`
@@ -70,6 +77,32 @@ export const EPFormData = styled.div`
   margin-top: 36px;
   height: 120px;
 `;
+export const EPFormData2 = styled.div`
+  // ㅇㅇㅇ 교육
+  /* border: 1px dotted black; */
+  position: absolute;
+  width: 350px;
+  height: 26px;
+  font-size: 28px;
+  font-weight: bolder;
+`;
+export const EPFormData3 = styled.div`
+  // 날짜
+  /* border: 1px dotted black; */
+  float: right;
+  width: 300px;
+  height: 26px;
+  font-size: 20px;
+  font-weight: bolder;
+  text-align: left; ;
+`;
+export const EPFormData4 = styled.div`
+  // 내용
+  /* border: 1px dotted black; */
+  padding-top: 40px;
+  height: 120px;
+  font-size: 20px;
+`;
 export const QAForm = styled.div`
   /* border: 1px dotted black; */
   width: 650px;
@@ -87,6 +120,7 @@ export const QAData = styled.div`
   /* border: 1px dotted black; */
   height: 128px;
   margin-top: 15px;
+  font-size: 25px;
 `;
 // -------------------------------------------
 export const style = {
@@ -104,4 +138,7 @@ export const style = {
   QAForm,
   QAName,
   QAData,
+  EPFormData2,
+  EPFormData3,
+  EPFormData4,
 };
