@@ -29,6 +29,16 @@ app.use('/resumes', resumesRouter);
 // 임시 저장, 불러오기
 app.use("/temps", tempsRouter);
 
+// 404 에러 처리
+app.use((req, res) => {
+  res.status(404).json({ resCode: 4 });
+});
+
+// 500 에러 처리
+app.use((req, res) => {
+  res.status(500).json({ resCode: 5 });
+});
+
 sequelize.sync().then(() => {
   app.listen(config.host.port);
 });
