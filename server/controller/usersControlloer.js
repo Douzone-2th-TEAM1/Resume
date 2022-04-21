@@ -36,24 +36,26 @@ export async function deleteUser(req, res) {
 // 임시 저장 (완료)
 export async function tempSave(req, res) {
   const id = req.id;
-  const { temp_data } = req.body;
+  const temp_data = JSON.stringify(req.body);
   const found = await tempsTable.findByuId(id);
   if (found) {
-    const temp = await tempsTable.updateTemp(temp_data);
-  } else {
-    const temp = await tempsTable.createTemp({
-      u_id: id,
-      temp_data,
-    });
+    const temp = await tempsTable.deleteTemp(id);
   }
+  const temp = await tempsTable.createTemp({
+    u_id: id,
+    temp_data,
+  });
+
   res.status(201).json({ resCode: 0 });
 }
 
-// 임시 저장 불러오기 (불러오기 OK, 삭제가 안됨)
+// 임시 저장 불러오기
 export async function tempLoad(req, res) {
   const id = req.id;
-  const temp_data = await tempsTable.findByuId(id);
-  res.status(201).json({ resCode: 0, temp_data: temp_data });
-  // const deleteRow = await tempsTable.deleteTemps(id);
-}
+  const { temp_data } = await tempsTable.findByuId(id);
+  const temp_data_JSON = temp_data.replaceAll(/'/g, "");
+  const data = JSON.parse(temp_data_JSON);
 
+  // JSON으로 만든 temp_data 전송 추가해줘야함
+  res.status(201).json({ resCode: 0 });
+}
