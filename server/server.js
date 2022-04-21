@@ -8,6 +8,7 @@ import { config } from './config.js';
 import accountsRouter from './router/accountsRouter.js';
 import usersRouter from './router/usersRouter.js';
 import resumesRouter from './router/resumesRouter.js';
+import tempsRouter from "./router/tempsRouter.js";
 
 const app = express();
 
@@ -24,6 +25,9 @@ app.use('/users', usersRouter);
 
 // 이력서 관리
 app.use('/resumes', resumesRouter);
+
+// 임시 저장, 불러오기
+app.use("/temps", tempsRouter);
 
 sequelize.sync().then(() => {
   app.listen(config.host.port);
