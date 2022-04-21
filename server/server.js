@@ -8,12 +8,16 @@ import { config } from './config.js';
 import accountsRouter from './router/accountsRouter.js';
 import usersRouter from './router/usersRouter.js';
 import resumesRouter from './router/resumesRouter.js';
-import tempsRouter from "./router/tempsRouter.js";
+import tempsRouter from './router/tempsRouter.js';
 
 const app = express();
 
 app.use(express.json());
-app.use(helmet());
+app.use(
+  helmet({
+    crossOriginResourcePolicy: false,
+  })
+);
 app.use(cors());
 app.use(morgan('tiny'));
 
@@ -27,7 +31,7 @@ app.use('/users', usersRouter);
 app.use('/resumes', resumesRouter);
 
 // 임시 저장, 불러오기
-app.use("/temps", tempsRouter);
+app.use('/temps', tempsRouter);
 
 // 404 에러 처리
 app.use((req, res) => {

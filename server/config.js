@@ -11,7 +11,7 @@ function required(key, defaultValue = undefined) {
 
 export const config = {
   aws: {
-    accessKeyId: required('AWS_ACCESS_KEY_ID'),
+    accessKeyId: required('AWS_ACCESS_KEY'),
     secretAccessKey: required('AWS_SECRET_ACCESS_KEY'),
     region: required('AWS_REGION'),
     bucket: required('AWS_BUCKET'),
