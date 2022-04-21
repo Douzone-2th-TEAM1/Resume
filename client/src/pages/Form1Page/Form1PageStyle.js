@@ -2,7 +2,6 @@ import styled from 'styled-components';
 // -------------------------------------------
 export const Container = styled.div`
   ${({ theme }) => theme.flexSet()}
-  overflow: scroll;
 `;
 // -------------------------------------------
 export const Form = styled.div`
@@ -70,6 +69,7 @@ export const LeftIndex1 = styled.div`
   color: white;
 `;
 export const LeftIndex2 = styled.div`
+  padding-left: 10px;
   height: 186px;
   width: 367px;
   font-size: 24px;

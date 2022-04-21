@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { style } from './Form1PageStyle';
 import { USERS } from 'utils/constants/users';
+import { RESUME } from 'utils/constants/resume';
 
 export const Form1Page = () => {
   return (
@@ -19,13 +20,33 @@ export const Form1Page = () => {
         {/* ------------------------- */}
         <TopLeftForm>
           <LeftIndex1>TECH SKILLS</LeftIndex1>
-          <LeftIndex2 />
+          <LeftIndex2>
+            {RESUME.temp_data.awards &&
+              RESUME.temp_data.awards.map((item, index) => {
+                return <div key={index}>{item.awardCntns}</div>;
+              })}
+          </LeftIndex2>
           <LeftIndex1>CERTIFICATIONS</LeftIndex1>
-          <LeftIndex2 />
+          <LeftIndex2>
+            {RESUME.temp_data.certifications &&
+              RESUME.temp_data.certifications.map((item, index) => {
+                return <div key={index}>{item.certName}</div>;
+              })}
+          </LeftIndex2>
           <LeftIndex1>AWARDS</LeftIndex1>
-          <LeftIndex2 />
+          <LeftIndex2>
+            {RESUME.temp_data.awards &&
+              RESUME.temp_data.awards.map((item, index) => {
+                return <div key={index}>{item.awardCntns}</div>;
+              })}
+          </LeftIndex2>
           <LeftIndex1>CAREERS</LeftIndex1>
-          <LeftIndex2 />
+          <LeftIndex2>
+            {RESUME.temp_data.careers &&
+              RESUME.temp_data.careers.map((item, index) => {
+                return <div key={index}>{item.workCntns}</div>;
+              })}
+          </LeftIndex2>
         </TopLeftForm>
         {/* ------------------------- */}
         <TopRightForm>
@@ -41,12 +62,12 @@ export const Form1Page = () => {
         {/* ------------------------- */}
         <BottomForm>
           <FreeForm1>
-            <FF_Logo>지원동기</FF_Logo>
-            <FF_Data/>
+            <FF_Logo></FF_Logo>
+            <FF_Data />
           </FreeForm1>
           <FreeForm2>
             <FF_Logo>입사 후 포부</FF_Logo>
-            <FF_Data/>
+            <FF_Data />
           </FreeForm2>
         </BottomForm>
       </Form>
