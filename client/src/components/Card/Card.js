@@ -7,6 +7,7 @@ import Certification from 'components/Certification';
 import checkLimit from 'utils/checkLimit';
 import Form from 'components/Form';
 import QnaForm from 'components/QnaForm';
+import Portfolio from 'components/Portfolio';
 
 export const Card = ({ onClickIcon, height }) => {
   const [info, setInfo] = useState({
@@ -401,6 +402,10 @@ export const Card = ({ onClickIcon, height }) => {
             onInsertDatas={onInsertQnas}
             resetText={resetQnas}
           />
+        </ItemLayout>
+
+        <ItemLayout>
+          <Portfolio />
         </ItemLayout>
       </ItemWrapper>
     </Container>
