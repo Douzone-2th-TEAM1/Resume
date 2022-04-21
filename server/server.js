@@ -4,11 +4,12 @@ import cors from 'cors';
 import morgan from 'morgan';
 import helmet from 'helmet';
 import { sequelize } from './connections/dbConnection.js';
+import { s3 } from './connections/s3Connection.js';
 import { config } from './config.js';
 import accountsRouter from './router/accountsRouter.js';
 import usersRouter from './router/usersRouter.js';
 import resumesRouter from './router/resumesRouter.js';
-import tempsRouter from "./router/tempsRouter.js";
+import tempsRouter from './router/tempsRouter.js';
 
 const app = express();
 
@@ -27,8 +28,10 @@ app.use('/users', usersRouter);
 app.use('/resumes', resumesRouter);
 
 // 임시 저장, 불러오기
-app.use("/temps", tempsRouter);
+app.use('/temps', tempsRouter);
 
 sequelize.sync().then(() => {
-  app.listen(config.host.port);
+  s3.sync().then(() => {
+    app.listen(config.host.port);
+  });
 });
