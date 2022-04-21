@@ -78,7 +78,7 @@ export const LoginPage = () => {
 
     if (regExp.test(e.target.value)) {
       const temp = e.target.value.replace(/^(\d{3})(\d{4})(\d{4})$/, `$1-$2-$3`);
-      setFormSign({...formSign, tel : temp});
+      setFormSign({ ...formSign, tel: temp });
     }
   };
   //------------------------------------------------------------------------------
@@ -112,12 +112,11 @@ export const LoginPage = () => {
     setTelVal(false);
   };
   //------------------------------------------------------------------------------
- //------------------------------------------------------------------------------
+  //------------------------------------------------------------------------------
 
-
-  useEffect(()=>{
-    console.log(formSign)
-  },[formSign])
+  // useEffect(()=>{
+  //   console.log(formSign)
+  // },[formSign])
   return (
     <Container>
       {signIn && <Modal />}

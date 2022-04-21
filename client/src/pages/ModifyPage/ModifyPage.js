@@ -50,9 +50,6 @@ export const ModifyPage = () => {
     }
   }, [pwdCheck, pwdcCheck, nickCheck, telCheck]);
 
-  // useEffect(() => {
-  //   console.log(isDisabled);
-  // }, [isDisabled]);
   // ----------------------------------------------------------------------------------
   return (
     <Container>

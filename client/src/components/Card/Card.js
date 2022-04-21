@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { style } from './CardStyle';
 import { FaAngleDoubleUp } from 'react-icons/fa';
 import Dropbox from 'components/DropBox';
@@ -9,8 +9,18 @@ import Form from 'components/Form';
 import QnaForm from 'components/QnaForm';
 import Portfolio from 'components/Portfolio';
 import theme from 'styles/theme';
+import { useDispatch, useSelector } from 'react-redux';
+import { storeInfo } from 'myRedux/actions/ResumeActions';
 
-export const Card = ({ onClickIcon, height }) => {
+export const Card = ({ onClickIcon, onClickCancel, height }) => {
+  const dispatch = useDispatch();
+  const storeDatas = useSelector((state) => state.ResumeReducer);
+  const ref = useRef();
+
+  useEffect(() => {
+    console.log(storeDatas);
+  }, [storeDatas]);
+
   const [info, setInfo] = useState({
     department: '',
     techs: [],
@@ -274,13 +284,26 @@ export const Card = ({ onClickIcon, height }) => {
       answer: '',
     });
   };
+
+  const resetInfo = () => {
+    setInfo({
+      department: '',
+      techs: [],
+      certifications: [],
+      educations: [],
+      projects: [],
+      awards: [],
+      careers: [],
+      qnas: [],
+      portfolio: '',
+    });
+  };
   const onChangeImg = (e) => {
     const file = e.target.files;
     setImg(URL.createObjectURL(file[0]));
   };
 
   useEffect(() => {
-    console.log(info);
     if (info?.techs) {
       checkStatus('techs');
     } else if (info?.certifications) {
@@ -289,17 +312,45 @@ export const Card = ({ onClickIcon, height }) => {
       checkStatus('educations', 3);
     } else if (info?.projects) {
       checkStatus('projects', 3);
-    } else {
-      checkStatus('protfolio', 1);
     }
   }, [info]);
 
-  // useEffect(() => {
-  //   console.log(img);
-  // }, [img]);
+  const onClickStore = () => {
+    if (
+      info.portfolio.length > 0 ||
+      info.techs.length > 0 ||
+      info.certifications.length > 0 ||
+      info.awards.length > 0 ||
+      info.careers.length > 0 ||
+      info.projects.length > 0 ||
+      info.qnas.length > 0
+    )
+      dispatch(storeInfo(info));
+    else {
+      console.log('test'); // 정보 입력 요구
+    }
+  };
+
+  const onClickTempStore = () => {
+    dispatch(storeInfo(info));
+  };
+
+  const onClickCancelStore = () => {
+    ref.current.scrollTo(0, 0);
+    resetCars();
+    resetEdu();
+    resetCerti();
+    resetAwrds();
+    resetPrjs();
+    resetQnas();
+    resetText('techs');
+    resetInfo();
+
+    onClickCancel();
+  };
 
   return (
-    <Container ht={height}>
+    <Container ht={height} ref={ref}>
       <IconLayout onClick={onClickIcon} ht={height}>
         <FaAngleDoubleUp size="50" color="#cdcdcd" />
       </IconLayout>
@@ -415,6 +466,7 @@ export const Card = ({ onClickIcon, height }) => {
             color={theme.colorSet.SECONDARY}
             bgColor={theme.colorSet.PRIMARY_DISABLED.DEFAULT}
             hvColor={theme.colorSet.PRIMARY_DISABLED.OPACITY_70}
+            onClick={onClickCancelStore}
           >
             취소
           </Btn>
@@ -424,6 +476,7 @@ export const Card = ({ onClickIcon, height }) => {
               color={theme.colorSet.PRIMARY}
               bgColor={theme.colorSet.SECONDARY}
               hvColor={theme.colorSet.PRIMARY_DISABLED.OPACITY_70}
+              onClick={onClickTempStore}
             >
               임시 저장
             </Btn>
@@ -432,6 +485,7 @@ export const Card = ({ onClickIcon, height }) => {
               bgColor={theme.colorSet.PRIMARY}
               color={theme.colorSet.SECONDARY}
               hvColor={theme.colorSet.PRIMARY_OPACITY_90}
+              onClick={onClickStore}
             >
               저장
             </Btn>

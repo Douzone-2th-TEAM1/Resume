@@ -6,10 +6,13 @@ import MyPage from 'pages/MyPage';
 export const MainPage = () => {
   const [height, setHeight] = useState('400px');
   const [openMyPage, setOpenMyPage] = useState(false);
+
   const onClickIcon = () => {
     setHeight('880px');
   };
-
+  const onClickCancel = () => {
+    setHeight('400px');
+  };
   const onMouseOverMypage = (e) => {
     if (window.innerWidth - e.clientX <= 364) {
       setOpenMyPage(true);
@@ -27,7 +30,7 @@ export const MainPage = () => {
           There is no such thing as no design.
         </MainTitle>
 
-        <Card onClickIcon={onClickIcon} height={height} />
+        <Card onClickIcon={onClickIcon} onClickCancel={onClickCancel} height={height} />
         <TopTriangle />
         <BttomTriangle />
       </Container>

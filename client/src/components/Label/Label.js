@@ -3,8 +3,6 @@ import { style } from './LabelStyle';
 import { BsXCircle } from 'react-icons/bs';
 export const Label = ({ item, bgColor, id, text, onChangeDelInfo }) => {
   const onClickDel = (e) => {
-    debugger;
-    console.log(e.target.value, e.target.id);
     onChangeDelInfo(e.target.value, e.target.id);
   };
 

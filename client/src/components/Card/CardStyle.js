@@ -26,7 +26,9 @@ const BobOnHoverFloat = keyframes`
 
 const Container = styled.div`
   position: absolute;
+  /* overflow-y: auto; */
   overflow-y: ${(props) => (props.ht === '400px' ? 'hidden' : 'auto')};
+  scroll-behavior: smooth;
   bottom: 0;
   min-width: 920px;
   height: ${(props) => props.ht};
@@ -37,7 +39,6 @@ const Container = styled.div`
   border-radius: 20px 20px 0px 0px;
   box-shadow: 5px 6px 20px #000025;
   padding: 0px 64px;
-
   &::-webkit-scrollbar {
     display: none;
   }
