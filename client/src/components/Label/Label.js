@@ -1,16 +1,18 @@
 import React from 'react';
 import { style } from './LabelStyle';
 import { BsXCircle } from 'react-icons/bs';
-export const Label = ({ id, text, onChangeDelTech }) => {
+export const Label = ({ item, bgColor, id, text, onChangeDelInfo }) => {
   const onClickDel = (e) => {
-    onChangeDelTech(e.target.id);
+    debugger;
+    console.log(e.target.value, e.target.id);
+    onChangeDelInfo(e.target.value, e.target.id);
   };
 
   return (
-    <Layout>
+    <Layout bgColor={bgColor}>
       <TextLayout>{text}</TextLayout>
-      <IconLayout id={id} onClick={onClickDel}>
-        <BsXCircle size={20} id={id} onClick={onClickDel} />
+      <IconLayout id={id} value={item} onClick={onClickDel}>
+        <BsXCircle size={20} pointerEvents={'none'} color={'#ffff'} />
       </IconLayout>
     </Layout>
   );

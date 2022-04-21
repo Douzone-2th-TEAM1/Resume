@@ -5,7 +5,7 @@ const Layout = styled.div`
   min-width: 100px;
   width: 175px;
   height: 50px;
-  background-color: #92a9bd;
+  background-color: ${(props) => props.bgColor};
   border-radius: 24px;
   color: ${({ theme }) => theme.colorSet.SECONDARY};
   font-weight: 700;
@@ -21,10 +21,10 @@ const TextLayout = styled.div`
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  width: 80%;
+  width: 100%;
 `;
 
-const IconLayout = styled.div`
+const IconLayout = styled.button`
   cursor: pointer;
   width: auto;
   height: auto;
