@@ -235,6 +235,19 @@ DB_PASSWORD = 사용자 비밀번호
 }
 ```
 
+#### 임시 저장(/save) - RES
+```javascript
+{
+    "resCode": 0,
+}
+```
+
+#### 임시 저장 불러오기(/load) - REQ
+```javascript
+{
+
+}
+```
 #### 임시 저장 불러오기(/load) - RES
 ```javascript
 {
