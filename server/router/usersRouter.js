@@ -14,10 +14,4 @@ router.post('/edit', isAuth, usersController.updateUser);
 // 회원 탈퇴
 router.post('/resign', isAuth, usersController.deleteUser);
 
-// 임시 저장
-router.post("/tempSave", isAuth, usersController.tempSave);
-
-// 임시 저장 불러오기
-router.post("/tempLoad", isAuth, usersController.tempLoad);
-
 export default router;
