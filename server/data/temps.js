@@ -14,6 +14,7 @@ export const Temps = sequelize.define(
 );
 Temps.belongsTo(Users, {
   foreignKey: 'u_id',
+  onDelete: 'cascade',
 });
 
 export async function findByuId(u_id) {
@@ -22,7 +23,6 @@ export async function findByuId(u_id) {
   });
 }
 
-// C UD 추가
 export async function createTemp(temp) {
   return Temps.create(temp).then((data) => data.dataValues.u_id);
 }

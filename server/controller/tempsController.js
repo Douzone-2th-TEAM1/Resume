@@ -1,6 +1,6 @@
-import {} from "express-async-errors";
-import { config } from "../config.js";
-import * as tempsTable from "../data/temps.js";
+import {} from 'express-async-errors';
+import { config } from '../config.js';
+import * as tempsTable from '../data/temps.js';
 
 // 임시 저장
 export async function saveTemp(req, res) {
@@ -8,7 +8,7 @@ export async function saveTemp(req, res) {
   const temp_data = JSON.stringify(req.body);
   const found = await tempsTable.findByuId(id);
   if (found) {
-    const temp = await tempsTable.deleteTemp(id);
+    await tempsTable.deleteTemp(id);
   }
   const temp = await tempsTable.createTemp({
     u_id: id,
@@ -22,7 +22,7 @@ export async function saveTemp(req, res) {
 export async function loadTemp(req, res) {
   const id = req.id;
   const { temp_data } = await tempsTable.findByuId(id);
-  const temp_data_JSON = temp_data.replaceAll(/'/g, "");
+  const temp_data_JSON = temp_data.replaceAll(/'/g, '');
   const data = JSON.parse(temp_data_JSON);
 
   // JSON으로 만든 temp_data 전송 추가해줘야함
