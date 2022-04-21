@@ -19,6 +19,7 @@ const device = {
 
 const colorSet = {
   PRIMARY: '#334257',
+  PRIMARY_OPACITY_90: '#33425790',
   PRIMARY_DISABLED: {
     DEFAULT: '#cdcdcd',
     OPACITY_70: '#cdcdcd70',

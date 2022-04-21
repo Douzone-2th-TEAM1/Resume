@@ -8,6 +8,7 @@ import checkLimit from 'utils/checkLimit';
 import Form from 'components/Form';
 import QnaForm from 'components/QnaForm';
 import Portfolio from 'components/Portfolio';
+import theme from 'styles/theme';
 
 export const Card = ({ onClickIcon, height }) => {
   const [info, setInfo] = useState({
@@ -275,7 +276,6 @@ export const Card = ({ onClickIcon, height }) => {
   };
   const onChangeImg = (e) => {
     const file = e.target.files;
-
     setImg(URL.createObjectURL(file[0]));
   };
 
@@ -289,6 +289,8 @@ export const Card = ({ onClickIcon, height }) => {
       checkStatus('educations', 3);
     } else if (info?.projects) {
       checkStatus('projects', 3);
+    } else {
+      checkStatus('protfolio', 1);
     }
   }, [info]);
 
@@ -405,7 +407,35 @@ export const Card = ({ onClickIcon, height }) => {
         </ItemLayout>
 
         <ItemLayout>
-          <Portfolio />
+          <Portfolio text={info.portfolio} onChangeInput={onChangeInfo} />
+        </ItemLayout>
+
+        <ItemLayout>
+          <Btn
+            color={theme.colorSet.SECONDARY}
+            bgColor={theme.colorSet.PRIMARY_DISABLED.DEFAULT}
+            hvColor={theme.colorSet.PRIMARY_DISABLED.OPACITY_70}
+          >
+            취소
+          </Btn>
+          <BtnLayout>
+            <Btn
+              borderColor={theme.colorSet.PRIMARY}
+              color={theme.colorSet.PRIMARY}
+              bgColor={theme.colorSet.SECONDARY}
+              hvColor={theme.colorSet.PRIMARY_DISABLED.OPACITY_70}
+            >
+              임시 저장
+            </Btn>
+            <Btn
+              borderColor={theme.colorSet.PRIMARY}
+              bgColor={theme.colorSet.PRIMARY}
+              color={theme.colorSet.SECONDARY}
+              hvColor={theme.colorSet.PRIMARY_OPACITY_90}
+            >
+              저장
+            </Btn>
+          </BtnLayout>
         </ItemLayout>
       </ItemWrapper>
     </Container>
@@ -422,4 +452,6 @@ const {
   ItemTitle,
   ImgLayout,
   ImgBtn,
+  BtnLayout,
+  Btn,
 } = style;

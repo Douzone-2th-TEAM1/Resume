@@ -17,9 +17,6 @@ export const MapQnaForm = ({ quest, answer }) => {
           </InnerLayout>
         </InnerWrapper>
       </Layout>
-      <Layout ht={'12%'}>
-        <AddBtn>추가</AddBtn>
-      </Layout>
     </Wrapper>
   );
 };
