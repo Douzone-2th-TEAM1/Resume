@@ -7,18 +7,25 @@ export const MapForm = ({ item, sdate, edate, name, cntnts }) => {
       <Layout ht={'100%'}>
         <InnerWrapper>
           <InnerLayout>
-            <LabelTitle>{item} 사항</LabelTitle>
+            <LabelTitle>기간</LabelTitle>
             <DateInput readOnly value={sdate} />
-            <h3 style={{ padding: '10px' }}>~</h3>
-            <DateInput readOnly value={edate}></DateInput>
+
+            {item === '수상' ? (
+              <></>
+            ) : (
+              <>
+                <h3 style={{ padding: '10px' }}>~</h3>
+                <DateInput readOnly value={edate}></DateInput>
+              </>
+            )}
           </InnerLayout>
 
           <InnerLayout>
-            <LabelTitle>{item}명</LabelTitle>
+            <LabelTitle>명칭</LabelTitle>
             <LabelInput readOnly value={name} />
           </InnerLayout>
           <InnerLayout>
-            <LabelTitle>{item} 내용</LabelTitle>
+            <LabelTitle>내용</LabelTitle>
             <LabelInput2 readOnly value={cntnts} />
           </InnerLayout>
         </InnerWrapper>

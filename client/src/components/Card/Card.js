@@ -6,6 +6,7 @@ import TechStack from 'components/TechStack';
 import Certification from 'components/Certification';
 import checkLimit from 'utils/checkLimit';
 import Form from 'components/Form';
+import QnaForm from 'components/QnaForm';
 
 export const Card = ({ onClickIcon, height }) => {
   const [info, setInfo] = useState({
@@ -24,6 +25,10 @@ export const Card = ({ onClickIcon, height }) => {
     techs: false,
     certifications: false,
     educations: false,
+    awards: false,
+    projects: false,
+    careers: false,
+    qnas: false,
   });
 
   const [inputText, setInputText] = useState({
@@ -85,6 +90,112 @@ export const Card = ({ onClickIcon, height }) => {
     return false;
   };
 
+  const [awrdsText, setAwrdsText] = useState({
+    awrdName: '',
+    awrdDate: '',
+    awrdCntns: '',
+  });
+
+  const onChangeAwrdsInput = (e) => {
+    e.preventDefault();
+    checkStatus('awards', 3);
+    // debugger;
+    !disableStatus['awards'] && setAwrdsText({ ...awrdsText, [e.target.id]: e.target.value });
+  };
+
+  const onInsertAwrds = () => {
+    const [name, date, cntns] = [awrdsText.awrdName, awrdsText.awrdDate, awrdsText.awrdCntns];
+    const origin = info.awards;
+    if (name && date && cntns) {
+      origin.push({ awrdName: name, awrdDate: date, awrdCntns: cntns });
+      setInfo({ ...info, awards: origin });
+      return true;
+    }
+    return false;
+  };
+
+  const [prjsText, setPrjsText] = useState({
+    prjName: '',
+    prjStartDate: '',
+    prjEndDate: '',
+    prjCntns: '',
+  });
+
+  const onChangePrjsInput = (e) => {
+    e.preventDefault();
+    checkStatus('projects', 3);
+    // debugger;
+    !disableStatus['projects'] && setPrjsText({ ...prjsText, [e.target.id]: e.target.value });
+  };
+  const onInsertPrjs = () => {
+    const [name, sdate, edate, cntns] = [
+      prjsText.prjName,
+      prjsText.prjStartDate,
+      prjsText.prjEndDate,
+      prjsText.prjCntns,
+    ];
+    const origin = info.projects;
+    if (name && sdate && edate && cntns) {
+      origin.push({ prjName: name, prjStartDate: sdate, prjEndDate: edate, prjCntns: cntns });
+      setInfo({ ...info, projects: origin });
+      return true;
+    }
+    return false;
+  };
+
+  const [carsText, setCarsText] = useState({
+    cmpnyName: '',
+    workStartDate: '',
+    workEndDate: '',
+    workCntns: '',
+  });
+
+  const onChangeCarsInput = (e) => {
+    e.preventDefault();
+    checkStatus('careers', 3);
+    // debugger;
+    !disableStatus['careers'] && setCarsText({ ...carsText, [e.target.id]: e.target.value });
+  };
+
+  const onInsertCars = () => {
+    const [name, sdate, edate, cntns] = [
+      carsText.cmpnyName,
+      carsText.workStartDate,
+      carsText.workEndDate,
+      carsText.workCntns,
+    ];
+    const origin = info.careers;
+    if (name && sdate && edate && cntns) {
+      origin.push({ cmpnyName: name, workStartDate: sdate, workEndDate: edate, workCntns: cntns });
+      setInfo({ ...info, careers: origin });
+      return true;
+    }
+    return false;
+  };
+
+  const [qnaText, setQnaText] = useState({
+    quest: '',
+    answer: '',
+  });
+
+  const onChangeQnaInput = (e) => {
+    e.preventDefault();
+    checkStatus('qnas', 2);
+    // debugger;
+    !disableStatus['qnas'] && setQnaText({ ...qnaText, [e.target.id]: e.target.value });
+  };
+
+  const onInsertQnas = () => {
+    const [quest, answer] = [qnaText.quest, qnaText.answer];
+    const origin = info.qnas;
+    if (quest && answer) {
+      origin.push({ quest: quest, answer: answer });
+      setInfo({ ...info, qnas: origin });
+      return true;
+    }
+    return false;
+  };
+
   const onChangeInfo = (e) => {
     setInfo({ ...info, [e.target.id]: e.target.value });
   };
@@ -130,7 +241,37 @@ export const Card = ({ onClickIcon, height }) => {
       eduCntns: '',
     });
   };
+  const resetAwrds = () => {
+    setAwrdsText({
+      awrdName: '',
+      awrdDate: '',
+      awrdCntns: '',
+    });
+  };
+  const resetPrjs = () => {
+    setPrjsText({
+      prjName: '',
+      prjStartDate: '',
+      prjEndDate: '',
+      prjCntns: '',
+    });
+  };
 
+  const resetCars = () => {
+    setCarsText({
+      cmpnyName: '',
+      workStartDate: '',
+      workEndDate: '',
+      workCntns: '',
+    });
+  };
+
+  const resetQnas = () => {
+    setQnaText({
+      quest: '',
+      answer: '',
+    });
+  };
   const onChangeImg = (e) => {
     const file = e.target.files;
 
@@ -145,6 +286,8 @@ export const Card = ({ onClickIcon, height }) => {
       checkStatus('certifications');
     } else if (info?.educations) {
       checkStatus('educations', 3);
+    } else if (info?.projects) {
+      checkStatus('projects', 3);
     }
   }, [info]);
 
@@ -204,13 +347,60 @@ export const Card = ({ onClickIcon, height }) => {
         <ItemLayout>
           <Form
             item={'교육'}
-            eduDatas={info.educations}
+            datas={info.educations}
             disable={disableStatus.educations}
-            onChangeEduInput={onChangeEduInput}
-            eduText={eduText}
-            onInsertEdu={onInsertEdu}
-            resetEdu={resetEdu}
+            onChangeInput={onChangeEduInput}
+            text={eduText}
+            onInsertDatas={onInsertEdu}
+            resetText={resetEdu}
           ></Form>
+        </ItemLayout>
+
+        <ItemLayout>
+          <Form
+            item={'수상'}
+            datas={info.awards}
+            disable={disableStatus.awards}
+            onChangeInput={onChangeAwrdsInput}
+            text={awrdsText}
+            onInsertDatas={onInsertAwrds}
+            resetText={resetAwrds}
+          ></Form>
+        </ItemLayout>
+
+        <ItemLayout>
+          <Form
+            item={'프로젝트'}
+            datas={info.projects}
+            disable={disableStatus.projects}
+            onChangeInput={onChangePrjsInput}
+            text={prjsText}
+            onInsertDatas={onInsertPrjs}
+            resetText={resetPrjs}
+          ></Form>
+        </ItemLayout>
+
+        <ItemLayout>
+          <Form
+            item={'경력'}
+            datas={info.careers}
+            disable={disableStatus.careers}
+            onChangeInput={onChangeCarsInput}
+            text={carsText}
+            onInsertDatas={onInsertCars}
+            resetText={resetCars}
+          ></Form>
+        </ItemLayout>
+
+        <ItemLayout>
+          <QnaForm
+            datas={info.qnas}
+            disable={disableStatus.qnas}
+            onChangeInput={onChangeQnaInput}
+            text={qnaText}
+            onInsertDatas={onInsertQnas}
+            resetText={resetQnas}
+          />
         </ItemLayout>
       </ItemWrapper>
     </Container>

@@ -73,7 +73,7 @@ const ItemWrapper = styled.div`
 const ItemLayout = styled.div`
   ${({ theme }) => theme.flexSet('flex-start', 'flex-start')};
   width: 100%;
-  margin: 30px 0px;
+  margin: 40px 0px;
   /* min-height: ${(props) => props.minHt}; */
 `;
 
