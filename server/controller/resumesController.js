@@ -76,7 +76,7 @@ export async function saveResume(req, res) {
   res.status(200).json({ resCode: 0, r_id: r_id });
 }
 
-// 이력서 조회
+// 이력서 리스트
 export async function findAllResumes(req, res) {
   const id = req.id;
   const resumes = await resumesTable.findAllById(id); // 사용자의 모든 이력서 리스트
