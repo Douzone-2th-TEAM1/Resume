@@ -203,3 +203,63 @@ DB_PASSWORD = 사용자 비밀번호
   resCode: 0,
 }
 ```
+
+<br/><br/>
+## /temps
+#### 임시 저장(/save) - REQ
+```javascript
+{
+    "resCode": 0,
+    "title": "이력서1-1",
+    "photo": "사진1-1",
+    "department": "직무1-1",
+    "portfolio": "포트폴리오1-1",
+    "template": 1,
+    "awards": [
+        {
+            "id": 1,
+            "awardName": "1-1",
+            "awardDate": "1-1",
+            "awardCntns": "1-1",
+            "r_id": 1
+        },
+        {
+            "id": 2,
+            "awardName": "1-2",
+            "awardDate": "1-2",
+            "awardCntns": "1-2",
+            "r_id": 1
+        }
+    ],
+    ...
+}
+```
+
+#### 임시 저장 불러오기(/load) - RES
+```javascript
+{
+    "resCode": 0,
+    "title": "이력서1-1",
+    "photo": "사진1-1",
+    "department": "직무1-1",
+    "portfolio": "포트폴리오1-1",
+    "template": 1,
+    "awards": [
+        {
+            "id": 1,
+            "awardName": "1-1",
+            "awardDate": "1-1",
+            "awardCntns": "1-1",
+            "r_id": 1
+        },
+        {
+            "id": 2,
+            "awardName": "1-2",
+            "awardDate": "1-2",
+            "awardCntns": "1-2",
+            "r_id": 1
+        }
+    ],
+    ...
+}
+```
