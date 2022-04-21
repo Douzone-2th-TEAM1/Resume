@@ -31,15 +31,3 @@ export async function loadTemp(req, res) {
     res.json({ resCode: 0 });
   }
 }
-
-// 임시 저장 리스트
-export async function listTemp(req, res) {
-  const id = req.id;
-  const { temp_data } = await tempsTable.findByuId(id);
-  const temp_data_JSON = temp_data.replaceAll(/'/g, "");
-  const data = JSON.parse(temp_data_JSON);
-
-  const { title, created_date } = data.temp_data;
-
-  res.json({ resCode: 0, title: title, created_date: created_date });
-}
