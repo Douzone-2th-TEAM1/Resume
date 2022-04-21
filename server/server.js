@@ -4,7 +4,6 @@ import cors from 'cors';
 import morgan from 'morgan';
 import helmet from 'helmet';
 import { sequelize } from './connections/dbConnection.js';
-import { s3 } from './connections/s3Connection.js';
 import { config } from './config.js';
 import accountsRouter from './router/accountsRouter.js';
 import usersRouter from './router/usersRouter.js';
@@ -14,7 +13,11 @@ import tempsRouter from './router/tempsRouter.js';
 const app = express();
 
 app.use(express.json());
-app.use(helmet());
+app.use(
+  helmet({
+    crossOriginResourcePolicy: false,
+  })
+);
 app.use(cors());
 app.use(morgan('tiny'));
 
@@ -31,7 +34,5 @@ app.use('/resumes', resumesRouter);
 app.use('/temps', tempsRouter);
 
 sequelize.sync().then(() => {
-  s3.sync().then(() => {
-    app.listen(config.host.port);
-  });
+  app.listen(config.host.port);
 });
