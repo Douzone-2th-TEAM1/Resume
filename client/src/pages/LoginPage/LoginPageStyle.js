@@ -188,6 +188,7 @@ export const EnterForm2 = styled.div`
   font-weight: bolder;
 `;
 export const Enter3 = styled.input`
+  border: 3px green dotted;
   border: 1px black solid;
   border-radius: 5px;
   width: 500px;
@@ -195,6 +196,7 @@ export const Enter3 = styled.input`
   font-size: 20px;
   padding-left: 5px;
 `;
+
 export const Enter4form = styled.div`
   border: 1px black solid;
   border-radius: 5px;
@@ -346,10 +348,18 @@ export const MT2 = styled.div`
   line-height: 170%;
 `;
 export const MT3 = styled.button`
-background-color:#00B2FF;
-border-radius: 5px;
-font-size: 36px;
-
+  cursor: pointer;
+  background-color: #00b2ff;
+  border-radius: 5px;
+  font-size: 30px;
+  color: #ffffff;
+  text-align: center;
+  width: 300px;
+  height: 60px;
+  margin-top: 50px;
+  margin-left: 200px;
+  padding-left: 10px;
+  padding-right: 10px;
 `;
 // -------------------------------------------
 export const style = {
