@@ -12,7 +12,7 @@ import theme from 'styles/theme';
 import { useDispatch, useSelector } from 'react-redux';
 import { storeInfo } from 'myRedux/actions/ResumeActions';
 
-export const Card = ({ onClickIcon, onClickCancel, height }) => {
+export const Card = ({ onClickIcon, onClickCancel, height, onClickTemplateChoice }) => {
   const dispatch = useDispatch();
   const storeDatas = useSelector((state) => state.ResumeReducer);
   const ref = useRef();
@@ -317,16 +317,19 @@ export const Card = ({ onClickIcon, onClickCancel, height }) => {
 
   const onClickStore = () => {
     if (
+      info.department.length > 0 ||
       info.portfolio.length > 0 ||
       info.techs.length > 0 ||
       info.certifications.length > 0 ||
       info.awards.length > 0 ||
       info.careers.length > 0 ||
       info.projects.length > 0 ||
-      info.qnas.length > 0
-    )
+      info.qnas.length > 0 ||
+      img.length > 0
+    ) {
       dispatch(storeInfo(info));
-    else {
+      onClickTemplateChoice();
+    } else {
       console.log('test'); // 정보 입력 요구
     }
   };

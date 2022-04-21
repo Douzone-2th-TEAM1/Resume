@@ -2,11 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { style } from './MainPageStyle';
 import Card from 'components/Card';
 import MyPage from 'pages/MyPage';
+import TemplatePage from 'pages/TemplatePage';
 
 export const MainPage = () => {
   const [height, setHeight] = useState('400px');
   const [openMyPage, setOpenMyPage] = useState(false);
-
+  const [openTemplatePage, setOpenTemplatPage] = useState(false);
   const onClickIcon = () => {
     setHeight('880px');
   };
@@ -20,7 +21,9 @@ export const MainPage = () => {
       setOpenMyPage(false);
     }
   };
-
+  const onClickTemplateChoice = () => {
+    setOpenTemplatPage(true);
+  };
   return (
     <div onMouseMove={onMouseOverMypage}>
       <Container openMyPage={openMyPage}>
@@ -30,12 +33,18 @@ export const MainPage = () => {
           There is no such thing as no design.
         </MainTitle>
 
-        <Card onClickIcon={onClickIcon} onClickCancel={onClickCancel} height={height} />
+        <Card
+          onClickIcon={onClickIcon}
+          onClickCancel={onClickCancel}
+          height={height}
+          onClickTemplateChoice={onClickTemplateChoice}
+        />
         <TopTriangle />
         <BttomTriangle />
       </Container>
 
       {height === '400px' && <MyPage openMyPage={openMyPage} />}
+      {openTemplatePage && <TemplatePage openTemplatePage={openTemplatePage} />}
     </div>
   );
 };
