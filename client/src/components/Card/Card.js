@@ -22,6 +22,7 @@ export const Card = ({ onClickIcon, onClickCancel, height, onClickTemplateChoice
   }, [storeDatas]);
 
   const [info, setInfo] = useState({
+    title: '',
     department: '',
     techs: [],
     certifications: [],
@@ -31,8 +32,8 @@ export const Card = ({ onClickIcon, onClickCancel, height, onClickTemplateChoice
     careers: [],
     qnas: [],
     portfolio: '',
+    img: '',
   });
-  const [img, setImg] = useState('');
   const [disableStatus, setDisableStatus] = useState({
     techs: false,
     certifications: false,
@@ -296,11 +297,12 @@ export const Card = ({ onClickIcon, onClickCancel, height, onClickTemplateChoice
       careers: [],
       qnas: [],
       portfolio: '',
+      img: '',
     });
   };
   const onChangeImg = (e) => {
     const file = e.target.files;
-    setImg(URL.createObjectURL(file[0]));
+    setInfo({ ...info, img: URL.createObjectURL(file[0]) });
   };
 
   useEffect(() => {
@@ -325,7 +327,7 @@ export const Card = ({ onClickIcon, onClickCancel, height, onClickTemplateChoice
       info.careers.length > 0 ||
       info.projects.length > 0 ||
       info.qnas.length > 0 ||
-      img.length > 0
+      info.img.length > 0
     ) {
       dispatch(storeInfo(info));
       onClickTemplateChoice();
@@ -352,6 +354,9 @@ export const Card = ({ onClickIcon, onClickCancel, height, onClickTemplateChoice
     onClickCancel();
   };
 
+  useEffect(() => {
+    console.log(info);
+  }, [info]);
   return (
     <Container ht={height} ref={ref}>
       <IconLayout onClick={onClickIcon} ht={height}>
@@ -380,8 +385,8 @@ export const Card = ({ onClickIcon, onClickCancel, height, onClickTemplateChoice
           </ItemInnerLayout>
           <ItemInnerLayout width={'30%'}>
             <ImgLayout htmlFor="img" onChange={onChangeImg}>
-              {img && <img src={img} style={{ width: '100%', height: '100%' }} />}
-              {!img && <h6>사진 (3x4)</h6>}
+              {info.img && <img src={info.img} style={{ width: '100%', height: '100%' }} />}
+              {!info.img && <h6>사진 (3x4)</h6>}
               <ImgBtn type="file" id="img" placeholder="사진" accept=".jpg,.jpeg,.png" />
             </ImgLayout>
           </ItemInnerLayout>

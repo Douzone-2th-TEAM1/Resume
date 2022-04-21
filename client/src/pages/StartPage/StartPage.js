@@ -1,13 +1,17 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { style } from './StartPageStyle';
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 export const StartPage = () => {
+  const storeDatas = useSelector((state) => state.ResumeReducer);
   const navigation = useNavigate();
   const onClickBtn = () => {
     navigation('/main');
   };
-
+  useEffect(() => {
+    storeDatas.info && console.log(storeDatas.info);
+  }, []);
   return (
     <Container>
       <TopBackground>

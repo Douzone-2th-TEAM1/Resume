@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { style } from './MainPageStyle';
 import Card from 'components/Card';
 import MyPage from 'pages/MyPage';
@@ -8,6 +8,7 @@ export const MainPage = () => {
   const [height, setHeight] = useState('400px');
   const [openMyPage, setOpenMyPage] = useState(false);
   const [openTemplatePage, setOpenTemplatPage] = useState(false);
+
   const onClickIcon = () => {
     setHeight('880px');
   };

@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import { keyframes } from 'styled-components';
 
 const fadeAni = (flag) => {
-  console.log(flag);
   if (flag) {
     return keyframes`
       0%{
