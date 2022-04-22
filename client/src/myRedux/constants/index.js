@@ -1,2 +1,7 @@
-import { ResumeActionType, AlertActionType } from './action-type';
-export { ResumeActionType, AlertActionType };
+import {
+  ResumeActionType,
+  AlertActionType,
+  CommunicationType,
+  ModalActionType,
+} from './action-type';
+export { ResumeActionType, AlertActionType, CommunicationType, ModalActionType };

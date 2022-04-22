@@ -252,6 +252,7 @@ export const Btn3 = styled.button`
   }
 `;
 export const Wrong = styled.div`
+  width: fit-content;
   color: red;
   font-weight: lighter;
   font-size: 16px;

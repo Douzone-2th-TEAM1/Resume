@@ -1,8 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { style } from './LoginPageStyle';
 import { BsExclamationCircle, BsCheckLg } from 'react-icons/bs';
+import { useDispatch, useSelector } from 'react-redux';
+import { signup } from 'myRedux/actions/CommuicationAction';
+import { openModal, closeModal } from 'myRedux/actions/ModalActions';
 
 export const LoginPage = () => {
+  const dispatch = useDispatch();
+  const modal = useSelector((state) => state.ModalReducer);
   //------------------------------------------------------------------------------
   const [clickBtn, setClickBtn] = useState(false); // 백그라운드 동작을 위한 변수
   const onClickBtn = () => {
@@ -92,10 +97,12 @@ export const LoginPage = () => {
   //------------------------------------------------------------------------------
   const [signIn, setSignIn] = useState(false); // 회원가입이 완료되었을 때 시작페이지로 복귀
   const signInComplete = () => {
-    setSignIn(true);
+    //통신?
+    dispatch(signup(formSign.email, formSign.pwd, formSign.nick, formSign.tel));
   };
   const onClickBtn2 = () => {
-    setSignIn(false);
+    // setSignIn(false);
+    dispatch(closeModal());
     setClickBtn(false);
     setFormSign({
       email: '',
@@ -114,18 +121,18 @@ export const LoginPage = () => {
   //------------------------------------------------------------------------------
   //------------------------------------------------------------------------------
 
-  // useEffect(()=>{
-  //   console.log(formSign)
-  // },[formSign])
+  // useEffect(() => {
+  //   console.log(formSign);
+  // }, [formSign]);
   return (
     <Container>
-      {signIn && <Modal />}
-      {signIn && (
+      {modal.status && <Modal />}
+      {modal.status && (
         <Modal2>
           <Modal3 />
           <MT1>회원가입이 완료되었습니다!</MT1>
           <MT2>
-            회원가입 절차가 완료되었습니다.
+            {formSign.nick}님의 회원가입을 환영합니다.
             <br />
             로그인하고 첫 이력서를 작성해보세요!
           </MT2>
@@ -195,6 +202,7 @@ export const LoginPage = () => {
                 value={formSign.pwd}
                 type="password"
                 onKeyUp={checkPwd}
+                placeholder="숫자와 문자를 혼합한 8~20자"
               />
               <Info onMouseOver={() => setOpen(true)} onMouseOut={() => setOpen(false)}>
                 <BsExclamationCircle size="25px" />
@@ -255,7 +263,13 @@ export const LoginPage = () => {
             <br />
             휴대전화
             <br />
-            <Enter3 name="tel" onChange={handleSignInput} value={formSign.tel} onKeyUp={checkTel} />
+            <Enter3
+              name="tel"
+              onChange={handleSignInput}
+              value={formSign.tel}
+              onKeyUp={checkTel}
+              placeholder="ex) 010-2002-1234"
+            />
             {!telVal && formSign.tel.length >= 1 && <Wrong>연락처를 다시 입력해주세요.</Wrong>}
             {telVal && formSign.tel.length >= 1 && (
               <Pass>
