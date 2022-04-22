@@ -73,14 +73,14 @@ export async function saveResume(req, res) {
       techsTable.createTech(tech);
     }));
 
-  res.status(200).json({ resCode: 0, r_id: r_id });
+  res.json({ resCode: 0, r_id: r_id });
 }
 
 // 이력서 리스트
 export async function findAllResumes(req, res) {
   const id = req.id;
   const resumes = await resumesTable.findAllById(id); // 사용자의 모든 이력서 리스트
-  res.status(200).json({ resCode: 0, resumes: resumes });
+  res.json({ resCode: 0, resumes: resumes });
 }
 
 // 특정 이력서 조회
@@ -97,7 +97,7 @@ export async function findResume(req, res) {
   const qnas = await qnasTable.findAllById(r_id);
   const techs = await techsTable.findAllById(r_id);
 
-  res.status(200).json({
+  res.json({
     // 양식 수정 필요
     resCode: 0,
     title,
@@ -119,8 +119,8 @@ export async function findResume(req, res) {
 export async function deleteResume(req, res) {
   const { r_id } = req.body;
   if (!r_id) {
-    return res.status(401).json({ message: 'Invalid r_id' });
+    return res.json({ resCode: 1 });
   }
   await resumesTable.deleteResume(r_id);
-  res.status(200).json({ resCode: 0 }); // 204는 return 없을 때
+  res.json({ resCode: 0 }); // 204는 return 없을 때
 }
