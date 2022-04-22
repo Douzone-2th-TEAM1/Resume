@@ -108,7 +108,7 @@ DB_PASSWORD = 사용자 비밀번호
 ```javascript
 {
     title: 이력서 제목,
-    photo: 사진 URL,
+    photo: AWS에 저장된 사진 URL,
     department: 직무,
     portfolio: 포트폴리오 URL,
     template: 템플릿 번호,
@@ -234,6 +234,29 @@ DB_PASSWORD = 사용자 비밀번호
 {
   resCode: 0,
 }
+```
+#### 사진 업로드(/upload) - REQ
+```javascript
+Header
+{
+  Content-Type: "multipart/form-data"
+}
+```
+```javascript
+Body/form-data
+{
+  image: 파일 경로
+}
+```
+#### 사진 업로드(/upload) - RES
+```javascript
+{
+  url: AWS에 저장된 사진 URL
+}
+```
+#### 사진 로드(/image/:key) - RES
+```javascript
+/image/AWS에 저장된 사진 URL
 ```
 
 <br/><br/>
