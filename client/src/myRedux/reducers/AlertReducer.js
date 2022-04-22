@@ -1,6 +1,8 @@
 import { AlertActionType } from 'myRedux/constants';
 const INIT_STATE = {
   status: false,
+  contents: '',
+  types: '',
 };
 
 export default function AlertReducer(state = INIT_STATE, action) {
@@ -9,6 +11,8 @@ export default function AlertReducer(state = INIT_STATE, action) {
       return {
         ...state,
         status: true,
+        contents: action.contents,
+        types: action.types,
       };
 
     case AlertActionType.CLOSE_ALERT:

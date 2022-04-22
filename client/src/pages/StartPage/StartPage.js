@@ -15,7 +15,7 @@ export const StartPage = () => {
   const [img, setImg] = useState('');
   const onClickBtn = () => {
     // dispatch(openAlert());
-    navigation('/main');
+    navigation('/signin');
   };
   useEffect(() => {
     storeDatas.info && console.log(storeDatas.info);
