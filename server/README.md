@@ -254,7 +254,7 @@ Body/form-data
   url: AWS에 저장된 사진 URL
 }
 ```
-#### 사진 로드(/image/:key) - RES
+#### 사진 로드(/image/:key) - REQ
 ```javascript
 /image/AWS에 저장된 사진 URL
 ```
