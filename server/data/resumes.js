@@ -66,6 +66,13 @@ export async function findById(id) {
   });
 }
 
+export async function findRId(id) {
+  return Resumes.findAll({
+    attributes: ["r_id"],
+    where: { u_id: id },
+  });
+}
+
 export async function createResume(resume) {
   return Resumes.create(resume).then((data) => data.dataValues.r_id);
 }
