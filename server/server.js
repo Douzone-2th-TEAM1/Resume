@@ -35,12 +35,12 @@ app.use('/temps', tempsRouter);
 
 // 404 에러 처리
 app.use((req, res) => {
-  res.status(404).json({ resCode: 4 });
+  res.status(404).json({ resCode: 1 });
 });
 
 // 500 에러 처리
 app.use((req, res) => {
-  res.status(500).json({ resCode: 5 });
+  res.status(500).json({ resCode: 1 });
 });
 
 sequelize.sync().then(() => {
