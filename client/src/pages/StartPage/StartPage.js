@@ -1,16 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { style } from './StartPageStyle';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 import { openAlert } from 'myRedux/actions/AlertActions';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 export const StartPage = () => {
   const dispatch = useDispatch();
+  const navigation = useNavigate();
   const storeDatas = useSelector((state) => state.ResumeReducer);
   // const openModal = useSelector((state) => state.AlertReducer);
-
-  const navigation = useNavigate();
 
   const [img, setImg] = useState('');
   const onClickBtn = () => {

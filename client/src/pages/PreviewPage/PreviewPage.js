@@ -3,11 +3,9 @@ import { TEMPLATE_LIST } from 'utils/constants/templateList';
 import { style } from './PreviewPageStyle';
 import { useDispatch, useSelector } from 'react-redux';
 import { storeInfo } from 'myRedux/actions/ResumeActions';
-import { useNavigate } from 'react-router-dom';
 
 export const PreviewPage = ({ target }) => {
   const dispatch = useDispatch();
-  const navigation = useNavigate();
   const storeDatas = useSelector((state) => state.ResumeReducer);
   const [info, setInfo] = useState(storeDatas.info);
 
@@ -16,7 +14,7 @@ export const PreviewPage = ({ target }) => {
   };
   const onClickComplete = (e) => {
     dispatch(storeInfo(info));
-    navigation('/');
+    // navigation('/');
   };
 
   // useEffect(() => {
