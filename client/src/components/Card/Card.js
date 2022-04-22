@@ -17,9 +17,9 @@ export const Card = ({ onClickIcon, onClickCancel, height, onClickTemplateChoice
   const storeDatas = useSelector((state) => state.ResumeReducer);
   const ref = useRef();
 
-  useEffect(() => {
-    console.log(storeDatas);
-  }, [storeDatas]);
+  // useEffect(() => {
+  //   console.log(storeDatas);
+  // }, [storeDatas]);
 
   const [info, setInfo] = useState({
     title: '',
@@ -302,7 +302,8 @@ export const Card = ({ onClickIcon, onClickCancel, height, onClickTemplateChoice
   };
   const onChangeImg = (e) => {
     const file = e.target.files;
-    setInfo({ ...info, img: URL.createObjectURL(file[0]) });
+    // console.log(file);
+    setInfo({ ...info, img: file[0] });
   };
 
   useEffect(() => {
@@ -354,9 +355,9 @@ export const Card = ({ onClickIcon, onClickCancel, height, onClickTemplateChoice
     onClickCancel();
   };
 
-  useEffect(() => {
-    console.log(info);
-  }, [info]);
+  // useEffect(() => {
+  //   console.log(info);
+  // }, [info]);
   return (
     <Container ht={height} ref={ref}>
       <IconLayout onClick={onClickIcon} ht={height}>

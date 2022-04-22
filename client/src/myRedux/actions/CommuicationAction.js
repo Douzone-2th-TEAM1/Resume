@@ -25,3 +25,10 @@ export const setInfo = (email, token) => {
     token: token,
   };
 };
+
+export const storeResume = (info) => {
+  return {
+    type: CommunicationType.STORE_RESUME,
+    info: info,
+  };
+};

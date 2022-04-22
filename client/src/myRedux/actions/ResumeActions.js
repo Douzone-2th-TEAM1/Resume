@@ -7,6 +7,13 @@ export const storeInfo = (info) => {
   };
 };
 
+// export const storeResume = (info) => {
+//   return {
+//     type: ResumeActionType.STORE_RESUME,
+//     info: info,
+//   };
+// };
+
 export const cancel = () => {
   return {
     type: ResumeActionType.CANCEL_INFO,

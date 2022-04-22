@@ -6,7 +6,7 @@ import Sample1 from 'assets/sample1.png';
 import Sample2 from 'assets/sample2.png';
 import PreviewPage from 'pages/PreviewPage';
 
-export const TemplatePage = ({ openTemplatePage }) => {
+export const TemplatePage = ({ openTemplatePage, onClickTemplateClose, onClickCancel }) => {
   const [previewOpen, setPreviewOpen] = useState({
     status: false,
     choose: '',
@@ -19,9 +19,22 @@ export const TemplatePage = ({ openTemplatePage }) => {
     });
   };
 
+  const onClickClose = () => {
+    setPreviewOpen({
+      status: false,
+      choose: '',
+    });
+  };
+
+  // useEffect(() => {
+  //   if (!previewOpen.status) {
+  //     onClickTemplateClose();
+  //   }
+  // }, [previewOpen]);
+
   return (
     <Wrapper flag={openTemplatePage}>
-      {previewOpen.status && <PreviewPage target={previewOpen.choose} />}
+      {previewOpen.status && <PreviewPage target={previewOpen.choose} close={onClickClose} />}
       <Container flag={openTemplatePage}>
         <TopLayout>
           <Rectangle />

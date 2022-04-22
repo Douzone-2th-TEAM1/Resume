@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { style } from './MainPageStyle';
 import Card from 'components/Card';
 import MyPage from 'pages/MyPage';
@@ -25,6 +25,15 @@ export const MainPage = () => {
   const onClickTemplateChoice = () => {
     setOpenTemplatPage(true);
   };
+
+  const onClickTemplateClose = () => {
+    setOpenTemplatPage(false);
+  };
+
+  // useEffect(() => {
+  //   if (!openTemplatePage) onClickCancel();
+  // }, [openTemplatePage]);
+
   return (
     <div onMouseMove={onMouseOverMypage}>
       <Container openMyPage={openMyPage}>
@@ -45,7 +54,13 @@ export const MainPage = () => {
       </Container>
 
       {height === '400px' && <MyPage openMyPage={openMyPage} />}
-      {openTemplatePage && <TemplatePage openTemplatePage={openTemplatePage} />}
+      {openTemplatePage && (
+        <TemplatePage
+          openTemplatePage={openTemplatePage}
+          onClickTemplateClose={onClickTemplateClose}
+          onClickCancel={onClickCancel}
+        />
+      )}
     </div>
   );
 };

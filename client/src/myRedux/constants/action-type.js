@@ -18,4 +18,5 @@ export const CommunicationType = {
   SIGN_UP: 'SIGN_UP',
   SIGN_IN: 'SGIN_IN',
   GET_TOKEN: 'GET_TOKNE',
+  STORE_RESUME: 'STORE_RESUME',
 };
