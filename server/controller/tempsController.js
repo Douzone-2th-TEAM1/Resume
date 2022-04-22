@@ -16,6 +16,7 @@ export async function saveTemp(req, res) {
   });
 
   res.json({ resCode: 0 });
+}
 
 // 임시 저장 불러오기
 export async function loadTemp(req, res) {
@@ -24,7 +25,7 @@ export async function loadTemp(req, res) {
     res.json({ resCode: 1 });
   } else {
     const { temp_data } = await tempsTable.findByuId(id);
-    const temp_data_JSON = temp_data.replaceAll(/'/g, "");
+    const temp_data_JSON = temp_data.replaceAll(/'/g, '');
     const data = JSON.parse(temp_data_JSON);
 
     // JSON으로 만든 data 전송 추가해줘야함
