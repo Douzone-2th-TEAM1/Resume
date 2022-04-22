@@ -25,11 +25,11 @@ export async function login(req, res) {
   const { email, pwd } = req.body;
   const user = await usersTable.findByEmail(email);
   if (!user) {
-    return res.json({ message: 'Invalid user or password' });
+    return res.json({ resCode: 1 });
   }
   const isValidPassword = pwd === user.pwd;
   if (!isValidPassword) {
-    return res.json({ message: 'Invalid user or password' });
+    return res.json({ resCode: 1 });
   }
   const token = createJwtToken(user.id);
   res.json({ resCode: 0, token, email });
