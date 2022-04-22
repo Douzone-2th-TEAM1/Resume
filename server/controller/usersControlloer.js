@@ -30,5 +30,5 @@ export async function updateUser(req, res) {
 export async function deleteUser(req, res) {
   const id = req.id;
   const deletedRow = await usersTable.deleteUser(id); // 얜 리턴 없나? - 일단 임시
-  res.status(200).json({ resCode: 0 }); // 204는 return 없을 때
+  res.json({ resCode: 0 }); // 204는 return 없을 때
 }
