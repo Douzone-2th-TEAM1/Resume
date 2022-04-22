@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { style } from './Form2PageStyle';
 import { USERS } from 'utils/constants/users';
 import { RESUMES } from 'utils/constants/resume';
@@ -11,9 +11,9 @@ export const Form2Page = () => {
           <Photo />
           <LF_Form>
             <LF_Logo>🖐🏻 ABOUT ME</LF_Logo>
-            <LF_Data>ㅇ {USERS.name}</LF_Data>
-            <LF_Data>ㅇ {USERS.email}</LF_Data>
-            <LF_Data>ㅇ {USERS.phone}</LF_Data>
+            <LF_Data>NAME : {USERS.name}</LF_Data>
+            <LF_Data>MAIL : {USERS.email}</LF_Data>
+            <LF_Data>TEL : {USERS.phone}</LF_Data>
           </LF_Form>
           <LF_Form>
             <LF_Logo>💻 TECH SKILLS</LF_Logo>
@@ -21,9 +21,9 @@ export const Form2Page = () => {
           </LF_Form>
           <LF_Form>
             <LF_Logo>📚 CERTIFICATIONS</LF_Logo>
-            {RESUMES.temp_data.awards &&
-              RESUMES.temp_data.awards.map((item, index) => {
-                return <LF_Data key={index}>ㅇ {item.awardCntns}</LF_Data>;
+            {RESUMES.temp_data.certifications &&
+              RESUMES.temp_data.certifications.map((item, index) => {
+                return <LF_Data key={index}>ㅇ {item.certName} 취득</LF_Data>;
               })}
           </LF_Form>
           <LF_Form>
@@ -43,7 +43,7 @@ export const Form2Page = () => {
               RESUMES.temp_data.careers.map((item, index) => {
                 return (
                   <LF_Data key={index}>
-                    ㅇ {item.cmpnyName} {item.workCntns}
+                    ㅇ {item.cmpnyName} {item.workCntns} 근무
                   </LF_Data>
                 );
               })}
@@ -57,7 +57,7 @@ export const Form2Page = () => {
               RESUMES.temp_data.educations.map((item, index) => {
                 return (
                   <EPFormData key={index}>
-                    <EPFormData2>ㅇ {item.eduName}</EPFormData2>
+                    <EPFormData2>{item.eduName}</EPFormData2>
                     <EPFormData3>{item.eduStartDate} ~ {item.eduEndDate}</EPFormData3>
                     <EPFormData4>{item.eduCntns}</EPFormData4>
                   </EPFormData>
@@ -70,7 +70,7 @@ export const Form2Page = () => {
               RESUMES.temp_data.projects.map((item, index) => {
                 return (
                   <EPFormData key={index}>
-                    <EPFormData2>ㅇ {item.prjName}</EPFormData2>
+                    <EPFormData2>{item.prjName}</EPFormData2>
                     <EPFormData3>{item.prjStartDate} ~ {item.prjEndDate}</EPFormData3>
                     <EPFormData4>{item.prjCntns}</EPFormData4>
                   </EPFormData>
