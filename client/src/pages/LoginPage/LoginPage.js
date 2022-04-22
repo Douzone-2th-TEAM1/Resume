@@ -125,7 +125,7 @@ export const LoginPage = () => {
           <Modal3 />
           <MT1>회원가입이 완료되었습니다!</MT1>
           <MT2>
-            회원가입 절차가 완료되었습니다.
+          {formSign.nick}님의 회원가입을 환영합니다.
             <br />
             로그인하고 첫 이력서를 작성해보세요!
           </MT2>
@@ -195,6 +195,7 @@ export const LoginPage = () => {
                 value={formSign.pwd}
                 type="password"
                 onKeyUp={checkPwd}
+                placeholder='숫자와 문자를 혼합한 8~20 글자'
               />
               <Info onMouseOver={() => setOpen(true)} onMouseOut={() => setOpen(false)}>
                 <BsExclamationCircle size="25px" />
@@ -255,7 +256,7 @@ export const LoginPage = () => {
             <br />
             휴대전화
             <br />
-            <Enter3 name="tel" onChange={handleSignInput} value={formSign.tel} onKeyUp={checkTel} />
+            <Enter3 name="tel" onChange={handleSignInput} value={formSign.tel} onKeyUp={checkTel} placeholder='ex) 010-2002-1234'/>
             {!telVal && formSign.tel.length >= 1 && <Wrong>연락처를 다시 입력해주세요.</Wrong>}
             {telVal && formSign.tel.length >= 1 && (
               <Pass>

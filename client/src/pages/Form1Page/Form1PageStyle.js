@@ -78,7 +78,7 @@ export const LeftIndex2 = styled.div`
   height: 18px;
   width: 183.5px;
   font-size: 12px;
-  font-weight: bolder;
+  font-weight: normal;
 `;
 // -------------------------------------------
 export const TopRightForm = styled.div`

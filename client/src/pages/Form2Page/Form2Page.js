@@ -11,9 +11,9 @@ export const Form2Page = () => {
           <Photo />
           <LF_Form>
             <LF_Logo>🖐🏻 ABOUT ME</LF_Logo>
-            <LF_Data>ㅇ {USERS.name}</LF_Data>
-            <LF_Data>ㅇ {USERS.email}</LF_Data>
-            <LF_Data>ㅇ {USERS.phone}</LF_Data>
+            <LF_Data>NAME : {USERS.name}</LF_Data>
+            <LF_Data>MAIL : {USERS.email}</LF_Data>
+            <LF_Data>TEL : {USERS.phone}</LF_Data>
           </LF_Form>
           <LF_Form>
             <LF_Logo>💻 TECH SKILLS</LF_Logo>
@@ -21,9 +21,9 @@ export const Form2Page = () => {
           </LF_Form>
           <LF_Form>
             <LF_Logo>📚 CERTIFICATIONS</LF_Logo>
-            {RESUMES.temp_data.awards &&
-              RESUMES.temp_data.awards.map((item, index) => {
-                return <LF_Data key={index}>ㅇ {item.awardCntns}</LF_Data>;
+            {RESUMES.temp_data.certifications &&
+              RESUMES.temp_data.certifications.map((item, index) => {
+                return <LF_Data key={index}>ㅇ {item.certName} 취득</LF_Data>;
               })}
           </LF_Form>
           <LF_Form>
@@ -43,7 +43,7 @@ export const Form2Page = () => {
               RESUMES.temp_data.careers.map((item, index) => {
                 return (
                   <LF_Data key={index}>
-                    ㅇ {item.cmpnyName} {item.workCntns}
+                    ㅇ {item.cmpnyName} {item.workCntns} 근무
                   </LF_Data>
                 );
               })}

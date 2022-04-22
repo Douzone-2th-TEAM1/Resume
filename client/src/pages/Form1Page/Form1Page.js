@@ -24,7 +24,7 @@ export const Form1Page = () => {
           <LeftIndex1>CERTIFICATIONS</LeftIndex1>
           {RESUMES.temp_data.certifications &&
             RESUMES.temp_data.certifications.map((item, index) => {
-              return <LeftIndex2 key={index}>ㅇ {item.certName}</LeftIndex2>;
+              return <LeftIndex2 key={index}>ㅇ {item.certName} 취득</LeftIndex2>;
             })}
           <LeftIndex1>AWARDS</LeftIndex1>
           {RESUMES.temp_data.awards &&
@@ -37,7 +37,7 @@ export const Form1Page = () => {
               RESUMES.temp_data.careers.map((item, index) => {
                 return (
                   <LeftIndex2 key={index}>
-                    ㅇ {item.cmpnyName} {item.workCntns}
+                    ㅇ {item.cmpnyName} {item.workCntns} 근무
                   </LeftIndex2>
                 );
               })}
