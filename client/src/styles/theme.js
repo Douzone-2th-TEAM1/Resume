@@ -19,6 +19,7 @@ const device = {
 
 const colorSet = {
   PRIMARY: '#334257',
+  PRIMARY_OPACITY_90: '#33425790',
   PRIMARY_DISABLED: {
     DEFAULT: '#cdcdcd',
     OPACITY_70: '#cdcdcd70',
@@ -27,7 +28,10 @@ const colorSet = {
   BORDER: '#a0a0a0',
 
   ERROR: '#FF0000',
-  SUCCESS: '#287D3C',
+  SUCCESS: {
+    BACK_COLOR: '#EDF9F0',
+    COLOR: '#287D3C',
+  },
 };
 const theme = { flexSet, device, colorSet };
 export default theme;

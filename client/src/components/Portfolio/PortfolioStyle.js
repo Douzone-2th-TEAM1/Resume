@@ -9,8 +9,6 @@ const Layout = styled.div`
   ${({ theme }) => theme.flexSet('flex-evenly', 'center')};
   width: 100%;
   height: ${(props) => props.ht};
-  /* background: wheat; */
-  border-bottom: 1px solid ${({ theme }) => theme.colorSet.PRIMARY_DISABLED.DEFAULT};
 `;
 
 const Title = styled.label`

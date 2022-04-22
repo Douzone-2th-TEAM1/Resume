@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { style } from './CardStyle';
 import { FaAngleDoubleUp } from 'react-icons/fa';
 import Dropbox from 'components/DropBox';
@@ -8,9 +8,21 @@ import checkLimit from 'utils/checkLimit';
 import Form from 'components/Form';
 import QnaForm from 'components/QnaForm';
 import Portfolio from 'components/Portfolio';
+import theme from 'styles/theme';
+import { useDispatch, useSelector } from 'react-redux';
+import { storeInfo } from 'myRedux/actions/ResumeActions';
 
-export const Card = ({ onClickIcon, height }) => {
+export const Card = ({ onClickIcon, onClickCancel, height, onClickTemplateChoice }) => {
+  const dispatch = useDispatch();
+  const storeDatas = useSelector((state) => state.ResumeReducer);
+  const ref = useRef();
+
+  useEffect(() => {
+    console.log(storeDatas);
+  }, [storeDatas]);
+
   const [info, setInfo] = useState({
+    title: '',
     department: '',
     techs: [],
     certifications: [],
@@ -20,8 +32,8 @@ export const Card = ({ onClickIcon, height }) => {
     careers: [],
     qnas: [],
     portfolio: '',
+    img: '',
   });
-  const [img, setImg] = useState('');
   const [disableStatus, setDisableStatus] = useState({
     techs: false,
     certifications: false,
@@ -273,14 +285,27 @@ export const Card = ({ onClickIcon, height }) => {
       answer: '',
     });
   };
+
+  const resetInfo = () => {
+    setInfo({
+      department: '',
+      techs: [],
+      certifications: [],
+      educations: [],
+      projects: [],
+      awards: [],
+      careers: [],
+      qnas: [],
+      portfolio: '',
+      img: '',
+    });
+  };
   const onChangeImg = (e) => {
     const file = e.target.files;
-
-    setImg(URL.createObjectURL(file[0]));
+    setInfo({ ...info, img: URL.createObjectURL(file[0]) });
   };
 
   useEffect(() => {
-    console.log(info);
     if (info?.techs) {
       checkStatus('techs');
     } else if (info?.certifications) {
@@ -292,12 +317,48 @@ export const Card = ({ onClickIcon, height }) => {
     }
   }, [info]);
 
-  // useEffect(() => {
-  //   console.log(img);
-  // }, [img]);
+  const onClickStore = () => {
+    if (
+      info.department.length > 0 ||
+      info.portfolio.length > 0 ||
+      info.techs.length > 0 ||
+      info.certifications.length > 0 ||
+      info.awards.length > 0 ||
+      info.careers.length > 0 ||
+      info.projects.length > 0 ||
+      info.qnas.length > 0 ||
+      info.img.length > 0
+    ) {
+      dispatch(storeInfo(info));
+      onClickTemplateChoice();
+    } else {
+      console.log('test'); // 정보 입력 요구
+    }
+  };
 
+  const onClickTempStore = () => {
+    dispatch(storeInfo(info));
+  };
+
+  const onClickCancelStore = () => {
+    ref.current.scrollTo(0, 0);
+    resetCars();
+    resetEdu();
+    resetCerti();
+    resetAwrds();
+    resetPrjs();
+    resetQnas();
+    resetText('techs');
+    resetInfo();
+
+    onClickCancel();
+  };
+
+  useEffect(() => {
+    console.log(info);
+  }, [info]);
   return (
-    <Container ht={height}>
+    <Container ht={height} ref={ref}>
       <IconLayout onClick={onClickIcon} ht={height}>
         <FaAngleDoubleUp size="50" color="#cdcdcd" />
       </IconLayout>
@@ -324,8 +385,8 @@ export const Card = ({ onClickIcon, height }) => {
           </ItemInnerLayout>
           <ItemInnerLayout width={'30%'}>
             <ImgLayout htmlFor="img" onChange={onChangeImg}>
-              {img && <img src={img} style={{ width: '100%', height: '100%' }} />}
-              {!img && <h6>사진 (3x4)</h6>}
+              {info.img && <img src={info.img} style={{ width: '100%', height: '100%' }} />}
+              {!info.img && <h6>사진 (3x4)</h6>}
               <ImgBtn type="file" id="img" placeholder="사진" accept=".jpg,.jpeg,.png" />
             </ImgLayout>
           </ItemInnerLayout>
@@ -405,7 +466,38 @@ export const Card = ({ onClickIcon, height }) => {
         </ItemLayout>
 
         <ItemLayout>
-          <Portfolio />
+          <Portfolio text={info.portfolio} onChangeInput={onChangeInfo} />
+        </ItemLayout>
+
+        <ItemLayout>
+          <Btn
+            color={theme.colorSet.SECONDARY}
+            bgColor={theme.colorSet.PRIMARY_DISABLED.DEFAULT}
+            hvColor={theme.colorSet.PRIMARY_DISABLED.OPACITY_70}
+            onClick={onClickCancelStore}
+          >
+            취소
+          </Btn>
+          <BtnLayout>
+            <Btn
+              borderColor={theme.colorSet.PRIMARY}
+              color={theme.colorSet.PRIMARY}
+              bgColor={theme.colorSet.SECONDARY}
+              hvColor={theme.colorSet.PRIMARY_DISABLED.OPACITY_70}
+              onClick={onClickTempStore}
+            >
+              임시 저장
+            </Btn>
+            <Btn
+              borderColor={theme.colorSet.PRIMARY}
+              bgColor={theme.colorSet.PRIMARY}
+              color={theme.colorSet.SECONDARY}
+              hvColor={theme.colorSet.PRIMARY_OPACITY_90}
+              onClick={onClickStore}
+            >
+              저장
+            </Btn>
+          </BtnLayout>
         </ItemLayout>
       </ItemWrapper>
     </Container>
@@ -422,4 +514,6 @@ const {
   ItemTitle,
   ImgLayout,
   ImgBtn,
+  BtnLayout,
+  Btn,
 } = style;

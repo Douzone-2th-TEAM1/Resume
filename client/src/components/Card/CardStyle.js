@@ -26,9 +26,11 @@ const BobOnHoverFloat = keyframes`
 
 const Container = styled.div`
   position: absolute;
-  overflow-y: auto;
+  /* overflow-y: auto; */
+  overflow-y: ${(props) => (props.ht === '400px' ? 'hidden' : 'auto')};
+  scroll-behavior: smooth;
   bottom: 0;
-  min-width: 900px;
+  min-width: 920px;
   height: ${(props) => props.ht};
   transition-property: all;
   transition-duration: 2s;
@@ -117,7 +119,6 @@ const ImgLayout = styled.label`
 `;
 const ImgBtn = styled.input`
   display: none;
-
   padding: 5px;
   width: 150px;
   height: 100%;
@@ -132,6 +133,27 @@ const ImgBtn = styled.input`
   }
 `;
 
+const BtnLayout = styled.div`
+  ${({ theme }) => theme.flexSet('flex-end')};
+  width: 81%;
+`;
+
+const Btn = styled.button`
+  cursor: pointer;
+  padding: 16px 36px;
+  min-width: 145px;
+  margin: 2px;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 5px;
+  color: ${(props) => props.color};
+  border: 2px solid ${(props) => props.borderColor};
+  background-color: ${(props) => props.bgColor};
+  &:hover {
+    background-color: ${(props) => props.hvColor};
+  }
+`;
+
 export const style = {
   Container,
   IconLayout,
@@ -143,4 +165,6 @@ export const style = {
   Box,
   ImgLayout,
   ImgBtn,
+  BtnLayout,
+  Btn,
 };
