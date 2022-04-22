@@ -128,7 +128,7 @@ DB_PASSWORD = 사용자 비밀번호
   r_id: 이력서 번호,
 }
 ```
-#### 이력서 조회(/get) - REQ
+#### 이력서 조회(/load) - REQ
 ```javascript
 {
   
