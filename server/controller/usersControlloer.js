@@ -7,9 +7,9 @@ export async function findUser(req, res) {
   const id = req.id;
   const user = await usersTable.findById(id);
   if (!user) {
-    return res.status(401).json({ message: 'Invalid user' });
+    return res.json({ resCode: 1 });
   }
-  res.status(200).json({ resCode: 0, user: user });
+  res.json({ resCode: 0, user: user });
 }
 
 // 회원 정보 수정
@@ -23,7 +23,7 @@ export async function updateUser(req, res) {
     name,
     phone,
   });
-  res.status(200).json({ resCode: 0 }); // 204는 return 없을 때
+  res.json({ resCode: 0 }); // 204는 return 없을 때
 }
 
 // 회원 탈퇴
