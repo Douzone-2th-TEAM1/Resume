@@ -8,7 +8,7 @@ export async function signup(req, res) {
   const { email, pwd, name, phone } = req.body;
   const found = await usersTable.findByEmail(email);
   if (found) {
-    return res.status(409).json({ resCode: 1 }); // Error: email already exists
+    return res.json({ resCode: 1 }); // Error: email already exists
   }
 
   const user = await usersTable.createUser({
@@ -17,7 +17,7 @@ export async function signup(req, res) {
     name,
     phone,
   });
-  res.status(201).json({ resCode: 0 });
+  res.json({ resCode: 0 });
 }
 
 // 로그인
@@ -25,14 +25,14 @@ export async function login(req, res) {
   const { email, pwd } = req.body;
   const user = await usersTable.findByEmail(email);
   if (!user) {
-    return res.status(401).json({ message: 'Invalid user or password' });
+    return res.json({ message: 'Invalid user or password' });
   }
   const isValidPassword = pwd === user.pwd;
   if (!isValidPassword) {
-    return res.status(401).json({ message: 'Invalid user or password' });
+    return res.json({ message: 'Invalid user or password' });
   }
   const token = createJwtToken(user.id);
-  res.status(200).json({ resCode: 0, token, email });
+  res.json({ resCode: 0, token, email });
 }
 
 // 로그인 토큰 생성
