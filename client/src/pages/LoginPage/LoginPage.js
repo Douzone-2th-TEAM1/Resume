@@ -1,12 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useReducer, useState } from 'react';
 import { style } from './LoginPageStyle';
 import { BsExclamationCircle, BsCheckLg } from 'react-icons/bs';
 import { useDispatch, useSelector } from 'react-redux';
-import { signup } from 'myRedux/actions/CommuicationAction';
+import { signup, signin } from 'myRedux/actions/CommuicationAction';
 import { openModal, closeModal } from 'myRedux/actions/ModalActions';
+import { openAlert } from 'myRedux/actions/AlertActions';
+import { useNavigate } from 'react-router-dom';
+import { icons } from 'react-icons/lib';
 
 export const LoginPage = () => {
   const dispatch = useDispatch();
+  const navigation = useNavigate();
+  const reducer = useSelector((state) => state.CommunicationReducer);
   const modal = useSelector((state) => state.ModalReducer);
   //------------------------------------------------------------------------------
   const [clickBtn, setClickBtn] = useState(false); // 백그라운드 동작을 위한 변수
@@ -118,6 +123,25 @@ export const LoginPage = () => {
     setNickVal(false);
     setTelVal(false);
   };
+
+  const onClickSignin = () => {
+    dispatch(signin(formInput.id, formInput.pw));
+    // if (localStorage.getItem('TOKEN') && localStorage.getItem('EMAIL')) {
+    //   navigation('/main');
+    // } else {
+    //   dispatch(openAlert('에러가 발생했습니다.', 'fail'));
+    // }
+  };
+
+  useEffect(() => {
+    console.log(reducer);
+    if (reducer.token && reducer.email) {
+      navigation('/main');
+    }
+  }, [reducer]);
+
+  //   console.log(reducer);
+  // }, [reducer]);
   //------------------------------------------------------------------------------
   //------------------------------------------------------------------------------
 
@@ -167,7 +191,9 @@ export const LoginPage = () => {
             {/* 로그인_비밀번호 입력 */}
             <Enter2 name="pw" onChange={handleLoginInput} value={formInput.pw} type="password" />
           </EnterForm>
-          <Btn2 disabled={isDisabled}>로그인</Btn2>
+          <Btn2 disabled={isDisabled} onClick={(e) => onClickSignin(e)}>
+            로그인
+          </Btn2>
         </RightForm1>
       )}
       {/* -------------------------------- */}

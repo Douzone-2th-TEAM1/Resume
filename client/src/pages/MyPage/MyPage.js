@@ -2,8 +2,17 @@ import ResumeInfo from 'components/ResumeInfo';
 import React from 'react';
 import { style } from './MyPageStyle';
 import { MdAccessibilityNew, MdEdit } from 'react-icons/md';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { setInfo } from 'myRedux/actions/CommuicationAction';
 
 export const MyPage = ({ openMyPage }) => {
+  const dispatch = useDispatch();
+  const navigation = useNavigate();
+  const onClickSignout = () => {
+    dispatch(setInfo('', ''));
+    navigation('/');
+  };
   return (
     <Wrapper flag={openMyPage}>
       <Container flag={openMyPage}>
@@ -30,7 +39,9 @@ export const MyPage = ({ openMyPage }) => {
           </MyInfoLayout>
         </CntntsLayout>
 
-        <SignOutBtn flag={openMyPage}>로그아웃</SignOutBtn>
+        <SignOutBtn flag={openMyPage} onClick={onClickSignout}>
+          로그아웃
+        </SignOutBtn>
       </Container>
     </Wrapper>
   );

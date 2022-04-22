@@ -8,7 +8,6 @@ import Form2Page from 'pages/Form2Page';
 import Alert from 'components/Alert';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
 
 function App() {
   const alert = useSelector((state) => state.AlertReducer);

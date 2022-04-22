@@ -11,6 +11,18 @@ export default function CommunicationReducer(state = INIT_STATE, action) {
         phone: action.phone,
       };
 
+    case CommunicationType.SIGN_IN:
+      return {
+        ...state,
+        email: action.email,
+        pwd: action.pwd,
+      };
+
+    case CommunicationType.GET_TOKEN:
+      return {
+        email: action.email,
+        token: action.token,
+      };
     default:
       return state;
   }
