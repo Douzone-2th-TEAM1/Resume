@@ -2,7 +2,7 @@ import styled from 'styled-components';
 // -------------------------------------------
 export const Container = styled.div`
   ${({ theme }) => theme.flexSet()}
-  /* overflow-y: auto; */
+  overflow: visible;
 `;
 export const Form = styled.div`
   position: relative;

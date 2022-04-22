@@ -70,10 +70,13 @@ export const LeftIndex1 = styled.div`
   color: white;
 `;
 export const LeftIndex2 = styled.div`
+  margin-top: 15px;
+  margin-bottom: 15px;
   padding-left: 10px;
-  height: 186px;
+  height: 36px;
   width: 367px;
   font-size: 24px;
+  font-weight: bolder;
 `;
 // -------------------------------------------
 export const TopRightForm = styled.div`
@@ -129,6 +132,7 @@ export const FF_Logo = styled.div`
 export const FF_Data = styled.div`
   /* border: 1px black dotted; */
   margin-top: 10px;
+  font-size: 24px;
 `;
 export const FreeForm2 = styled.div`
   /* border: 1px black dotted; */

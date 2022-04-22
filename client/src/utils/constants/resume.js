@@ -47,40 +47,40 @@ export const RESUMES = {
     ],
     educations: [
       {
-        eduName: '윤선생 영어교실',
+        eduName: '교육1',
         eduStartDate: '2022-04-19',
         eduEndDate: '2022-04-20',
-        eduCntns: '토익 200점',
+        eduCntns: '교육내용1',
       },
       {
-        eduName: '싱크빅 창의력 교육',
+        eduName: '교육2',
         eduStartDate: '2022-04-21',
         eduEndDate: '2022-04-22',
-        eduCntns: '하노이의 탑 옮기기 노가다',
+        eduCntns: '교육내용2',
       },
     ],
     projects: [
       {
-        prjName: 'C언어 삼각형 만들기',
+        prjName: '프로젝트1',
         prjStartDate: '2022-04-23',
         prjEndDate: '2022-04-24',
-        prjCntns: '사실은 노가다로 찍음',
+        prjCntns: '프로젝트내용1',
       },
       {
-        prjName: '더존 2차 프로젝트',
+        prjName: '프로젝트2',
         prjStartDate: '2022-04-25',
         prjEndDate: '2022-04-26',
-        prjCntns: '집에 가고 싶어요',
+        prjCntns: '프로젝트내용2',
       },
     ],
     qnas: [
       {
-        quest: '지원 동기',
-        answer: '돈을 벌어서 치킨을 사먹고 싶어요',
+        quest: '자유주제1',
+        answer: '자유주제 내용1',
       },
       {
-        quest: '입사 후 포부',
-        answer: '첫 월급 받자 마자 바로 다른 곳으로 이직할 거에요',
+        quest: '자유주제2',
+        answer: '자유주제 내용2',
       },
     ],
   },
