@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { style } from './Form2PageStyle';
 import { USERS } from 'utils/constants/users';
 import { RESUMES } from 'utils/constants/resume';
@@ -57,7 +57,7 @@ export const Form2Page = () => {
               RESUMES.temp_data.educations.map((item, index) => {
                 return (
                   <EPFormData key={index}>
-                    <EPFormData2>ㅇ {item.eduName}</EPFormData2>
+                    <EPFormData2>{item.eduName}</EPFormData2>
                     <EPFormData3>{item.eduStartDate} ~ {item.eduEndDate}</EPFormData3>
                     <EPFormData4>{item.eduCntns}</EPFormData4>
                   </EPFormData>
@@ -70,7 +70,7 @@ export const Form2Page = () => {
               RESUMES.temp_data.projects.map((item, index) => {
                 return (
                   <EPFormData key={index}>
-                    <EPFormData2>ㅇ {item.prjName}</EPFormData2>
+                    <EPFormData2>{item.prjName}</EPFormData2>
                     <EPFormData3>{item.prjStartDate} ~ {item.prjEndDate}</EPFormData3>
                     <EPFormData4>{item.prjCntns}</EPFormData4>
                   </EPFormData>

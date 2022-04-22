@@ -18,6 +18,11 @@ export const RESUMES = {
         awardDate: '2022-04-20',
         awardCntns: '장려상',
       },
+      {
+        awardName: '알고리즘 대회',
+        awardDate: '2022-04-20',
+        awardCntns: '금상',
+      },
     ],
     careers: [
       {
@@ -32,6 +37,12 @@ export const RESUMES = {
         workEndDate: '2022-05-10',
         workCntns: '프론트엔드',
       },
+      {
+        cmpnyName: '더존비즈온',
+        workStartDate: '2022-04-25',
+        workEndDate: '2022-05-10',
+        workCntns: '벡엔드',
+      },
     ],
     certifications: [
       {
@@ -41,6 +52,11 @@ export const RESUMES = {
       },
       {
         certName: 'SQL 개발자',
+        certScore: 'certScore2',
+        certDate: '2022-04-20',
+      },
+      {
+        certName: '전자계산기 응용사',
         certScore: 'certScore2',
         certDate: '2022-04-20',
       },
@@ -58,6 +74,12 @@ export const RESUMES = {
         eduEndDate: '2022-04-22',
         eduCntns: '교육내용2',
       },
+      {
+        eduName: '교육3',
+        eduStartDate: '2022-04-21',
+        eduEndDate: '2022-04-22',
+        eduCntns: '교육내용3',
+      },
     ],
     projects: [
       {
@@ -71,6 +93,12 @@ export const RESUMES = {
         prjStartDate: '2022-04-25',
         prjEndDate: '2022-04-26',
         prjCntns: '프로젝트내용2',
+      },
+      {
+        prjName: '프로젝트3',
+        prjStartDate: '2022-04-25',
+        prjEndDate: '2022-04-26',
+        prjCntns: '프로젝트내용3',
       },
     ],
     qnas: [

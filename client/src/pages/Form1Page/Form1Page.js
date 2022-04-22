@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { style } from './Form1PageStyle';
 import { USERS } from 'utils/constants/users';
 import { RESUMES } from 'utils/constants/resume';
@@ -29,7 +29,7 @@ export const Form1Page = () => {
           <LeftIndex1>AWARDS</LeftIndex1>
           {RESUMES.temp_data.awards &&
             RESUMES.temp_data.awards.map((item, index) => {
-              return <LeftIndex2 key={index}>ㅇ {item.awardCntns}</LeftIndex2>;
+              return <LeftIndex2 key={index}>ㅇ {item.awardName} {item.awardCntns} 수상</LeftIndex2>;
             })}
           <LeftIndex1>CAREERS</LeftIndex1>
           <LeftIndex2>
@@ -47,19 +47,29 @@ export const Form1Page = () => {
         <TopRightForm>
           <EducationForm>
             <EP_Logo>EDUCATION</EP_Logo>
-            <EP_Data>
-              {/* <EP_Data1></EP_Data1>
-              <EP_Data2></EP_Data2>
-              <EP_Data3></EP_Data3> */}
-            </EP_Data>
+            {RESUMES.temp_data.educations &&
+              RESUMES.temp_data.educations.map((item, index) => {
+                return (
+                  <EP_Data key={index}>
+                    <EP_Data1>{item.eduName}</EP_Data1>
+                    <EP_Data2>'{item.eduStartDate} ~ '{item.eduEndDate}</EP_Data2>
+                    <EP_Data3>{item.eduCntns}</EP_Data3>
+                  </EP_Data>
+                );
+              })}
           </EducationForm>
           <ProjectForm>
             <EP_Logo>PROJECT</EP_Logo>
-            <EP_Data>
-              {/* <EP_Data1></EP_Data1>
-              <EP_Data2></EP_Data2>
-              <EP_Data3></EP_Data3> */}
-            </EP_Data>
+            {RESUMES.temp_data.projects &&
+              RESUMES.temp_data.projects.map((item, index) => {
+                return (
+                  <EP_Data key={index}>
+                    <EP_Data1>{item.prjName}</EP_Data1>
+                    <EP_Data2>'{item.prjStartDate} ~ '{item.prjEndDate}</EP_Data2>
+                    <EP_Data3>{item.prjCntns}</EP_Data3>
+                  </EP_Data>
+                );
+              })}
           </ProjectForm>
         </TopRightForm>
         {/* ------------------------- */}
@@ -102,4 +112,7 @@ const {
   FF_Logo,
   FF_Data,
   FreeForm2,
+  EP_Data1,
+  EP_Data2,
+  EP_Data3,
 } = style;
