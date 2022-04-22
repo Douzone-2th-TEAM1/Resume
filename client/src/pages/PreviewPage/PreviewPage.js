@@ -3,27 +3,49 @@ import { TEMPLATE_LIST } from 'utils/constants/templateList';
 import { style } from './PreviewPageStyle';
 import { useDispatch, useSelector } from 'react-redux';
 import { storeInfo } from 'myRedux/actions/ResumeActions';
+import { storeResume } from 'myRedux/actions/CommuicationAction';
 
-export const PreviewPage = ({ target }) => {
+export const PreviewPage = ({ target, close }) => {
   const dispatch = useDispatch();
   const storeDatas = useSelector((state) => state.ResumeReducer);
+  const reducer = useSelector((state) => state.AlertReducer);
+  const [templatTitle, setTemplateTitle] = useState('');
   const [info, setInfo] = useState(storeDatas.info);
 
   const onChangeTitle = (e) => {
-    setInfo({ ...info, [e.target.id]: e.target.value });
+    setTemplateTitle(e.target.value);
   };
   const onClickComplete = (e) => {
-    dispatch(storeInfo(info));
+    console.log(e.target.id);
+    setInfo({ ...info, template: Number(e.target.id), title: templatTitle });
+
     // navigation('/');
   };
 
   // useEffect(() => {
-  //   console.log(info);
-  // }, [info]);
+  //   // debugger;
+  //   console.log(storeDatas);
+  //   if (storeDatas.info.title.length > 0 && storeDatas.info.template != null)
+  //     dispatch(storeResume(info));
+  //   // dispatch(storeResume(info));
+  // }, [storeDatas]);
 
   useEffect(() => {
-    console.log(storeDatas);
-  }, [storeDatas]);
+    console.log(info);
+    if (info.title.length > 0 && info.template != null) {
+      // console.log(info);
+      dispatch(storeResume(info));
+    }
+  }, [info]);
+
+  useEffect(() => {
+    console.log(reducer);
+    close();
+  }, [reducer]);
+  // useEffect(() => {
+  //   if (storeDatas.info.title.length > 0 && storeDatas.info.template != null)
+  //     dispatch(storeResume(info));
+  // }, [info]);
   return (
     <Layout>
       <InnerLayout>
@@ -34,12 +56,14 @@ export const PreviewPage = ({ target }) => {
       </InnerLayout>
       <InnerLayout>
         <InputLayout
-          id="title"
-          value={info.title}
+          id="templatTitle"
+          value={templatTitle}
           placeholder="해당 이력서 명칭을 작성해주세요"
           onChange={onChangeTitle}
         />
-        <MyButton onClick={onClickComplete}>적용</MyButton>
+        <MyButton id={target} onClick={onClickComplete}>
+          적용
+        </MyButton>
       </InnerLayout>
     </Layout>
   );

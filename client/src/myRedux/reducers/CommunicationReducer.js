@@ -23,6 +23,12 @@ export default function CommunicationReducer(state = INIT_STATE, action) {
         email: action.email,
         token: action.token,
       };
+
+    case CommunicationType.STORE_RESUME:
+      return {
+        ...state,
+        info: action.info,
+      };
     default:
       return state;
   }
