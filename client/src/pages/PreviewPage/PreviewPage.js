@@ -5,7 +5,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { storeInfo } from 'myRedux/actions/ResumeActions';
 import { storeResume } from 'myRedux/actions/CommuicationAction';
 
-export const PreviewPage = ({ target, close }) => {
+export const PreviewPage = ({
+  cardRef,
+  target,
+  onClickClose,
+  onClickTemplateClose,
+  onClickCloseCard,
+}) => {
   const dispatch = useDispatch();
   const storeDatas = useSelector((state) => state.ResumeReducer);
   const reducer = useSelector((state) => state.AlertReducer);
@@ -22,30 +28,25 @@ export const PreviewPage = ({ target, close }) => {
     // navigation('/');
   };
 
-  // useEffect(() => {
-  //   // debugger;
-  //   console.log(storeDatas);
-  //   if (storeDatas.info.title.length > 0 && storeDatas.info.template != null)
-  //     dispatch(storeResume(info));
-  //   // dispatch(storeResume(info));
-  // }, [storeDatas]);
-
   useEffect(() => {
     console.log(info);
-    if (info.title.length > 0 && info.template != null) {
-      // console.log(info);
-      dispatch(storeResume(info));
+
+    if (info.title && info.title.length > 0 && info.template != null) {
+      onClickClose();
+      onClickTemplateClose();
+      cardRef.current.scrollTo(0, 0);
+      onClickCloseCard();
+      // dispatch(storeResume(info));
     }
   }, [info]);
 
-  useEffect(() => {
-    console.log(reducer);
-    close();
-  }, [reducer]);
   // useEffect(() => {
-  //   if (storeDatas.info.title.length > 0 && storeDatas.info.template != null)
-  //     dispatch(storeResume(info));
-  // }, [info]);
+  //   console.log(reducer);
+  //       onClickClose();
+  // onClickTemplateClose();
+  // onClickCloseCard();
+  // }, [reducer]);
+
   return (
     <Layout>
       <InnerLayout>

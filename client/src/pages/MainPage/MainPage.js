@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { style } from './MainPageStyle';
 import Card from 'components/Card';
 import MyPage from 'pages/MyPage';
@@ -8,7 +8,7 @@ export const MainPage = () => {
   const [height, setHeight] = useState('400px');
   const [openMyPage, setOpenMyPage] = useState(false);
   const [openTemplatePage, setOpenTemplatPage] = useState(false);
-
+  const cardRef = useRef();
   const onClickIcon = () => {
     setHeight('880px');
   };
@@ -44,6 +44,7 @@ export const MainPage = () => {
         </MainTitle>
 
         <Card
+          cardRef={cardRef}
           onClickIcon={onClickIcon}
           onClickCancel={onClickCancel}
           height={height}
@@ -56,6 +57,7 @@ export const MainPage = () => {
       {height === '400px' && <MyPage openMyPage={openMyPage} />}
       {openTemplatePage && (
         <TemplatePage
+          cardRef={cardRef}
           openTemplatePage={openTemplatePage}
           onClickTemplateClose={onClickTemplateClose}
           onClickCancel={onClickCancel}

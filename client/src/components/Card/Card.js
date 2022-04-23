@@ -12,10 +12,10 @@ import theme from 'styles/theme';
 import { useDispatch, useSelector } from 'react-redux';
 import { storeInfo } from 'myRedux/actions/ResumeActions';
 
-export const Card = ({ onClickIcon, onClickCancel, height, onClickTemplateChoice }) => {
+export const Card = ({ cardRef, onClickIcon, onClickCancel, height, onClickTemplateChoice }) => {
   const dispatch = useDispatch();
   const storeDatas = useSelector((state) => state.ResumeReducer);
-  const ref = useRef();
+  // const ref = useRef();
 
   // useEffect(() => {
   //   console.log(storeDatas);
@@ -342,7 +342,7 @@ export const Card = ({ onClickIcon, onClickCancel, height, onClickTemplateChoice
   };
 
   const onClickCancelStore = () => {
-    ref.current.scrollTo(0, 0);
+    cardRef.current.scrollTo(0, 0);
     resetCars();
     resetEdu();
     resetCerti();
@@ -359,7 +359,7 @@ export const Card = ({ onClickIcon, onClickCancel, height, onClickTemplateChoice
   //   console.log(info);
   // }, [info]);
   return (
-    <Container ht={height} ref={ref}>
+    <Container ht={height} ref={cardRef}>
       <IconLayout onClick={onClickIcon} ht={height}>
         <FaAngleDoubleUp size="50" color="#cdcdcd" />
       </IconLayout>
