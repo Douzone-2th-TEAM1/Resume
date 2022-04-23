@@ -13,6 +13,10 @@ export const MyPage = ({ openMyPage }) => {
     dispatch(setInfo('', ''));
     navigation('/');
   };
+
+  const onClickView = () => {
+    navigation('/modify');
+  };
   return (
     <Wrapper flag={openMyPage}>
       <Container flag={openMyPage}>
@@ -32,7 +36,7 @@ export const MyPage = ({ openMyPage }) => {
               <h6>나의 정보 조회</h6>
             </MyInfoItem>
 
-            <MyInfoItem>
+            <MyInfoItem onClick={onClickView}>
               <MdEdit size={25} />
               <h6>나의 정보 수정</h6>
             </MyInfoItem>

@@ -5,7 +5,9 @@ import axios from 'axios';
 import { openModal } from 'myRedux/actions/ModalActions';
 import { setInfo } from 'myRedux/actions/CommuicationAction';
 
-axios.defaults.baseURL = 'http://192.168.2.26:8080';
+// axios.defaults.baseURL = 'http://192.168.2.26:8080';
+axios.defaults.baseURL = 'http://localhost:8080';
+
 const configHeader = {
   headers: {
     Authorization: `Bearer ${localStorage.getItem('TOKEN')}`,
