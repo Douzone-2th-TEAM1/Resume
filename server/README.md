@@ -241,6 +241,7 @@ DB_PASSWORD = 사용자 비밀번호
 ```javascript
 Header
 {
+  Authorization: `Bearer ${ token }`
   Content-Type: "multipart/form-data"
 }
 ```
