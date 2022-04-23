@@ -8,6 +8,7 @@ import * as educationsTable from '../data/resumes/educations.js';
 import * as projectsTable from '../data/resumes/projects.js';
 import * as qnasTable from '../data/resumes/qnas.js';
 import * as techsTable from '../data/resumes/techs.js';
+import * as usersTable from "../data/users.js";
 
 // 이력서 저장
 export async function saveResume(req, res) {
@@ -76,9 +77,10 @@ export async function saveResume(req, res) {
   res.json({ resCode: 0, r_id: r_id });
 }
 
-// 특정 이력서 조회
+// 이력서 조회
 export async function findResume(req, res) {
   const id = req.id;
+  const { name, phone } = await usersTable.findById(id);
   const allRId = await resumesTable.findRId(id);
   const resumesAll = [];
 
@@ -97,6 +99,8 @@ export async function findResume(req, res) {
 
       const resume = {
         r_id,
+        name,
+        phone,
         title,
         photo,
         department,
