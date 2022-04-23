@@ -1,14 +1,16 @@
 import ResumeInfo from 'components/ResumeInfo';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { style } from './MyPageStyle';
 import { MdAccessibilityNew, MdEdit } from 'react-icons/md';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { setInfo } from 'myRedux/actions/CommuicationAction';
 
-export const MyPage = ({ openMyPage }) => {
+export const MyPage = ({ openMyPage, resumeInfo }) => {
   const history = useHistory();
-  // const navigation = useNavigate();
+  useEffect(() => {
+    console.log(resumeInfo);
+  }, [resumeInfo]);
   const onClickSignout = () => {
     localStorage.clear();
     history.push('/');
@@ -26,7 +28,7 @@ export const MyPage = ({ openMyPage }) => {
 
         <PageTitle flag={openMyPage}>MY PAGE</PageTitle>
         <CntntsLayout>
-          <ResumeInfo title={'저장된 이력서'} flag={openMyPage} />
+          <ResumeInfo title={'저장된 이력서'} flag={openMyPage} datas={resumeInfo.datas} />
           <ResumeInfo title={'작성중인 이력서'} flag={openMyPage} />
 
           <MyInfoLayout flag={openMyPage}>

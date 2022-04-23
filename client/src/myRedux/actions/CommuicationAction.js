@@ -63,6 +63,19 @@ export const withdrawlInfo = (history) => {
   };
 };
 
+export const viewResume = () => {
+  return {
+    type: CommunicationType.VIEW_RESUME,
+  };
+};
+
+export const getResume = (array) => {
+  return {
+    type: CommunicationType.GET_RESUME,
+    datas: array,
+  };
+};
+
 export const storeResume = (info) => {
   return {
     type: CommunicationType.STORE_RESUME,
