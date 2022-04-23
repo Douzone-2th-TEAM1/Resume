@@ -2,9 +2,12 @@ import React from 'react';
 import { style } from './ResumeItemStyle';
 import { AiFillFileText, AiTwotoneDelete } from 'react-icons/ai';
 import { useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { removeResume } from 'myRedux/actions/CommuicationAction';
 
 export const ResumeItem = ({ data }) => {
   const history = useHistory();
+  const dispatch = useDispatch();
   const onClickResume = () => {
     // debugger;
     switch (data.template) {
@@ -19,7 +22,8 @@ export const ResumeItem = ({ data }) => {
     }
   };
   const onClickDelete = () => {
-    console.log('tt');
+    // console.log('tt');
+    dispatch(removeResume(data.r_id));
   };
   return (
     <Layout>

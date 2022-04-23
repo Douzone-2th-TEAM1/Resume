@@ -25,4 +25,5 @@ export const CommunicationType = {
   VIEW_RESUME: 'VIEW_RESUME',
   GET_RESUME: 'GET_RESUME',
   STORE_RESUME: 'STORE_RESUME',
+  REMOVE_RESUME: 'REMOVE_RESUME',
 };

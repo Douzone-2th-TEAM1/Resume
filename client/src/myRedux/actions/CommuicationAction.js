@@ -82,3 +82,10 @@ export const storeResume = (info) => {
     info: info,
   };
 };
+
+export const removeResume = (id) => {
+  return {
+    type: CommunicationType.REMOVE_RESUME,
+    id: id,
+  };
+};

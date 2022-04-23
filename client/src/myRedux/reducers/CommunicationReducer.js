@@ -47,11 +47,18 @@ export default function CommunicationReducer(state = INIT_STATE, action) {
 
     case CommunicationType.VIEW_RESUME:
       return {};
+
     case CommunicationType.GET_RESUME:
       return {
         ...state,
         datas: action.datas,
       };
+
+    case CommunicationType.REMOVE_RESUME:
+      return {
+        r_id: action.id,
+      };
+
     default:
       return state;
   }

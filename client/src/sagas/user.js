@@ -166,6 +166,22 @@ function resumeStoreAPI(info, photo) {
   return result;
 }
 
+function resumeRemoveAPI(id) {
+  // debugger;
+  const packedMsg = { r_id: id };
+
+  const result = axios
+    .post('/resumes/delete', packedMsg, getHeader())
+    .then((res) => {
+      return res.data;
+    })
+    .catch((err) => {
+      return err;
+    });
+
+  return result;
+}
+
 function* postData() {
   try {
     const data = yield select((state) => {
@@ -295,6 +311,23 @@ function* postResumeStore() {
   }
 }
 
+function* postResumeRemove() {
+  try {
+    const resumeInfo = yield select((state) => {
+      return state.CommunicationReducer;
+    });
+    const data = yield call(resumeRemoveAPI, resumeInfo.r_id);
+    if (data.resCode === 0) {
+      yield put(viewResume());
+      yield put(openAlert('성공적으로 해당 이력서를 삭제했습니다.', 'success'));
+    } else {
+      yield put(openAlert('에러가 발생했습니다.', 'fail'));
+    }
+  } catch (e) {
+    console.log(e);
+  }
+}
+
 function* watchAlert() {
   yield takeLatest(CommunicationType.SIGN_UP, postData);
   yield takeLatest(CommunicationType.SIGN_IN, postSginIn);
@@ -304,6 +337,7 @@ function* watchAlert() {
 
   yield takeLatest(CommunicationType.VIEW_RESUME, postResumeView);
   yield takeLatest(CommunicationType.STORE_RESUME, postResumeStore);
+  yield takeLatest(CommunicationType.REMOVE_RESUME, postResumeRemove);
 }
 
 export default function* userSaga() {
