@@ -56,6 +56,13 @@ export const modifyInfo = (pwd, name, phone, history) => {
   };
 };
 
+export const withdrawlInfo = (history) => {
+  return {
+    type: CommunicationType.WITHDRWAL_INFO,
+    history: history,
+  };
+};
+
 export const storeResume = (info) => {
   return {
     type: CommunicationType.STORE_RESUME,

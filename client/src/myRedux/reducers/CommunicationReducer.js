@@ -28,9 +28,11 @@ export default function CommunicationReducer(state = INIT_STATE, action) {
       };
     case CommunicationType.MODIFY_INFO:
       return {
-        ...state,
         payload: action.payload,
       };
+
+    case CommunicationType.WITHDRWAL_INFO:
+      return { payload: { history: action.history } };
 
     // case CommunicationType.GET_TOKEN:
     //   return {

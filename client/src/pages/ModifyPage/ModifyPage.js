@@ -1,4 +1,4 @@
-import { modifyInfo, viewInfo } from 'myRedux/actions/CommuicationAction';
+import { modifyInfo, viewInfo, withdrawlInfo } from 'myRedux/actions/CommuicationAction';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
@@ -62,6 +62,10 @@ export const ModifyPage = () => {
     history.push('/main');
   };
 
+  const onClickWithdrawal = () => {
+    history.push('/resign');
+  };
+
   const [isDisabled, setIsDisabled] = useState(true);
   useEffect(() => {
     if (pwdCheck && pwdcCheck && nickCheck && telCheck) {
@@ -117,13 +121,7 @@ export const ModifyPage = () => {
                 </InputInnerLayout>
                 <InputInnerLayout>
                   <h2>연락처</h2>
-                  <Input1
-                    id="tel"
-                    value={modify.tel}
-                    onChange={handleModify}
-                    onFocus={checkTel}
-                    onKeyUp={checkTel}
-                  />
+                  <Input1 id="tel" value={modify.tel} onChange={handleModify} onKeyUp={checkTel} />
                 </InputInnerLayout>
               </InputForm>
             </InnerLayout2>
@@ -134,7 +132,7 @@ export const ModifyPage = () => {
             <Btn2 onClick={onClickCancel}>취 소</Btn2>
           </ModifyForm2>
           <BtnWrapper>
-            <Btn3>회원탈퇴</Btn3>
+            <Btn3 onClick={onClickWithdrawal}>회원탈퇴</Btn3>
           </BtnWrapper>
         </InnerLayout>
       </ModifyForm>

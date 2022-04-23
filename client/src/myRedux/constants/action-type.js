@@ -20,6 +20,7 @@ export const CommunicationType = {
   VIEW_INFO: 'VIEW_INFO',
   GET_INFO: 'GET_INFO',
   MODIFY_INFO: 'MODIFY_INFO',
+  WITHDRWAL_INFO: 'WITHDRWAL_INFO',
 
   STORE_RESUME: 'STORE_RESUME',
 };

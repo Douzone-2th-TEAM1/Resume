@@ -76,6 +76,19 @@ function modifyAPI(info) {
   return result;
 }
 
+function postWithdrawal() {
+  const result = axios
+    .post('/users/delete', '', configHeader)
+    .then((res) => {
+      return res.data;
+    })
+    .catch((err) => {
+      return err;
+    });
+
+  return result;
+}
+
 function photoAPI(info) {
   let form = new FormData();
   console.log(info.img);
@@ -198,9 +211,8 @@ function* postResumeStore() {
 
 function* postViewInfo() {
   try {
-    // const info = yield select((state) => { return state.CommunicationReducer });
     const data = yield call(viewInfoAPI);
-    // console.log(data);
+
     if (data.resCode === 0) {
       const { email, name, phone } = data.user;
       yield put(getInfo(email, name, phone));
@@ -230,11 +242,32 @@ function* postModifyInfo() {
   }
 }
 
+function* postWithdrawalInfo() {
+  try {
+    const info = yield select((state) => {
+      return state.CommunicationReducer;
+    });
+    console.log(info);
+    const { history } = info.payload;
+    // console.log(history);
+    const data = yield call(postWithdrawal);
+    if (data.resCode === 0) {
+      yield put(openAlert('저희 서비스를 이용해주셔서 감사합니다.', 'success'));
+      history.push('/');
+    } else {
+      yield put(openAlert('에러가 발생했습니다.', 'fail'));
+    }
+  } catch (e) {
+    console.log(e);
+  }
+}
+
 function* watchAlert() {
   yield takeLatest(CommunicationType.SIGN_UP, postData);
   yield takeLatest(CommunicationType.SIGN_IN, postSginIn);
   yield takeLatest(CommunicationType.VIEW_INFO, postViewInfo);
   yield takeLatest(CommunicationType.MODIFY_INFO, postModifyInfo);
+  yield takeLatest(CommunicationType.WITHDRWAL_INFO, postWithdrawalInfo);
 
   yield takeLatest(CommunicationType.STORE_RESUME, postResumeStore);
 }
