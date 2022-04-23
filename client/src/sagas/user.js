@@ -264,7 +264,6 @@ function* postWithdrawalInfo() {
 function* postResumeView() {
   try {
     const data = yield call(resumeViewAPI);
-    console.log(data);
     if (data.resCode === 0) {
       const unpackedMsg = data.resumes;
       yield put(getResume(unpackedMsg));
@@ -286,6 +285,7 @@ function* postResumeStore() {
     const resultStore = yield call(resumeStoreAPI, resumeInfo.info, data.url);
 
     if (resultStore.resCode === 0) {
+      yield put(viewResume());
       yield put(openAlert('이력서 저장이 완료되었습니다.', 'success'));
     } else {
       yield put(openAlert('에러가 발생했습니다.', 'fail'));

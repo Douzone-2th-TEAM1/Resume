@@ -42,7 +42,6 @@ export default function CommunicationReducer(state = INIT_STATE, action) {
 
     case CommunicationType.STORE_RESUME:
       return {
-        ...state,
         info: action.info,
       };
 
@@ -50,6 +49,7 @@ export default function CommunicationReducer(state = INIT_STATE, action) {
       return {};
     case CommunicationType.GET_RESUME:
       return {
+        ...state,
         datas: action.datas,
       };
     default:

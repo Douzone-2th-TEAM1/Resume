@@ -62,6 +62,7 @@ export const TopLeftForm = styled.div`
   height: 490px;
   margin-top: 50px;
 `;
+
 export const LeftIndex1 = styled.div`
   width: 183.5px;
   height: 30px;

@@ -39,6 +39,10 @@ export const MainPage = () => {
   useEffect(() => {
     console.log(resumeInfo);
   }, [resumeInfo]);
+
+  useEffect(() => {
+    dispatch(viewResume());
+  }, []);
   // useEffect(() => {
   //   if (!openTemplatePage) onClickCancel();
   // }, [openTemplatePage]);
