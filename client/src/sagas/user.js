@@ -21,11 +21,11 @@ const imgHeader = {
   },
 };
 
-function setLoaclStorate({ token, email }) {
-  console.log(token, email);
-  localStorage.setItem('TOKEN', token);
-  localStorage.setItem('EMAIL', email);
-}
+// function setLoaclStorate({ token, email }) {
+//   console.log(token, email);
+//   localStorage.setItem('TOKEN', token);
+//   localStorage.setItem('EMAIL', email);
+// }
 
 function signupAPI(info) {
   const result = axios
@@ -49,6 +49,18 @@ function signInAPI(info) {
       return err;
     });
 
+  return result;
+}
+
+function modifyAPI(info) {
+  const result = axios
+    .post('/users/edit', info, configHeader)
+    .then((res) => {
+      return res.data;
+    })
+    .catch((err) => {
+      return err;
+    });
   return result;
 }
 
@@ -96,7 +108,6 @@ function resumeStoreAPI(info, photo) {
     qnas,
     techs,
   };
-  console.log(packedMsg);
 
   const result = axios
     .post('/resumes/save', packedMsg, configHeader)
@@ -131,13 +142,17 @@ function* postSginIn() {
     const info = yield select((state) => {
       return state.CommunicationReducer;
     });
-
-    let data = yield call(signInAPI, info);
+    const { history } = info.payload;
+    const { email, pwd } = info.payload;
+    const packedMsg = { email, pwd };
+    let data = yield call(signInAPI, packedMsg);
     console.log(data);
     if (data.resCode === 0) {
       const [token, email] = [data.token, data.email];
-      yield put(setInfo(email, token));
+      localStorage.setItem('TOKEN', token);
+      localStorage.setItem('EMAIL', email);
       yield put(openAlert('로그인 성공했습니다.', 'success'));
+      history.push('/main');
     } else {
       yield put(openAlert('에러가 발생했습니다. 다시 시도하세요.', 'fail'));
     }
@@ -169,10 +184,31 @@ function* postResumeStore() {
   }
 }
 
+function* postModifyInfo() {
+  try {
+    const info = yield select((state) => {
+      return state.CommunicationReducer;
+    });
+    const { history } = info.payload;
+    const { pwd, name, phone } = info.payload;
+    const packedMsg = { pwd, name, phone };
+    const data = yield call(modifyAPI, packedMsg);
+    if (data.resCode === 0) {
+      yield put(openAlert('회원정보 수정을 완료했습니다.', 'success'));
+      history.push('/signin');
+    } else {
+      yield put(openAlert('에러가 발생했습니다.', 'fail'));
+    }
+  } catch (e) {
+    console.log(e);
+  }
+}
+
 function* watchAlert() {
   yield takeLatest(CommunicationType.SIGN_UP, postData);
   yield takeLatest(CommunicationType.SIGN_IN, postSginIn);
-  yield takeLatest(CommunicationType.GET_TOKEN, setLoaclStorate);
+  yield takeLatest(CommunicationType.MODIFY_INFO, postModifyInfo);
+
   yield takeLatest(CommunicationType.STORE_RESUME, postResumeStore);
 }
 

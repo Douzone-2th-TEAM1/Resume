@@ -17,6 +17,7 @@ export const ModalActionType = {
 export const CommunicationType = {
   SIGN_UP: 'SIGN_UP',
   SIGN_IN: 'SGIN_IN',
-  GET_TOKEN: 'GET_TOKNE',
+  MODIFY_INFO: 'MODIFY_INFO',
+
   STORE_RESUME: 'STORE_RESUME',
 };

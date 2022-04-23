@@ -1,9 +1,14 @@
+import { modifyInfo } from 'myRedux/actions/CommuicationAction';
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import { style } from './ModifyPageStyle';
 
 export const ModifyPage = () => {
-  const navigation = useNavigate();
+  // const navigation = useNavigate();
+  const history = useHistory();
+  const dispatch = useDispatch();
   const [modify, setModify] = useState({
     pwd: '',
     pwdc: '',
@@ -42,9 +47,11 @@ export const ModifyPage = () => {
     var regExp = /^01([0|1|6|7|8|9])-?([0-9]{4})-?([0-9]{4})$/;
     setTelCheck(regExp.test(modify.tel));
   };
-
+  const onClickModify = () => {
+    dispatch(modifyInfo(modify.pwd, modify.nick, modify.tel, history));
+  };
   const onClickCancel = () => {
-    navigation('/main');
+    // navigation('/main');
   };
 
   const [isDisabled, setIsDisabled] = useState(true);
@@ -106,7 +113,9 @@ export const ModifyPage = () => {
                 </InputInnerLayout>
               </InputForm>
             </InnerLayout2>
-            <Btn1 disabled={isDisabled}>저 장</Btn1>
+            <Btn1 disabled={isDisabled} onClick={onClickModify}>
+              저 장
+            </Btn1>
             <br />
             <Btn2 onClick={onClickCancel}>취 소</Btn2>
           </ModifyForm2>

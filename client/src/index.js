@@ -6,18 +6,18 @@ import { ThemeProvider } from 'styled-components';
 import theme from 'styles/theme';
 import { Provider } from 'react-redux';
 import store from 'myRedux/store';
-
-// const store = createStore(ResumeReducer);
+import history from 'utils/history';
+import { Router } from 'react-router-dom';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
   <Provider store={store}>
     <GlobalStyles />
-    <React.StrictMode>
+    <Router history={history}>
       <ThemeProvider theme={{ ...theme }}>
         <App />
       </ThemeProvider>
-    </React.StrictMode>
+    </Router>
   </Provider>,
 );

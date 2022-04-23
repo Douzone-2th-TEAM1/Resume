@@ -5,12 +5,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { signup, signin } from 'myRedux/actions/CommuicationAction';
 import { openModal, closeModal } from 'myRedux/actions/ModalActions';
 import { openAlert } from 'myRedux/actions/AlertActions';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import { icons } from 'react-icons/lib';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 export const LoginPage = () => {
   const dispatch = useDispatch();
-  const navigation = useNavigate();
+  const history = useHistory();
+  // const navigation = useNavigate();
   const reducer = useSelector((state) => state.CommunicationReducer);
   const modal = useSelector((state) => state.ModalReducer);
   //------------------------------------------------------------------------------
@@ -125,7 +127,7 @@ export const LoginPage = () => {
   };
 
   const onClickSignin = () => {
-    dispatch(signin(formInput.id, formInput.pw));
+    dispatch(signin(formInput.id, formInput.pw, history));
     // if (localStorage.getItem('TOKEN') && localStorage.getItem('EMAIL')) {
     //   navigation('/main');
     // } else {
@@ -136,7 +138,7 @@ export const LoginPage = () => {
   useEffect(() => {
     console.log(reducer);
     if (reducer.token && reducer.email) {
-      navigation('/main');
+      // navigation('/main');
     }
   }, [reducer]);
 

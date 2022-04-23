@@ -10,19 +10,35 @@ export const signup = (email, pwd, nick, tel) => {
   };
 };
 
-export const signin = (email, pwd) => {
+export const signin = (email, pwd, history) => {
   return {
     type: CommunicationType.SIGN_IN,
-    email: email,
-    pwd: pwd,
+    payload: {
+      email: email,
+      pwd: pwd,
+      history: history,
+    },
   };
 };
 
-export const setInfo = (email, token) => {
+// export const setInfo = (email, token) => {
+//   return {
+//     type: CommunicationType.GET_TOKEN,
+//     email: email,
+//     token: token,
+//   };
+// };
+
+export const modifyInfo = (pwd, name, phone, history) => {
+  console.log(pwd, name, phone);
   return {
-    type: CommunicationType.GET_TOKEN,
-    email: email,
-    token: token,
+    type: CommunicationType.MODIFY_INFO,
+    payload: {
+      pwd: pwd,
+      name: name,
+      phone: phone,
+      history: history,
+    },
   };
 };
 
