@@ -78,7 +78,7 @@ function modifyAPI(info) {
 
 function postWithdrawal() {
   const result = axios
-    .post('/users/delete', '', configHeader)
+    .post('/users/resign', '', configHeader)
     .then((res) => {
       return res.data;
     })
@@ -186,29 +186,6 @@ function* postSginIn() {
   }
 }
 
-function* postResumeStore() {
-  try {
-    const resumeInfo = yield select((state) => {
-      return state.CommunicationReducer;
-    });
-
-    const data = yield call(photoAPI, resumeInfo.info);
-    const resultStore = yield call(resumeStoreAPI, resumeInfo.info, data.url);
-    console.log(resultStore.resCode);
-    console.log(resultStore.resCode === 0);
-
-    // debugger;
-    if (resultStore.resCode === 0) {
-      console.log('tt');
-      yield put(openAlert('이력서 저장이 완료되었습니다.', 'success'));
-    } else {
-      yield put(openAlert('에러가 발생했습니다.', 'fail'));
-    }
-  } catch (e) {
-    console.log(e);
-  }
-}
-
 function* postViewInfo() {
   try {
     const data = yield call(viewInfoAPI);
@@ -254,6 +231,29 @@ function* postWithdrawalInfo() {
     if (data.resCode === 0) {
       yield put(openAlert('저희 서비스를 이용해주셔서 감사합니다.', 'success'));
       history.push('/');
+    } else {
+      yield put(openAlert('에러가 발생했습니다.', 'fail'));
+    }
+  } catch (e) {
+    console.log(e);
+  }
+}
+
+function* postResumeStore() {
+  try {
+    const resumeInfo = yield select((state) => {
+      return state.CommunicationReducer;
+    });
+
+    const data = yield call(photoAPI, resumeInfo.info);
+    const resultStore = yield call(resumeStoreAPI, resumeInfo.info, data.url);
+    console.log(resultStore.resCode);
+    console.log(resultStore.resCode === 0);
+
+    // debugger;
+    if (resultStore.resCode === 0) {
+      console.log('tt');
+      yield put(openAlert('이력서 저장이 완료되었습니다.', 'success'));
     } else {
       yield put(openAlert('에러가 발생했습니다.', 'fail'));
     }
