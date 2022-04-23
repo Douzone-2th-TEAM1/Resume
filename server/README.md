@@ -83,12 +83,12 @@ DB_PASSWORD = 사용자 비밀번호
   resCode: 0,
 }
 ```
-#### 회원 탈퇴(/delete) - REQ
+#### 회원 탈퇴(/resign) - REQ
 ```javascript
 {
 }
 ```
-#### 회원 탈퇴(/delete) - RES
+#### 회원 탈퇴(/resign) - RES
 ```javascript
 {
   resCode: 0,
