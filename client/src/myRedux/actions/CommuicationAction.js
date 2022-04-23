@@ -29,6 +29,20 @@ export const signin = (email, pwd, history) => {
 //   };
 // };
 
+export const viewInfo = () => {
+  return {
+    type: CommunicationType.VIEW_INFO,
+  };
+};
+export const getInfo = (email, name, phone) => {
+  console.log(email, name, phone);
+  return {
+    type: CommunicationType.GET_INFO,
+    email: email,
+    name: name,
+    phone: phone,
+  };
+};
 export const modifyInfo = (pwd, name, phone, history) => {
   console.log(pwd, name, phone);
   return {

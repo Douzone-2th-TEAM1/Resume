@@ -17,6 +17,15 @@ export default function CommunicationReducer(state = INIT_STATE, action) {
         payload: action.payload,
       };
 
+    case CommunicationType.VIEW_INFO:
+      return {};
+
+    case CommunicationType.GET_INFO:
+      return {
+        email: action.email,
+        name: action.name,
+        phone: action.phone,
+      };
     case CommunicationType.MODIFY_INFO:
       return {
         ...state,

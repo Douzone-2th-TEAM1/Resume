@@ -3,7 +3,7 @@ import { all, call, fork, put, takeLatest, select, take } from 'redux-saga/effec
 import { openAlert } from 'myRedux/actions/AlertActions';
 import axios from 'axios';
 import { openModal } from 'myRedux/actions/ModalActions';
-import { setInfo } from 'myRedux/actions/CommuicationAction';
+import { getInfo, setInfo } from 'myRedux/actions/CommuicationAction';
 
 // axios.defaults.baseURL = 'http://192.168.2.26:8080';
 axios.defaults.baseURL = 'http://localhost:8080';
@@ -42,6 +42,18 @@ function signupAPI(info) {
 function signInAPI(info) {
   const result = axios
     .post('/accounts/login', info)
+    .then((res) => {
+      return res.data;
+    })
+    .catch((err) => {
+      return err;
+    });
+
+  return result;
+}
+function viewInfoAPI() {
+  const result = axios
+    .post('/users/', '', configHeader)
     .then((res) => {
       return res.data;
     })
@@ -184,6 +196,20 @@ function* postResumeStore() {
   }
 }
 
+function* postViewInfo() {
+  try {
+    // const info = yield select((state) => { return state.CommunicationReducer });
+    const data = yield call(viewInfoAPI);
+    // console.log(data);
+    if (data.resCode === 0) {
+      const { email, name, phone } = data.user;
+      yield put(getInfo(email, name, phone));
+    }
+  } catch (e) {
+    console.log(e);
+  }
+}
+
 function* postModifyInfo() {
   try {
     const info = yield select((state) => {
@@ -207,6 +233,7 @@ function* postModifyInfo() {
 function* watchAlert() {
   yield takeLatest(CommunicationType.SIGN_UP, postData);
   yield takeLatest(CommunicationType.SIGN_IN, postSginIn);
+  yield takeLatest(CommunicationType.VIEW_INFO, postViewInfo);
   yield takeLatest(CommunicationType.MODIFY_INFO, postModifyInfo);
 
   yield takeLatest(CommunicationType.STORE_RESUME, postResumeStore);

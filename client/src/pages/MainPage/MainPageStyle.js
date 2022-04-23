@@ -5,8 +5,8 @@ export const Container = styled.div`
   ${({ theme }) => theme.flexSet('', 'center', 'column')}
   position: relative;
   min-width: 1200px;
-  height: 98vh;
-  overflow-x:hidden;
+  height: 100vh;
+  overflow-x: hidden;
 `;
 
 export const TopTriangle = styled.div`
@@ -26,7 +26,7 @@ export const BttomTriangle = styled.div`
   transform: rotate(180deg);
   min-width: 1200px;
   right: 0;
-  top: 10vh;
+  bottom: 0;
   width: 0px;
   height: 0px;
   border-bottom: 0px solid ${({ theme }) => theme.colorSet.PRIMARY};

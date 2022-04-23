@@ -1,20 +1,28 @@
-import { modifyInfo } from 'myRedux/actions/CommuicationAction';
+import { modifyInfo, viewInfo } from 'myRedux/actions/CommuicationAction';
 import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-// import { useNavigate } from 'react-router-dom';
 import { style } from './ModifyPageStyle';
 
 export const ModifyPage = () => {
-  // const navigation = useNavigate();
   const history = useHistory();
   const dispatch = useDispatch();
+  const getUserInfo = useSelector((state) => state.CommunicationReducer);
+
   const [modify, setModify] = useState({
     pwd: '',
     pwdc: '',
     nick: '',
     tel: '',
   });
+  useEffect(() => {
+    dispatch(viewInfo());
+  }, []);
+
+  useEffect(() => {
+    const { email, name, phone } = getUserInfo;
+    Object.keys(getUserInfo).length > 0 && setModify({ ...modify, nick: name, tel: phone });
+  }, [getUserInfo]);
 
   const [pwdCheck, setPwdCheck] = useState(false);
   const [pwdcCheck, setPwdcCheck] = useState(false);
@@ -51,7 +59,7 @@ export const ModifyPage = () => {
     dispatch(modifyInfo(modify.pwd, modify.nick, modify.tel, history));
   };
   const onClickCancel = () => {
-    // navigation('/main');
+    history.push('/main');
   };
 
   const [isDisabled, setIsDisabled] = useState(true);
@@ -109,7 +117,13 @@ export const ModifyPage = () => {
                 </InputInnerLayout>
                 <InputInnerLayout>
                   <h2>연락처</h2>
-                  <Input1 id="tel" value={modify.tel} onChange={handleModify} onKeyUp={checkTel} />
+                  <Input1
+                    id="tel"
+                    value={modify.tel}
+                    onChange={handleModify}
+                    onFocus={checkTel}
+                    onKeyUp={checkTel}
+                  />
                 </InputInnerLayout>
               </InputForm>
             </InnerLayout2>
