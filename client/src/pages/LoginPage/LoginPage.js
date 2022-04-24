@@ -8,6 +8,12 @@ import { openAlert } from 'myRedux/actions/AlertActions';
 // import { useNavigate } from 'react-router-dom';
 import { icons } from 'react-icons/lib';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+//-------------------------
+import { regexEmail } from 'utils/regex';
+import { regexPwd } from 'utils/regex';
+import { regexTel } from 'utils/regex';
+import { regexTelDash } from 'utils/regex';
+//-------------------------
 
 export const LoginPage = () => {
   const dispatch = useDispatch();
@@ -56,15 +62,12 @@ export const LoginPage = () => {
   //------------------------------------------------------------------------------
   const [emailVal, setEmailVal] = useState(false); // 이메일 양식 체크
   const checkEmail = (e) => {
-    var regExp =
-      /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
-    setEmailVal(regExp.test(formSign.email));
+    setEmailVal(regexEmail.test(formSign.email));
   };
   //------------------------------------------------------------------------------
   const [pwdVal, setPwdVal] = useState(false); // 비밀번호 양식 체크
   const checkPwd = (e) => {
-    var regExp = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,20}$/;
-    setPwdVal(regExp.test(e.target.value));
+    setPwdVal(regexPwd.test(e.target.value));
   };
   //------------------------------------------------------------------------------
   const [pwdcVal, setPwdcVal] = useState(false); // 비밀번호 확인 양식 체크
@@ -85,12 +88,9 @@ export const LoginPage = () => {
   //------------------------------------------------------------------------------
   const [telVal, setTelVal] = useState(false); // 전화번호 양식 체크
   const checkTel = (e) => {
-    var regExp = /^01([0|1|6|7|8|9])-?([0-9]{4})-?([0-9]{4})$/;
-    setTelVal(regExp.test(e.target.value));
-
-    if (regExp.test(e.target.value)) {
-      const temp = e.target.value.replace(/^(\d{3})(\d{4})(\d{4})$/, `$1-$2-$3`);
-      setFormSign({ ...formSign, tel: temp });
+    setTelVal(regexTel.test(e.target.value));
+    if (regexTel.test(e.target.value)) {
+      setFormSign({ ...formSign, tel: regexTelDash(e.target.value) });
     }
   };
   //------------------------------------------------------------------------------

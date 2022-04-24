@@ -35,20 +35,19 @@ export const Triangle2 = styled.div`
 //----------------------------------------------
 export const ModifyForm = styled.div`
   position: absolute;
-  top: 125px;
   z-index: 1;
   background-color: white;
   border: 2px solid black;
   border-radius: 5px 5px 0px 0px;
-  width: 830px;
-  height: 955px;
+  bottom: 0;
+  height: 90vh;
   overflow: hidden;
   box-shadow: 7px 0px 3px rgba(0, 0, 0, 0.8);
 `;
 
 export const InnerLayout = styled.div`
   ${({ theme }) => theme.flexSet('', '', 'column')};
-  padding: 40px 90px;
+  padding: 1vh 5vh;
 `;
 export const T1 = styled.div`
   ${({ theme }) => theme.flexSet('flex-start')};
@@ -63,8 +62,8 @@ export const ModifyForm2 = styled.div`
   border: 1.5px black solid;
   border-radius: 5px;
   width: 100%;
-  padding: 30px 50px;
-
+  padding: 1vh 50px;
+  height:70vh;
   text-align: center;
 `;
 
@@ -81,21 +80,24 @@ export const InputForm = styled.div`
 
 export const InputInnerLayout = styled.div`
   ${({ theme }) => theme.flexSet('space-evenly', 'flex-start', 'column')};
-  height: 100px;
+  height: 11vh;
 `;
 
-export const T2 = styled.div`
-  text-align: left;
-  font-size: 22px;
-  font-weight: bold;
+export const Error1 = styled.div`
+  color: red;
+  font-weight: bolder;
 `;
+export const Correct1 = styled.div`
+  color: green;
+  font-weight: bolder;
+`;
+
 export const Input1 = styled.input`
   border: 1px solid black;
   border-radius: 5px;
   width: 500px;
-  font-size: 18px;
-  padding: 12px;
-  /* margin-bottom: 10px; */
+  font-size: 14px;
+  padding: 6px;
 `;
 export const Btn1 = styled.button`
   cursor: pointer;
@@ -103,7 +105,7 @@ export const Btn1 = styled.button`
   border: 1px solid black;
   border-radius: 5px;
   border-color: ${({ theme }) => theme.colorSet.PRIMARY};
-  height: 60px;
+  height: 7vh;
   width: 92%;
   font-weight: bolder;
   font-size: 22px;
@@ -119,7 +121,7 @@ export const Btn2 = styled.button`
   border: 1px solid black;
   border-radius: 5px;
   margin-top: 20px;
-  height: 60px;
+  height: 7vh;
   width: 92%;
   font-weight: bolder;
   font-size: 22px;
@@ -148,7 +150,6 @@ export const style = {
   T1,
   ModifyForm2,
   InnerLayout2,
-  T2,
   Input1,
   InputInnerLayout,
   Btn1,
@@ -156,4 +157,6 @@ export const style = {
   InputForm,
   BtnWrapper,
   Btn3,
+  Error1,
+  Correct1,
 };

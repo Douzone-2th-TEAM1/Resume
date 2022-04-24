@@ -36,7 +36,7 @@ export const ResignPage = () => {
         <InnerLayout>
           <T1>회원 탈퇴</T1>
           <ResignForm2>
-            <T3>사용하고 계신 아이디는 탈퇴할 경우 복구가 불가능합니다.</T3>
+            <T3>사용하고 계신 아이디는 탈퇴할 경우,<br/> 복구가 불가능합니다.</T3>
             <InputForm>
               <T2>비밀번호</T2>
               <Input1 type="password" id="pwd" value={pwd} onChange={handleResign} />

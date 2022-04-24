@@ -4,9 +4,8 @@
   "description": "> 사용자가 이력서 템플릿을 설정할 수 있는 사이트",
   "main": "index.js",
   "dependencies": {
-    "concurrently": "7.1.0"
+    "concurrently": "^7.1.0"
   },
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "client": "cd client && npm run start",
