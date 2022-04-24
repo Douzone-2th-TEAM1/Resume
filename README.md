@@ -54,6 +54,7 @@
 | controller  | 실행 로직 구현                   |
 | data        | 데이터 생성 및 접근              |
 | db          | 데이터베이스 연결                |
+| aws         | s3 저장소 관련                  |
 | router      | 경로 설정                       |
 | config.js   | 환경변수 접근                    |
 | server.js   | 서버 실행                        |
