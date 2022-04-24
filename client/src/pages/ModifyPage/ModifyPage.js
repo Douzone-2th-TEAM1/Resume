@@ -3,6 +3,8 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { style } from './ModifyPageStyle';
+import { regexPwd } from 'utils/regex';
+import { regexTel } from 'utils/regex';
 
 export const ModifyPage = () => {
   const history = useHistory();
@@ -34,8 +36,7 @@ export const ModifyPage = () => {
   };
 
   const checkPwd = (e) => {
-    var regExp = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,20}$/;
-    setPwdCheck(regExp.test(modify.pwd));
+    setPwdCheck(regexPwd.test(modify.pwd));
   };
   const checkPwdc = (e) => {
     if (modify.pwd === modify.pwdc) {
@@ -43,6 +44,8 @@ export const ModifyPage = () => {
     } else {
       setPwdcCheck(false);
     }
+    if(modify.nick.length>=1) setNickCheck(true);
+    if(regexTel.test(modify.tel)) setTelCheck(true);
   };
   const checkNick = (e) => {
     if (modify.nick.length >= 1) {
@@ -52,8 +55,7 @@ export const ModifyPage = () => {
     }
   };
   const checkTel = (e) => {
-    var regExp = /^01([0|1|6|7|8|9])-?([0-9]{4})-?([0-9]{4})$/;
-    setTelCheck(regExp.test(modify.tel));
+    setTelCheck(regexTel.test(modify.tel));
   };
   const onClickModify = () => {
     dispatch(modifyInfo(modify.pwd, modify.nick, modify.tel, history));
@@ -99,6 +101,10 @@ export const ModifyPage = () => {
                     onChange={handleModify} // 요건 변경된 값을 대입하는 함수
                     onKeyUp={checkPwd} // 요건 변경된 값이 올바른지 확인하는 함수
                   />
+                  {!pwdCheck && modify.pwd.length >= 1 && (
+                    <Error1> 비밀번호 양식을 확인해주세요. </Error1>
+                  )}
+                  {pwdCheck && <Correct1>사용할 수 있는 비밀번호에요. </Correct1>}
                 </InputInnerLayout>
                 <InputInnerLayout>
                   <h2>비밀번호 확인</h2>
@@ -109,6 +115,9 @@ export const ModifyPage = () => {
                     onChange={handleModify}
                     onKeyUp={checkPwdc}
                   />
+                  {!pwdcCheck && modify.pwdc.length >= 1 && (
+                    <Error1> 비밀번호가 일치하지 않습니다. </Error1>
+                  )}
                 </InputInnerLayout>
                 <InputInnerLayout>
                   <h2>이름</h2>
@@ -151,7 +160,6 @@ const {
   T1,
   ModifyForm2,
   InnerLayout2,
-  T2,
   Input1,
   InputInnerLayout,
   Btn1,
@@ -159,4 +167,6 @@ const {
   InputForm,
   BtnWrapper,
   Btn3,
+  Error1,
+  Correct1,
 } = style;
