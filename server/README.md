@@ -1,5 +1,7 @@
 ## .env
+
 #### 환경변수 설정
+
 ```javascript
 JWT_SECRET = 토큰 암호화 비밀키
 JWT_EXPIRES_SEC = 토큰 만료 시간(7200)
@@ -15,10 +17,12 @@ DB_SCHEMA = 데이터베이스 이름
 DB_PASSWORD = 사용자 비밀번호
 ```
 
-
 <br/><br/>
+
 ## /accounts
+
 #### 회원가입(/signup) - REQ
+
 ```javascript
 {
   email: 이메일,
@@ -29,19 +33,24 @@ DB_PASSWORD = 사용자 비밀번호
 ```
 
 #### 회원가입(/signup) - RES
+
 ```javascript
 {
   id: 생성된 user id
 }
 ```
+
 #### 로그인(/login) - REQ
+
 ```javascript
 {
   email: 이메일,
   pwd: 비밀번호
 }
 ```
+
 #### 로그인(/login) - RES
+
 ```javascript
 {
   token: jwt토큰,
@@ -49,21 +58,27 @@ DB_PASSWORD = 사용자 비밀번호
 }
 ```
 
-
 <br/><br/>
+
 ## /users
+
 #### Header 공통 사항
+
 ```javascript
 {
-  Authorization: `Bearer ${ token }`
+  Authorization: `Bearer ${token}`;
 }
 ```
+
 #### 회원 정보 조회(/) - REQ
+
 ```javascript
 {
 }
 ```
+
 #### 회원 정보 조회(/) - RES
+
 ```javascript
 {
   email: 이메일,
@@ -71,7 +86,9 @@ DB_PASSWORD = 사용자 비밀번호
   phone: 연락처
 }
 ```
+
 #### 회원 정보 수정(/edit) - REQ
+
 ```javascript
 {
   pwd: 비밀번호,
@@ -79,34 +96,44 @@ DB_PASSWORD = 사용자 비밀번호
   phone: 전화번호
 }
 ```
+
 #### 회원 정보 수정(/edit) - RES
-```javascript
-{
-  resCode: 0,
-}
-```
-#### 회원 탈퇴(/resign) - REQ
-```javascript
-{
-}
-```
-#### 회원 탈퇴(/resign) - RES
+
 ```javascript
 {
   resCode: 0,
 }
 ```
 
+#### 회원 탈퇴(/resign) - REQ
+
+```javascript
+{
+}
+```
+
+#### 회원 탈퇴(/resign) - RES
+
+```javascript
+{
+  resCode: 0,
+}
+```
 
 <br/><br/>
+
 ## /resumes
+
 #### Header 공통 사항
+
 ```javascript
 {
-  Authorization: `Bearer ${ token }`
+  Authorization: `Bearer ${token}`;
 }
 ```
+
 #### 이력서 저장(/save) - REQ
+
 ```javascript
 {
     title: 이력서 제목,
@@ -123,20 +150,25 @@ DB_PASSWORD = 사용자 비밀번호
     techs: 기술 스택 내역 배열,
 }
 ```
+
 #### 이력서 저장(/save) - RES
+
 ```javascript
 {
   resCode: 0,
   r_id: 이력서 번호,
 }
 ```
+
 #### 이력서 조회(/load) - REQ
+
 ```javascript
 {
-  
 }
 ```
+
 #### 이력서 조회(/load) - RES
+
 ```javascript
 {
   {
@@ -168,7 +200,7 @@ DB_PASSWORD = 사용자 비밀번호
                     "workCntns": "workCnts",
                     "r_id": 3
                 }
-                
+
             ],
             "certifications": [
                 {
@@ -225,19 +257,25 @@ DB_PASSWORD = 사용자 비밀번호
             "createdDate": "2022-04-22",
             "awards": [
 ```
+
 #### 이력서 삭제(/get) - REQ
+
 ```javascript
 {
   r_id: 이력서 번호,
 }
 ```
+
 #### 이력서 삭제(/get) - RES
+
 ```javascript
 {
   resCode: 0,
 }
 ```
+
 #### 사진 업로드(/upload) - REQ
+
 ```javascript
 Header
 {
@@ -245,28 +283,37 @@ Header
   Content-Type: "multipart/form-data"
 }
 ```
+
 ```javascript
 Body/form-data
 {
   image: 파일 경로
 }
 ```
+
 #### 사진 업로드(/upload) - RES
+
 ```javascript
 {
   url: AWS에 저장된 사진 URL
 }
 ```
+
 #### 사진 로드(/image/:key) - REQ
+
 ```javascript
 /image/AWS에 저장된 사진 URL
 ```
 
 <br/><br/>
+
 ## /temps
+
 #### 임시 저장(/save) - REQ
+
 ```javascript
 {
+    "resCode": 0,
     "photo": "사진1-1",
     "department": "직무1-1",
     "portfolio": "포트폴리오1-1",
@@ -291,6 +338,7 @@ Body/form-data
 ```
 
 #### 임시 저장(/save) - RES
+
 ```javascript
 {
     "resCode": 0,
@@ -298,12 +346,14 @@ Body/form-data
 ```
 
 #### 임시 저장 불러오기(/load) - REQ
+
 ```javascript
 {
-
 }
 ```
+
 #### 임시 저장 불러오기(/load) - RES
+
 ```javascript
 {
     "resCode": 0,
