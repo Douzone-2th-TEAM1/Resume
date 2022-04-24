@@ -24,7 +24,16 @@ export const Form2Page = ({ match }) => {
     <Container>
       <Form>
         <LeftBar>
-          <Photo />
+          <Photo>
+            <img
+              src={
+                Object.keys(data).includes('photo')
+                  ? `http://localhost:8080/resumes/${data.photo}`
+                  : ''
+              }
+              style={{ width: '100%', height: '100%', borderRadius: '50%' }}
+            />
+          </Photo>
           <LF_Form>
             {/* 사용자 정보 수정!!! */}
             <LF_Logo>🖐🏻 ABOUT ME</LF_Logo>

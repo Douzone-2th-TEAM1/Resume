@@ -46,7 +46,9 @@ export default function CommunicationReducer(state = INIT_STATE, action) {
       };
 
     case CommunicationType.VIEW_RESUME:
-      return {};
+      return {
+        ...state,
+      };
 
     case CommunicationType.GET_RESUME:
       return {
@@ -59,6 +61,19 @@ export default function CommunicationReducer(state = INIT_STATE, action) {
         r_id: action.id,
       };
 
+    case CommunicationType.STORE_TEMP_RESUME:
+      return {
+        payload: action.payload,
+      };
+
+    case CommunicationType.VIEW_TEMP_RESUME:
+      return {};
+
+    case CommunicationType.GET_TEMP_RESUME:
+      return {
+        ...state,
+        temps: action.temps,
+      };
     default:
       return state;
   }

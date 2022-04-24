@@ -5,12 +5,12 @@ import { RESUMES } from 'utils/constants/resume';
 import { useSelector } from 'react-redux';
 
 export const Form1Page = ({ match }) => {
-  const [id] = useState(Number(match.params.id.slice(1)));
-  const [data, setData] = useState({});
-
   const resumeInfo = useSelector((state) => {
     return state.CommunicationReducer;
   });
+
+  const [id] = useState(Number(match.params.id.slice(1)));
+  const [data, setData] = useState({});
 
   useEffect(() => {
     if (Object.keys(resumeInfo).length > 0) {
@@ -27,7 +27,14 @@ export const Form1Page = ({ match }) => {
         <Headline />
         <Profile>
           <ProPhoto>
-            <img src={`image/:${data.photo}`} />
+            <img
+              src={
+                Object.keys(data).includes('photo')
+                  ? `http://localhost:8080/resumes/${data.photo}`
+                  : ''
+              }
+              style={{ width: '100%' }}
+            />
           </ProPhoto>
           <ProText>
             {/* 사용자 정보 수정 필요!!!!!!!!!!!! */}

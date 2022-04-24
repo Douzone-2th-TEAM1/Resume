@@ -3,7 +3,15 @@ import { all, call, fork, put, takeLatest, select, take } from 'redux-saga/effec
 import { openAlert } from 'myRedux/actions/AlertActions';
 import axios from 'axios';
 import { openModal } from 'myRedux/actions/ModalActions';
-import { getInfo, getResume, setInfo, viewResume } from 'myRedux/actions/CommuicationAction';
+import {
+  getInfo,
+  getResume,
+  getTempResume,
+  viewTempResume,
+  setInfo,
+  viewResume,
+} from 'myRedux/actions/CommuicationAction';
+import { setTempResumeInfo } from 'myRedux/actions/ResumeActions';
 
 // axios.defaults.baseURL = 'http://192.168.2.26:8080';
 axios.defaults.baseURL = 'http://localhost:8080';
@@ -182,6 +190,56 @@ function resumeRemoveAPI(id) {
   return result;
 }
 
+function tempResumeStoreAPI(payload) {
+  const {
+    department,
+    portfolio,
+    awards,
+    careers,
+    certifications,
+    educations,
+    projects,
+    qnas,
+    techs,
+    img,
+  } = payload;
+
+  const packedMsg = {
+    photo: img,
+    department,
+    portfolio,
+    awards,
+    careers,
+    certifications,
+    educations,
+    projects,
+    qnas,
+    techs,
+  };
+
+  const result = axios
+    .post('/temps/save', packedMsg, getHeader())
+    .then((res) => {
+      return res.data;
+    })
+    .catch((err) => {
+      return err;
+    });
+  return result;
+}
+
+function tempResumeAPI() {
+  const result = axios
+    .post('/temps/load', '', getHeader())
+    .then((res) => {
+      return res.data;
+    })
+    .catch((err) => {
+      return err;
+    });
+  return result;
+}
+
 function* postData() {
   try {
     const data = yield select((state) => {
@@ -328,6 +386,49 @@ function* postResumeRemove() {
   }
 }
 
+function* postTempResumeStore() {
+  try {
+    const tmpResumeInfo = yield select((state) => {
+      return state.CommunicationReducer;
+    });
+
+    const data = yield call(tempResumeStoreAPI, tmpResumeInfo.payload);
+
+    if (data.resCode === 0) {
+      yield put(viewTempResume());
+      yield put(viewResume());
+      yield put(openAlert('이력서 임시저장이 완료되었습니다.', 'success'));
+    } else {
+      yield put(openAlert('에러가 발생했습니다.', 'fail'));
+    }
+  } catch (e) {
+    console.log(e);
+  }
+}
+
+function* postViewTempResume() {
+  try {
+    const data = yield call(tempResumeAPI);
+    if (data.resCode === 0) {
+      const unpackedMsg = data.temp_data;
+      yield put(getTempResume(unpackedMsg));
+    } else {
+      yield put(openAlert('임시저장된 이력서 조회 중에 에러가 발생했습니다.', 'fail'));
+    }
+  } catch (e) {
+    console.log(e);
+  }
+}
+
+function* resetInfo() {
+  try {
+    yield select((state) => state.ResumeReducer);
+    yield put(setTempResumeInfo());
+  } catch (e) {
+    console.log(e);
+  }
+}
+
 function* watchAlert() {
   yield takeLatest(CommunicationType.SIGN_UP, postData);
   yield takeLatest(CommunicationType.SIGN_IN, postSginIn);
@@ -338,6 +439,9 @@ function* watchAlert() {
   yield takeLatest(CommunicationType.VIEW_RESUME, postResumeView);
   yield takeLatest(CommunicationType.STORE_RESUME, postResumeStore);
   yield takeLatest(CommunicationType.REMOVE_RESUME, postResumeRemove);
+  yield takeLatest(CommunicationType.STORE_TEMP_RESUME, postTempResumeStore);
+  yield takeLatest(CommunicationType.VIEW_TEMP_RESUME, postViewTempResume);
+  yield takeLatest(ResumeActionType.TEMP_INFO, resetInfo);
 }
 
 export default function* userSaga() {

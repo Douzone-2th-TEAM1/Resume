@@ -25,7 +25,7 @@ export async function loadTemp(req, res) {
     res.json({ resCode: 1 });
   } else {
     const { temp_data } = await tempsTable.findByuId(id);
-    const temp_data_JSON = temp_data.replaceAll(/'/g, "");
+    const temp_data_JSON = temp_data.replace("'[", '[').replace("]'", ']');
     const data = JSON.parse(temp_data_JSON);
 
     res.json({ resCode: 0, temp_data: data });

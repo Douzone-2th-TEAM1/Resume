@@ -13,7 +13,16 @@ const TextLayout = styled.div`
   min-width: 50%;
 `;
 
-const DateLayout = styled.div`
-  min-width: 0%;
+const IconLayout = styled.div`
+  ${({ theme }) => theme.flexSet()};
+  min-width: 20px;
+  height: 100%;
 `;
-export const style = { Layout, TextLayout, DateLayout };
+
+const DateLayout = styled.div`
+  ${({ theme }) => theme.flexSet()};
+  min-width: 50px;
+  height: 100%;
+`;
+
+export const style = { Layout, TextLayout, IconLayout, DateLayout };
