@@ -37,9 +37,8 @@ export const Form1Page = ({ match }) => {
             />
           </ProPhoto>
           <ProText>
-            {/* 사용자 정보 수정 필요!!!!!!!!!!!! */}
-            <TextName>{USERS.name}</TextName>
-            <TextPhone>phone : {USERS.phone}</TextPhone>
+            <TextName>{data.name}</TextName>
+            <TextPhone>phone : {data.phone}</TextPhone>
             <TextEmail>e-mail : {localStorage.getItem('EMAIL')}</TextEmail>
             <TextPhone>URL : {data.portfolio}</TextPhone>
           </ProText>

@@ -15,8 +15,8 @@ export const Form = styled.div`
   height: 100%;
 `;
 export const Headline = styled.div`
-  width: 619px;
-  height: 102px;
+  width: 100%;
+  height: 14%;
   background-color: #d6c000;
 `;
 // -------------------------------------------

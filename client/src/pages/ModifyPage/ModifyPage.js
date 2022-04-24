@@ -22,6 +22,7 @@ export const ModifyPage = () => {
   }, []);
 
   useEffect(() => {
+    console.log(getUserInfo);
     const { email, name, phone } = getUserInfo;
     Object.keys(getUserInfo).length > 0 && setModify({ ...modify, nick: name, tel: phone });
   }, [getUserInfo]);
@@ -44,8 +45,8 @@ export const ModifyPage = () => {
     } else {
       setPwdcCheck(false);
     }
-    if(modify.nick.length>=1) setNickCheck(true);
-    if(regexTel.test(modify.tel)) setTelCheck(true);
+    if (modify.nick.length >= 1) setNickCheck(true);
+    if (regexTel.test(modify.tel)) setTelCheck(true);
   };
   const checkNick = (e) => {
     if (modify.nick.length >= 1) {
@@ -97,7 +98,7 @@ export const ModifyPage = () => {
                     type="password"
                     id="pwd"
                     placeholder="영문, 숫자를 조합한 최소 8글자, 최대 20글자"
-                    value={modify.pwd}
+                    value={modify.pwd || ''}
                     onChange={handleModify} // 요건 변경된 값을 대입하는 함수
                     onKeyUp={checkPwd} // 요건 변경된 값이 올바른지 확인하는 함수
                   />
@@ -111,7 +112,7 @@ export const ModifyPage = () => {
                   <Input1
                     type="password"
                     id="pwdc"
-                    value={modify.pwdc}
+                    value={modify.pwdc || ''}
                     onChange={handleModify}
                     onKeyUp={checkPwdc}
                   />
@@ -123,14 +124,19 @@ export const ModifyPage = () => {
                   <h2>이름</h2>
                   <Input1
                     id="nick"
-                    value={modify.nick}
+                    value={modify.nick || ''}
                     onChange={handleModify}
                     onKeyUp={checkNick}
                   />
                 </InputInnerLayout>
                 <InputInnerLayout>
                   <h2>연락처</h2>
-                  <Input1 id="tel" value={modify.tel} onChange={handleModify} onKeyUp={checkTel} />
+                  <Input1
+                    id="tel"
+                    value={modify.tel || ''}
+                    onChange={handleModify}
+                    onKeyUp={checkTel}
+                  />
                 </InputInnerLayout>
               </InputForm>
             </InnerLayout2>

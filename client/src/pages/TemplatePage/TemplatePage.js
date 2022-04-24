@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { style } from './TemplatePageStyle';
 import { TEMPLATE_LIST } from 'utils/constants/templateList';
-
-import Sample1 from 'assets/sample1.png';
-import Sample2 from 'assets/sample2.png';
 import PreviewPage from 'pages/PreviewPage';
 
 export const TemplatePage = ({
@@ -34,12 +31,6 @@ export const TemplatePage = ({
   useEffect(() => {
     console.log(openTemplatePage);
   }, [openTemplatePage]);
-
-  // useEffect(() => {
-  //   if (!previewOpen.status) {
-  //     onClickTemplateClose();
-  //   }
-  // }, [previewOpen]);
 
   return (
     <Wrapper flag={openTemplatePage}>

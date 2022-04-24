@@ -21,8 +21,8 @@ function App() {
         <Route path="/main" component={MainPage}></Route>
         <Route path="/modify" component={ModifyPage}></Route>
         <Route path="/resign" component={ResignPage}></Route>
-        <Route path="/form2/:id" component={Form2Page}></Route>
-        <Route path="/form1/:id" component={Form1Page}></Route>
+        <Route path="/form1/:id" component={Form2Page}></Route>
+        <Route path="/form2/:id" component={Form1Page}></Route>
       </Switch>
     </BrowserRouter>
   );

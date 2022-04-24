@@ -34,14 +34,9 @@ export default function CommunicationReducer(state = INIT_STATE, action) {
     case CommunicationType.WITHDRWAL_INFO:
       return { payload: { history: action.history } };
 
-    // case CommunicationType.GET_TOKEN:
-    //   return {
-    //     email: action.email,
-    //     token: action.token,
-    //   };
-
     case CommunicationType.STORE_RESUME:
       return {
+        ...state,
         info: action.info,
       };
 
@@ -58,11 +53,13 @@ export default function CommunicationReducer(state = INIT_STATE, action) {
 
     case CommunicationType.REMOVE_RESUME:
       return {
+        ...state,
         r_id: action.id,
       };
 
     case CommunicationType.STORE_TEMP_RESUME:
       return {
+        ...state,
         payload: action.payload,
       };
 
@@ -71,7 +68,7 @@ export default function CommunicationReducer(state = INIT_STATE, action) {
 
     case CommunicationType.GET_TEMP_RESUME:
       return {
-        ...state,
+        // ...state,
         temps: action.temps,
       };
     default:
