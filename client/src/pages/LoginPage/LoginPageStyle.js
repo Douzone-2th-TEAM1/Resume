@@ -51,8 +51,8 @@ export const LeftForm1 = styled.div`
   color: white;
   width: fit-content;
   text-align: center;
-  margin-top: 5%;
-  margin-left: -4%;
+  margin-top: 5vh;
+  margin-left: -6vw;
   animation: fadein 4s;
   @keyframes fadein {
     from {
@@ -90,8 +90,8 @@ export const RightForm1 = styled.div`
   z-index: 1;
   color: black;
   text-align: center;
-  margin-top: 3%;
-  margin-left: 25%;
+  margin-top: 3vh;
+  margin-left: 15vw;
   animation: fadein 4s;
   @keyframes fadein {
     from {

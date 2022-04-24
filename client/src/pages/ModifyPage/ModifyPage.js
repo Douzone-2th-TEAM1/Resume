@@ -86,7 +86,7 @@ export const ModifyPage = () => {
       <ModifyForm>
         <InnerLayout>
           <T1>
-            <h1>회원정보 수정</h1>
+            <h1>회원정보 조회/수정</h1>
           </T1>
           <ModifyForm2>
             <InnerLayout2>
