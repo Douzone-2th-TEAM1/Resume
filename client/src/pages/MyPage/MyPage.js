@@ -33,10 +33,6 @@ export const MyPage = ({ openMyPage, resumeInfo }) => {
 
           <MyInfoLayout flag={openMyPage}>
             <h4>나의 정보 관리</h4>
-            <MyInfoItem>
-              <MdAccessibilityNew size={25} />
-              <h6>나의 정보 조회</h6>
-            </MyInfoItem>
 
             <MyInfoItem onClick={onClickView}>
               <MdEdit size={25} />

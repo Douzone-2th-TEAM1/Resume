@@ -34,12 +34,7 @@ export const ResumeItem = ({ data, title }) => {
     }
   };
   const onClickDelete = () => {
-    console.log('tt');
-    // dispatch(removeResume(data.r_id));
-  };
-  const onClickDeleteTmp = () => {
-    console.log('tmp');
-    // dispatch(getTempResumeInfo());
+    dispatch(removeResume(data.r_id));
   };
   // useEffect(() => {
   //   onClickDelete();
@@ -56,16 +51,17 @@ export const ResumeItem = ({ data, title }) => {
   }, [data]);
   return (
     <Layout>
-      <AiFillFileText size={20} />
+      <AiFillFileText color={title === '저장된 이력서' ? 'black' : 'gray'} size={20} />
       <TextLayout onClick={onClickResume}>{info.rtitle}</TextLayout>
-      <AiTwotoneDelete
-        size={20}
-        onClick={title === '저장된 이력서' ? onClickDelete : onClickDeleteTmp}
-        style={{ cursor: 'pointer' }}
-      />
+      <IconLayout>
+        {title === '저장된 이력서' && (
+          <AiTwotoneDelete size={20} onClick={onClickDelete} style={{ cursor: 'pointer' }} />
+        )}
+      </IconLayout>
+
       <DateLayout>{info.createDate}</DateLayout>
     </Layout>
   );
 };
 
-const { Layout, TextLayout, DateLayout } = style;
+const { Layout, TextLayout, IconLayout, DateLayout } = style;
