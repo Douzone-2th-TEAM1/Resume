@@ -36,21 +36,26 @@ export const Triangle2 = styled.div`
 //----------------------------------------------
 export const ResignForm = styled.div`
   position: absolute;
-  top: 200px;
+  bottom: 0;
   z-index: 1;
   background-color: white;
   border: 2px solid black;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
-  width: 900px;
-  height: 100%;
+  width: 700px;
+  height: 87%;
   overflow: hidden;
-  box-shadow: 7px 0px 3px rgba(0, 0, 0, 0.8);
+  box-shadow: 7px 0px 10px #00000080;
 `;
+
+export const InnerLayout = styled.div`
+  ${({ theme }) => theme.flexSet('space-evenly', '', 'column')};
+  padding: 60px;
+  height: 100%;
+`;
+
 export const T1 = styled.div`
   width: fit-content;
-  margin-top: 4%;
-  margin-left: 10%;
   font-size: 40px;
   font-weight: bolder;
 `;
@@ -59,43 +64,45 @@ export const ResignForm2 = styled.div`
   border: 1.5px black solid;
   border-radius: 5px;
   z-index: 2;
-  margin-top: 2%;
-  margin-left: 10%;
-  width: 80%;
+
+  width: 100%;
   height: 600px;
   text-align: center;
 `;
 export const T3 = styled.div`
-  margin-top: 66px;
+  padding: 55px;
   font-size: 18px;
   font-weight: bold;
   color: red;
 `;
 export const InputForm = styled.div`
-  width: fit-content;
-  margin-top: 10%;
-  margin-left: 15%;
-  font-size: 22px;
+  ${({ theme }) => theme.flexSet('space-evenly', 'flex-start', 'column')};
+  width: 100%;
+  height: 20%;
+  padding: 20px 40px;
 `;
 export const T2 = styled.div`
-  margin-top: 20px;
-  text-align: left;
+  font-size: 22px;
   font-weight: bold;
+  color: ${({ theme }) => theme.colorSet.PRIMARY_DISABLED.DEFAULT};
 `;
 export const Input1 = styled.input`
   border: 1px solid black;
   border-radius: 5px;
-  height: 36px;
-  width: 500px;
+  /* height: 36px; */
+  width: 100%;
   font-size: 22px;
-  padding-left: 5px;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  margin-top: 10px;
+  padding: 8px;
+  /* margin-top: 10px; */
+`;
+
+export const BtnLayout = styled.div`
+  ${({ theme }) => theme.flexSet('space-evenly', 'center', 'column')};
+  height: 40%;
 `;
 export const Btn1 = styled.button`
   cursor: pointer;
-  margin-top: 70px;
+  /* margin-top: 70px; */
   border: 1px solid black;
   border-radius: 5px;
   border-color: ${({ theme }) => theme.colorSet.PRIMARY};
@@ -114,7 +121,6 @@ export const Btn2 = styled.button`
   cursor: pointer;
   border: 1px solid black;
   border-radius: 5px;
-  margin-top: 40px;
   height: 60px;
   width: 500px;
   font-weight: bolder;
@@ -127,11 +133,13 @@ export const style = {
   Triangle1,
   Triangle2,
   ResignForm,
+  InnerLayout,
   T1,
   ResignForm2,
   T2,
   T3,
   Input1,
+  BtnLayout,
   Btn1,
   Btn2,
   InputForm,

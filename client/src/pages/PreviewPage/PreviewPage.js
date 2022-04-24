@@ -4,6 +4,7 @@ import { style } from './PreviewPageStyle';
 import { useDispatch, useSelector } from 'react-redux';
 import { storeInfo } from 'myRedux/actions/ResumeActions';
 import { storeResume } from 'myRedux/actions/CommuicationAction';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 export const PreviewPage = ({
   cardRef,
@@ -12,6 +13,7 @@ export const PreviewPage = ({
   onClickTemplateClose,
   onClickCloseCard,
 }) => {
+  const history = useHistory();
   const dispatch = useDispatch();
   const storeDatas = useSelector((state) => state.ResumeReducer);
   const reducer = useSelector((state) => state.AlertReducer);
@@ -32,11 +34,11 @@ export const PreviewPage = ({
     console.log(info);
 
     if (info.title && info.title.length > 0 && info.template != null) {
+      dispatch(storeResume(info));
       onClickClose();
       onClickTemplateClose();
       cardRef.current.scrollTo(0, 0);
       onClickCloseCard();
-      // dispatch(storeResume(info));
     }
   }, [info]);
 

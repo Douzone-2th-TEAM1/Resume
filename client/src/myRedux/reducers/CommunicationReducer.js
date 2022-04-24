@@ -14,21 +14,51 @@ export default function CommunicationReducer(state = INIT_STATE, action) {
     case CommunicationType.SIGN_IN:
       return {
         ...state,
-        email: action.email,
-        pwd: action.pwd,
+        payload: action.payload,
       };
 
-    case CommunicationType.GET_TOKEN:
+    case CommunicationType.VIEW_INFO:
+      return {};
+
+    case CommunicationType.GET_INFO:
       return {
         email: action.email,
-        token: action.token,
+        name: action.name,
+        phone: action.phone,
       };
+    case CommunicationType.MODIFY_INFO:
+      return {
+        payload: action.payload,
+      };
+
+    case CommunicationType.WITHDRWAL_INFO:
+      return { payload: { history: action.history } };
+
+    // case CommunicationType.GET_TOKEN:
+    //   return {
+    //     email: action.email,
+    //     token: action.token,
+    //   };
 
     case CommunicationType.STORE_RESUME:
       return {
-        ...state,
         info: action.info,
       };
+
+    case CommunicationType.VIEW_RESUME:
+      return {};
+
+    case CommunicationType.GET_RESUME:
+      return {
+        ...state,
+        datas: action.datas,
+      };
+
+    case CommunicationType.REMOVE_RESUME:
+      return {
+        r_id: action.id,
+      };
+
     default:
       return state;
   }

@@ -1,17 +1,23 @@
 import ResumeInfo from 'components/ResumeInfo';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { style } from './MyPageStyle';
 import { MdAccessibilityNew, MdEdit } from 'react-icons/md';
-import { useNavigate } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { setInfo } from 'myRedux/actions/CommuicationAction';
 
-export const MyPage = ({ openMyPage }) => {
-  const dispatch = useDispatch();
-  const navigation = useNavigate();
+export const MyPage = ({ openMyPage, resumeInfo }) => {
+  const history = useHistory();
+  useEffect(() => {
+    console.log(resumeInfo);
+  }, [resumeInfo]);
   const onClickSignout = () => {
-    dispatch(setInfo('', ''));
-    navigation('/');
+    localStorage.clear();
+    history.push('/');
+  };
+
+  const onClickView = () => {
+    history.push('/modify');
   };
   return (
     <Wrapper flag={openMyPage}>
@@ -22,7 +28,7 @@ export const MyPage = ({ openMyPage }) => {
 
         <PageTitle flag={openMyPage}>MY PAGE</PageTitle>
         <CntntsLayout>
-          <ResumeInfo title={'저장된 이력서'} flag={openMyPage} />
+          <ResumeInfo title={'저장된 이력서'} flag={openMyPage} datas={resumeInfo.datas} />
           <ResumeInfo title={'작성중인 이력서'} flag={openMyPage} />
 
           <MyInfoLayout flag={openMyPage}>
@@ -32,7 +38,7 @@ export const MyPage = ({ openMyPage }) => {
               <h6>나의 정보 조회</h6>
             </MyInfoItem>
 
-            <MyInfoItem>
+            <MyInfoItem onClick={onClickView}>
               <MdEdit size={25} />
               <h6>나의 정보 수정</h6>
             </MyInfoItem>

@@ -3,13 +3,22 @@ import { all, call, fork, put, takeLatest, select, take } from 'redux-saga/effec
 import { openAlert } from 'myRedux/actions/AlertActions';
 import axios from 'axios';
 import { openModal } from 'myRedux/actions/ModalActions';
-import { setInfo } from 'myRedux/actions/CommuicationAction';
+import { getInfo, getResume, setInfo, viewResume } from 'myRedux/actions/CommuicationAction';
 
-axios.defaults.baseURL = 'http://192.168.2.26:8080';
-const configHeader = {
-  headers: {
-    Authorization: `Bearer ${localStorage.getItem('TOKEN')}`,
-  },
+// axios.defaults.baseURL = 'http://192.168.2.26:8080';
+axios.defaults.baseURL = 'http://localhost:8080';
+
+// let configHeader = {
+//   headers: {
+//     Authorization: `Bearer ${localStorage.getItem('TOKEN')}`,
+//   },
+// };
+
+const getHeader = () => {
+  const headers = { Authorization: `Bearer ${localStorage.getItem('TOKEN')}` };
+  return {
+    headers,
+  };
 };
 
 const imgHeader = {
@@ -19,11 +28,11 @@ const imgHeader = {
   },
 };
 
-function setLoaclStorate({ token, email }) {
-  console.log(token, email);
-  localStorage.setItem('TOKEN', token);
-  localStorage.setItem('EMAIL', email);
-}
+// function setLoaclStorate({ token, email }) {
+//   console.log(token, email);
+//   localStorage.setItem('TOKEN', token);
+//   localStorage.setItem('EMAIL', email);
+// }
 
 function signupAPI(info) {
   const result = axios
@@ -47,6 +56,56 @@ function signInAPI(info) {
       return err;
     });
 
+  return result;
+}
+function viewInfoAPI() {
+  const result = axios
+    .post('/users/', '', getHeader())
+    .then((res) => {
+      return res.data;
+    })
+    .catch((err) => {
+      return err;
+    });
+
+  return result;
+}
+
+function modifyAPI(info) {
+  const result = axios
+    .post('/users/edit', info, getHeader())
+    .then((res) => {
+      return res.data;
+    })
+    .catch((err) => {
+      return err;
+    });
+  return result;
+}
+
+function postWithdrawal() {
+  const result = axios
+    .post('/users/resign', '', getHeader())
+    .then((res) => {
+      return res.data;
+    })
+    .catch((err) => {
+      return err;
+    });
+
+  return result;
+}
+
+function resumeViewAPI() {
+  const result = axios
+    .post('/resumes/load', '', getHeader())
+    .then((res) => {
+      console.log(res);
+      return res.data;
+    })
+    .catch((err) => {
+      return err;
+    });
   return result;
 }
 
@@ -94,10 +153,25 @@ function resumeStoreAPI(info, photo) {
     qnas,
     techs,
   };
-  console.log(packedMsg);
 
   const result = axios
-    .post('/resumes/save', packedMsg, configHeader)
+    .post('/resumes/save', packedMsg, getHeader())
+    .then((res) => {
+      return res.data;
+    })
+    .catch((err) => {
+      return err;
+    });
+
+  return result;
+}
+
+function resumeRemoveAPI(id) {
+  // debugger;
+  const packedMsg = { r_id: id };
+
+  const result = axios
+    .post('/resumes/delete', packedMsg, getHeader())
     .then((res) => {
       return res.data;
     })
@@ -129,15 +203,88 @@ function* postSginIn() {
     const info = yield select((state) => {
       return state.CommunicationReducer;
     });
-
-    let data = yield call(signInAPI, info);
+    const { history } = info.payload;
+    const { email, pwd } = info.payload;
+    const packedMsg = { email, pwd };
+    let data = yield call(signInAPI, packedMsg);
     console.log(data);
     if (data.resCode === 0) {
       const [token, email] = [data.token, data.email];
-      yield put(setInfo(email, token));
+      localStorage.setItem('TOKEN', token);
+      localStorage.setItem('EMAIL', email);
+      yield put(viewResume());
       yield put(openAlert('로그인 성공했습니다.', 'success'));
+
+      history.push('/main');
     } else {
       yield put(openAlert('에러가 발생했습니다. 다시 시도하세요.', 'fail'));
+    }
+  } catch (e) {
+    console.log(e);
+  }
+}
+
+function* postViewInfo() {
+  try {
+    const data = yield call(viewInfoAPI);
+
+    if (data.resCode === 0) {
+      const { email, name, phone } = data.user;
+      yield put(getInfo(email, name, phone));
+    }
+  } catch (e) {
+    console.log(e);
+  }
+}
+
+function* postModifyInfo() {
+  try {
+    const info = yield select((state) => {
+      return state.CommunicationReducer;
+    });
+    const { history } = info.payload;
+    const { pwd, name, phone } = info.payload;
+    const packedMsg = { pwd, name, phone };
+    const data = yield call(modifyAPI, packedMsg);
+    if (data.resCode === 0) {
+      yield put(openAlert('회원정보 수정을 완료했습니다.', 'success'));
+      history.push('/signin');
+    } else {
+      yield put(openAlert('에러가 발생했습니다.', 'fail'));
+    }
+  } catch (e) {
+    console.log(e);
+  }
+}
+
+function* postWithdrawalInfo() {
+  try {
+    const info = yield select((state) => {
+      return state.CommunicationReducer;
+    });
+    console.log(info);
+    const { history } = info.payload;
+    // console.log(history);
+    const data = yield call(postWithdrawal);
+    if (data.resCode === 0) {
+      yield put(openAlert('저희 서비스를 이용해주셔서 감사합니다.', 'success'));
+      history.push('/');
+    } else {
+      yield put(openAlert('에러가 발생했습니다.', 'fail'));
+    }
+  } catch (e) {
+    console.log(e);
+  }
+}
+
+function* postResumeView() {
+  try {
+    const data = yield call(resumeViewAPI);
+    if (data.resCode === 0) {
+      const unpackedMsg = data.resumes;
+      yield put(getResume(unpackedMsg));
+    } else {
+      yield put(openAlert('이력서 조회 중에 에러가 발생했습니다. 새로고침을 시도하세요.', 'fail'));
     }
   } catch (e) {
     console.log(e);
@@ -152,13 +299,27 @@ function* postResumeStore() {
 
     const data = yield call(photoAPI, resumeInfo.info);
     const resultStore = yield call(resumeStoreAPI, resumeInfo.info, data.url);
-    console.log(resultStore.resCode);
-    console.log(resultStore.resCode === 0);
 
-    // debugger;
     if (resultStore.resCode === 0) {
-      console.log('tt');
+      yield put(viewResume());
       yield put(openAlert('이력서 저장이 완료되었습니다.', 'success'));
+    } else {
+      yield put(openAlert('에러가 발생했습니다.', 'fail'));
+    }
+  } catch (e) {
+    console.log(e);
+  }
+}
+
+function* postResumeRemove() {
+  try {
+    const resumeInfo = yield select((state) => {
+      return state.CommunicationReducer;
+    });
+    const data = yield call(resumeRemoveAPI, resumeInfo.r_id);
+    if (data.resCode === 0) {
+      yield put(viewResume());
+      yield put(openAlert('성공적으로 해당 이력서를 삭제했습니다.', 'success'));
     } else {
       yield put(openAlert('에러가 발생했습니다.', 'fail'));
     }
@@ -170,8 +331,13 @@ function* postResumeStore() {
 function* watchAlert() {
   yield takeLatest(CommunicationType.SIGN_UP, postData);
   yield takeLatest(CommunicationType.SIGN_IN, postSginIn);
-  yield takeLatest(CommunicationType.GET_TOKEN, setLoaclStorate);
+  yield takeLatest(CommunicationType.VIEW_INFO, postViewInfo);
+  yield takeLatest(CommunicationType.MODIFY_INFO, postModifyInfo);
+  yield takeLatest(CommunicationType.WITHDRWAL_INFO, postWithdrawalInfo);
+
+  yield takeLatest(CommunicationType.VIEW_RESUME, postResumeView);
   yield takeLatest(CommunicationType.STORE_RESUME, postResumeStore);
+  yield takeLatest(CommunicationType.REMOVE_RESUME, postResumeRemove);
 }
 
 export default function* userSaga() {

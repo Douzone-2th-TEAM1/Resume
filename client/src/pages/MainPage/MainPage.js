@@ -3,8 +3,14 @@ import { style } from './MainPageStyle';
 import Card from 'components/Card';
 import MyPage from 'pages/MyPage';
 import TemplatePage from 'pages/TemplatePage';
+import { useDispatch, useSelector } from 'react-redux';
+import { viewResume } from 'myRedux/actions/CommuicationAction';
 
 export const MainPage = () => {
+  const dispatch = useDispatch();
+  const resumeInfo = useSelector((state) => {
+    return state.CommunicationReducer;
+  });
   const [height, setHeight] = useState('400px');
   const [openMyPage, setOpenMyPage] = useState(false);
   const [openTemplatePage, setOpenTemplatPage] = useState(false);
@@ -30,6 +36,13 @@ export const MainPage = () => {
     setOpenTemplatPage(false);
   };
 
+  useEffect(() => {
+    console.log(resumeInfo);
+  }, [resumeInfo]);
+
+  useEffect(() => {
+    dispatch(viewResume());
+  }, []);
   // useEffect(() => {
   //   if (!openTemplatePage) onClickCancel();
   // }, [openTemplatePage]);
@@ -54,7 +67,7 @@ export const MainPage = () => {
         <BttomTriangle />
       </Container>
 
-      {height === '400px' && <MyPage openMyPage={openMyPage} />}
+      {height === '400px' && <MyPage openMyPage={openMyPage} resumeInfo={resumeInfo} />}
       {openTemplatePage && (
         <TemplatePage
           cardRef={cardRef}

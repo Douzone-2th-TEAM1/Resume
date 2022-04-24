@@ -49,4 +49,9 @@ const MenuTitle = styled.h4`
   color: ${({ theme }) => theme.colorSet.PRIMARY_DISABLED.DEFAULT};
 `;
 
-export const style = { Layout, MenuTitle };
+const ItemLayout = styled.div`
+  width: 100%;
+  padding: 10px;
+  overflow-y: auto;
+`;
+export const style = { Layout, MenuTitle, ItemLayout };

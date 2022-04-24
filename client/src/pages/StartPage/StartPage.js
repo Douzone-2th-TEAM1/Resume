@@ -3,18 +3,19 @@ import { style } from './StartPageStyle';
 import { useDispatch, useSelector } from 'react-redux';
 import { openAlert } from 'myRedux/actions/AlertActions';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
+// import history from 'utils/history';
 
 export const StartPage = () => {
   const dispatch = useDispatch();
-  const navigation = useNavigate();
+  const history = useHistory();
   const storeDatas = useSelector((state) => state.ResumeReducer);
   // const openModal = useSelector((state) => state.AlertReducer);
 
   const [img, setImg] = useState('');
   const onClickBtn = () => {
     // dispatch(openAlert());
-    navigation('/signin');
+    history.push('/signin');
   };
   useEffect(() => {
     storeDatas.info && console.log(storeDatas.info);

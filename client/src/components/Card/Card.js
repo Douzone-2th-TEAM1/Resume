@@ -11,15 +11,14 @@ import Portfolio from 'components/Portfolio';
 import theme from 'styles/theme';
 import { useDispatch, useSelector } from 'react-redux';
 import { storeInfo } from 'myRedux/actions/ResumeActions';
+import { openAlert } from 'myRedux/actions/AlertActions';
 
 export const Card = ({ cardRef, onClickIcon, onClickCancel, height, onClickTemplateChoice }) => {
   const dispatch = useDispatch();
   const storeDatas = useSelector((state) => state.ResumeReducer);
-  // const ref = useRef();
-
-  // useEffect(() => {
-  //   console.log(storeDatas);
-  // }, [storeDatas]);
+  useEffect(() => {
+    resetInfo();
+  }, [storeDatas]);
 
   const [info, setInfo] = useState({
     title: '',
@@ -83,7 +82,6 @@ export const Card = ({ cardRef, onClickIcon, onClickCancel, height, onClickTempl
   const onChangeEduInput = (e) => {
     e.preventDefault();
     checkStatus('educations', 3);
-    // debugger;
     !disableStatus['educations'] && setEduText({ ...eduText, [e.target.id]: e.target.value });
   };
 
@@ -302,7 +300,6 @@ export const Card = ({ cardRef, onClickIcon, onClickCancel, height, onClickTempl
   };
   const onChangeImg = (e) => {
     const file = e.target.files;
-    // console.log(file);
     setInfo({ ...info, img: file[0] });
   };
 
@@ -333,7 +330,7 @@ export const Card = ({ cardRef, onClickIcon, onClickCancel, height, onClickTempl
       dispatch(storeInfo(info));
       onClickTemplateChoice();
     } else {
-      console.log('test'); // 정보 입력 요구
+      dispatch(openAlert('값을 입력하세요.', 'fail'));
     }
   };
 
@@ -386,7 +383,12 @@ export const Card = ({ cardRef, onClickIcon, onClickCancel, height, onClickTempl
           </ItemInnerLayout>
           <ItemInnerLayout width={'30%'}>
             <ImgLayout htmlFor="img" onChange={onChangeImg}>
-              {info.img && <img src={info.img} style={{ width: '100%', height: '100%' }} />}
+              {info.img && (
+                <img
+                  src={URL.createObjectURL(info.img)}
+                  style={{ width: '100%', height: '100%' }}
+                />
+              )}
               {!info.img && <h6>사진 (3x4)</h6>}
               <ImgBtn type="file" id="img" placeholder="사진" accept=".jpg,.jpeg,.png" />
             </ImgLayout>

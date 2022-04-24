@@ -1,0 +1,26 @@
+{
+  "name": "resume",
+  "version": "1.0.0",
+  "description": "> 사용자가 이력서 템플릿을 설정할 수 있는 사이트",
+  "main": "index.js",
+  "dependencies": {
+    "concurrently": "7.1.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "client": "cd client && npm run start",
+    "server": "cd server && npm run start",
+    "start": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Douzone-2th-TEAM1/Resume.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Douzone-2th-TEAM1/Resume/issues"
+  },
+  "homepage": "https://github.com/Douzone-2th-TEAM1/Resume#readme"
+}
