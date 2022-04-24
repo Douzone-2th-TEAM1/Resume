@@ -6,15 +6,15 @@ const DataTypes = SQ.DataTypes;
 export const Awards = sequelize.define(
   'award',
   {
-    awardName: {
+    awrdName: {
       type: DataTypes.STRING(45),
       allowNull: false,
     },
-    awardDate: {
+    awrdDate: {
       type: DataTypes.STRING(45),
       allowNull: false,
     },
-    awardCntns: {
+    awrdCntns: {
       type: DataTypes.STRING(1000),
     },
   },
