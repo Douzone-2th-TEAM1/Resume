@@ -16,7 +16,7 @@ export const Users = sequelize.define(
       allowNull: false,
     },
     pwd: {
-      type: DataTypes.STRING(45),
+      type: DataTypes.STRING(255),
       allowNull: false,
     },
     name: {
