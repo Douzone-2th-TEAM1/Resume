@@ -26,8 +26,6 @@ export const PreviewPage = ({
   const onClickComplete = (e) => {
     console.log(e.target.id);
     setInfo({ ...info, template: Number(e.target.id), title: templatTitle });
-
-    // navigation('/');
   };
 
   useEffect(() => {
@@ -44,9 +42,9 @@ export const PreviewPage = ({
 
   // useEffect(() => {
   //   console.log(reducer);
-  //       onClickClose();
-  // onClickTemplateClose();
-  // onClickCloseCard();
+  //   onClickClose();
+  //   onClickTemplateClose();
+  //   onClickCloseCard();
   // }, [reducer]);
 
   return (

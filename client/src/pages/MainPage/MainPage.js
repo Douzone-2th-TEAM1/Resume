@@ -22,7 +22,7 @@ export const MainPage = () => {
     setHeight('400px');
   };
   const onMouseOverMypage = (e) => {
-    if (window.innerWidth - e.clientX <= 364) {
+    if (window.innerWidth - e.clientX <= 360) {
       setOpenMyPage(true);
     } else {
       setOpenMyPage(false);
@@ -51,11 +51,7 @@ export const MainPage = () => {
   return (
     <div onMouseMove={onMouseOverMypage}>
       <Container openMyPage={openMyPage}>
-        <MainTitle ht={height}>
-          The alternative to good design is always bad design.
-          <br />
-          There is no such thing as no design.
-        </MainTitle>
+        <MainTitle ht={height}>지금 바로 나만의 이력서를 작성해보세요!</MainTitle>
 
         <Card
           cardRef={cardRef}

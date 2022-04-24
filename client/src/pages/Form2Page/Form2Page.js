@@ -35,11 +35,10 @@ export const Form2Page = ({ match }) => {
             />
           </Photo>
           <LF_Form>
-            {/* 사용자 정보 수정!!! */}
             <LF_Logo>🖐🏻 ABOUT ME</LF_Logo>
-            <LF_Data>NAME : {USERS.name}</LF_Data>
-            <LF_Data>MAIL : {USERS.email}</LF_Data>
-            <LF_Data>TEL : {USERS.phone}</LF_Data>
+            <LF_Data>NAME : {data.name}</LF_Data>
+            <LF_Data>MAIL : {localStorage.getItem('EMAIL')}</LF_Data>
+            <LF_Data>TEL : {data.phone}</LF_Data>
             <LF_Data>URL : {data.portfolio}</LF_Data>
           </LF_Form>
           <LF_Form>

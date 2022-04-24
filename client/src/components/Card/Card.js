@@ -38,7 +38,7 @@ export const Card = ({ cardRef, onClickIcon, onClickCancel, height, onClickTempl
 
   useEffect(() => {
     console.log(storeDatas);
-    if (Object.keys(storeDatas).includes('getTemp')) {
+    if (Object.keys(storeDatas).includes('getTemp') && Object.keys(tempDatas).includes('temps')) {
       const {
         techs,
         qnas,
@@ -66,11 +66,11 @@ export const Card = ({ cardRef, onClickIcon, onClickCancel, height, onClickTempl
         img: '',
       });
     }
-    // else if (Object.keys(storeDatas).includes('getTemp') && !storeDatas.getTemp) {
-    //   onClickCancelStore();
-    // }
 
     // resetInfo();
+    if (Object.keys(storeDatas).includes('getTemp') && storeDatas.getTemp) {
+      resetInfo();
+    }
   }, [storeDatas]);
 
   const [disableStatus, setDisableStatus] = useState({
@@ -358,21 +358,24 @@ export const Card = ({ cardRef, onClickIcon, onClickCancel, height, onClickTempl
   }, [info]);
 
   const onClickStore = () => {
-    if (
-      info.department.length > 0 ||
-      info.portfolio.length > 0 ||
-      info.techs.length > 0 ||
-      info.certifications.length > 0 ||
-      info.awards.length > 0 ||
-      info.careers.length > 0 ||
-      info.projects.length > 0 ||
-      info.qnas.length > 0 ||
-      info.img.length > 0
-    ) {
-      dispatch(storeInfo(info));
-      onClickTemplateChoice();
+    if (info.img) {
+      if (
+        info.department.length > 0 ||
+        info.portfolio.length > 0 ||
+        info.techs.length > 0 ||
+        info.certifications.length > 0 ||
+        info.awards.length > 0 ||
+        info.careers.length > 0 ||
+        info.projects.length > 0 ||
+        info.qnas.length > 0
+      ) {
+        dispatch(storeInfo(info));
+        onClickTemplateChoice();
+      } else {
+        dispatch(openAlert('값을 입력하세요.', 'fail'));
+      }
     } else {
-      dispatch(openAlert('값을 입력하세요.', 'fail'));
+      dispatch(openAlert('이미지는 필수 입력입니다.', 'fail'));
     }
   };
 
@@ -395,6 +398,11 @@ export const Card = ({ cardRef, onClickIcon, onClickCancel, height, onClickTempl
     onClickCancel();
   };
 
+  useEffect(() => {
+    if (tempDatas?.datas) {
+      resetInfo();
+    }
+  }, [tempDatas]);
   return (
     <Container ht={height} ref={cardRef}>
       <IconLayout onClick={onClickIcon} ht={height}>

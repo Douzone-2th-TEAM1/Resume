@@ -26,6 +26,8 @@ export const ResumeItem = ({ data, title }) => {
       case 1:
         history.push(`/form2/:${data.r_id}`);
         return;
+
+      case undefined:
       default:
         console.log(getInfo);
 
