@@ -8,9 +8,9 @@ import { setInfo } from 'myRedux/actions/CommuicationAction';
 
 export const MyPage = ({ openMyPage, resumeInfo }) => {
   const history = useHistory();
-  useEffect(() => {
-    console.log(resumeInfo);
-  }, [resumeInfo]);
+  // useEffect(() => {
+  //   console.log(resumeInfo);
+  // }, [resumeInfo]);
   const onClickSignout = () => {
     localStorage.clear();
     history.push('/');
@@ -29,7 +29,7 @@ export const MyPage = ({ openMyPage, resumeInfo }) => {
         <PageTitle flag={openMyPage}>MY PAGE</PageTitle>
         <CntntsLayout>
           <ResumeInfo title={'저장된 이력서'} flag={openMyPage} datas={resumeInfo.datas} />
-          <ResumeInfo title={'작성중인 이력서'} flag={openMyPage} />
+          <ResumeInfo title={'작성중인 이력서'} flag={openMyPage} datas={[resumeInfo.temps]} />
 
           <MyInfoLayout flag={openMyPage}>
             <h4>나의 정보 관리</h4>

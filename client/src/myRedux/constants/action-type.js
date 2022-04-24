@@ -1,6 +1,7 @@
 export const ResumeActionType = {
   ENROLL_INFO: 'ENROLL_INFO',
   TEMP_INFO: 'TEMP_INFO',
+  SETTED_TEMP_INFO: 'SETTED_TEMP_INFO',
   CANCEL_INFO: 'CANCEL_INFO',
 };
 
@@ -29,4 +30,5 @@ export const CommunicationType = {
 
   VIEW_TEMP_RESUME: 'VIEW_TEMP_RESUME',
   STORE_TEMP_RESUME: 'STORE_TEMP_RESUME',
+  GET_TEMP_RESUME: 'GET_TEMP_RESUME',
 };

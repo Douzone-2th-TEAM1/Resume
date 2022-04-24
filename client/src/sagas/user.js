@@ -3,7 +3,15 @@ import { all, call, fork, put, takeLatest, select, take } from 'redux-saga/effec
 import { openAlert } from 'myRedux/actions/AlertActions';
 import axios from 'axios';
 import { openModal } from 'myRedux/actions/ModalActions';
-import { getInfo, getResume, setInfo, viewResume } from 'myRedux/actions/CommuicationAction';
+import {
+  getInfo,
+  getResume,
+  getTempResume,
+  viewTempResume,
+  setInfo,
+  viewResume,
+} from 'myRedux/actions/CommuicationAction';
+import { setTempResumeInfo } from 'myRedux/actions/ResumeActions';
 
 // axios.defaults.baseURL = 'http://192.168.2.26:8080';
 axios.defaults.baseURL = 'http://localhost:8080';
@@ -183,9 +191,6 @@ function resumeRemoveAPI(id) {
 }
 
 function tempResumeStoreAPI(payload) {
-  // debugger;
-  const cnvertPhoto = URL.createObjectURL(payload.img);
-
   const {
     department,
     portfolio,
@@ -196,10 +201,11 @@ function tempResumeStoreAPI(payload) {
     projects,
     qnas,
     techs,
+    img,
   } = payload;
 
   const packedMsg = {
-    photo: cnvertPhoto,
+    photo: img,
     department,
     portfolio,
     awards,
@@ -387,8 +393,10 @@ function* postTempResumeStore() {
     });
 
     const data = yield call(tempResumeStoreAPI, tmpResumeInfo.payload);
-    console.log(data);
+
     if (data.resCode === 0) {
+      yield put(viewTempResume());
+      yield put(viewResume());
       yield put(openAlert('이력서 임시저장이 완료되었습니다.', 'success'));
     } else {
       yield put(openAlert('에러가 발생했습니다.', 'fail'));
@@ -401,7 +409,21 @@ function* postTempResumeStore() {
 function* postViewTempResume() {
   try {
     const data = yield call(tempResumeAPI);
-    console.log(data);
+    if (data.resCode === 0) {
+      const unpackedMsg = data.temp_data;
+      yield put(getTempResume(unpackedMsg));
+    } else {
+      yield put(openAlert('임시저장된 이력서 조회 중에 에러가 발생했습니다.', 'fail'));
+    }
+  } catch (e) {
+    console.log(e);
+  }
+}
+
+function* resetInfo() {
+  try {
+    yield select((state) => state.ResumeReducer);
+    yield put(setTempResumeInfo());
   } catch (e) {
     console.log(e);
   }
@@ -419,6 +441,7 @@ function* watchAlert() {
   yield takeLatest(CommunicationType.REMOVE_RESUME, postResumeRemove);
   yield takeLatest(CommunicationType.STORE_TEMP_RESUME, postTempResumeStore);
   yield takeLatest(CommunicationType.VIEW_TEMP_RESUME, postViewTempResume);
+  yield takeLatest(ResumeActionType.TEMP_INFO, resetInfo);
 }
 
 export default function* userSaga() {

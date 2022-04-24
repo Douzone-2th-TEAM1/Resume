@@ -10,17 +10,14 @@ import QnaForm from 'components/QnaForm';
 import Portfolio from 'components/Portfolio';
 import theme from 'styles/theme';
 import { useDispatch, useSelector } from 'react-redux';
-import { storeInfo } from 'myRedux/actions/ResumeActions';
+import { setTempResumeInfo, storeInfo } from 'myRedux/actions/ResumeActions';
 import { openAlert } from 'myRedux/actions/AlertActions';
 import { storeTempResume } from 'myRedux/actions/CommuicationAction';
 
 export const Card = ({ cardRef, onClickIcon, onClickCancel, height, onClickTemplateChoice }) => {
   const dispatch = useDispatch();
   const storeDatas = useSelector((state) => state.ResumeReducer);
-  useEffect(() => {
-    resetInfo();
-  }, [storeDatas]);
-
+  const tempDatas = useSelector((state) => state.CommunicationReducer);
   const [info, setInfo] = useState({
     title: '',
     department: '',
@@ -34,6 +31,48 @@ export const Card = ({ cardRef, onClickIcon, onClickCancel, height, onClickTempl
     portfolio: '',
     img: '',
   });
+
+  useEffect(() => {
+    console.log(tempDatas);
+  }, [tempDatas]);
+
+  useEffect(() => {
+    console.log(storeDatas);
+    if (Object.keys(storeDatas).includes('getTemp')) {
+      const {
+        techs,
+        qnas,
+        projects,
+        photo,
+        educations,
+        department,
+        certifications,
+        careers,
+        awards,
+        portfolio,
+      } = tempDatas.temps;
+      setInfo({
+        ...info,
+        // title: '',
+        department: department,
+        techs: techs,
+        certifications: certifications,
+        educations: educations,
+        projects: projects,
+        awards: awards,
+        careers: careers,
+        qnas: qnas,
+        portfolio: portfolio,
+        img: '',
+      });
+    }
+    // else if (Object.keys(storeDatas).includes('getTemp') && !storeDatas.getTemp) {
+    //   onClickCancelStore();
+    // }
+
+    // resetInfo();
+  }, [storeDatas]);
+
   const [disableStatus, setDisableStatus] = useState({
     techs: false,
     certifications: false,
@@ -314,6 +353,8 @@ export const Card = ({ cardRef, onClickIcon, onClickCancel, height, onClickTempl
     } else if (info?.projects) {
       checkStatus('projects', 3);
     }
+
+    // dispatch(setTempResumeInfo());
   }, [info]);
 
   const onClickStore = () => {
@@ -337,6 +378,7 @@ export const Card = ({ cardRef, onClickIcon, onClickCancel, height, onClickTempl
 
   const onClickTempStore = () => {
     dispatch(storeTempResume(info));
+    onClickCancelStore();
   };
 
   const onClickCancelStore = () => {
@@ -353,9 +395,6 @@ export const Card = ({ cardRef, onClickIcon, onClickCancel, height, onClickTempl
     onClickCancel();
   };
 
-  // useEffect(() => {
-  //   console.log(info);
-  // }, [info]);
   return (
     <Container ht={height} ref={cardRef}>
       <IconLayout onClick={onClickIcon} ht={height}>
@@ -386,6 +425,7 @@ export const Card = ({ cardRef, onClickIcon, onClickCancel, height, onClickTempl
             <ImgLayout htmlFor="img" onChange={onChangeImg}>
               {info.img && (
                 <img
+                  // src={onConvertImgURL()}
                   src={URL.createObjectURL(info.img)}
                   style={{ width: '100%', height: '100%' }}
                 />
@@ -393,6 +433,9 @@ export const Card = ({ cardRef, onClickIcon, onClickCancel, height, onClickTempl
               {!info.img && <h6>사진 (3x4)</h6>}
               <ImgBtn type="file" id="img" placeholder="사진" accept=".jpg,.jpeg,.png" />
             </ImgLayout>
+            <h4 style={{ fontWeight: '500', color: 'red' }}>
+              *임시저장은 사진이 저장되지 않습니다.
+            </h4>
           </ItemInnerLayout>
         </ItemLayout>
 

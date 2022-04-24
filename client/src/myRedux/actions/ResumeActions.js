@@ -14,6 +14,20 @@ export const storeInfo = (info) => {
 //   };
 // };
 
+export const getTempResumeInfo = () => {
+  return {
+    type: ResumeActionType.TEMP_INFO,
+    getTemp: true,
+  };
+};
+
+export const setTempResumeInfo = () => {
+  return {
+    type: ResumeActionType.SETTED_TEMP_INFO,
+    getTemp: false,
+  };
+};
+
 export const cancel = () => {
   return {
     type: ResumeActionType.CANCEL_INFO,

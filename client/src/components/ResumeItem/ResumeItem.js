@@ -1,11 +1,20 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { style } from './ResumeItemStyle';
 import { AiFillFileText, AiTwotoneDelete } from 'react-icons/ai';
 import { useHistory } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { removeResume } from 'myRedux/actions/CommuicationAction';
+import { getTempResumeInfo } from 'myRedux/actions/ResumeActions';
 
-export const ResumeItem = ({ data }) => {
+export const ResumeItem = ({ data, title }) => {
+  // const [rtitle, setRTitle] = useState('');
+  // const [createDate, setCreateDate] = useState('');
+  const getInfo = useSelector((state) => state.CommunicationReducer);
+  const [info, setInfo] = useState({
+    rtitle: '',
+    createDate: '',
+  });
+
   const history = useHistory();
   const dispatch = useDispatch();
   const onClickResume = () => {
@@ -18,19 +27,43 @@ export const ResumeItem = ({ data }) => {
         history.push(`/form2/:${data.r_id}`);
         return;
       default:
+        console.log(getInfo);
+
+        dispatch(getTempResumeInfo());
         return;
     }
   };
   const onClickDelete = () => {
-    // console.log('tt');
-    dispatch(removeResume(data.r_id));
+    console.log('tt');
+    // dispatch(removeResume(data.r_id));
   };
+  const onClickDeleteTmp = () => {
+    console.log('tmp');
+    // dispatch(getTempResumeInfo());
+  };
+  // useEffect(() => {
+  //   onClickDelete();
+  // }, [title]);
+
+  useEffect(() => {
+    if (data) {
+      if (Object.keys(data).includes('title') && Object.keys(data).includes('createdDate')) {
+        setInfo({ rtitle: data.title, createDate: data.createdDate });
+      } else {
+        setInfo({ rtitle: '임시저장', createDate: '' });
+      }
+    }
+  }, [data]);
   return (
     <Layout>
       <AiFillFileText size={20} />
-      <TextLayout onClick={onClickResume}>{data.title}</TextLayout>
-      <AiTwotoneDelete size={20} onClick={onClickDelete} style={{ cursor: 'pointer' }} />
-      <DateLayout>{data.createdDate}</DateLayout>
+      <TextLayout onClick={onClickResume}>{info.rtitle}</TextLayout>
+      <AiTwotoneDelete
+        size={20}
+        onClick={title === '저장된 이력서' ? onClickDelete : onClickDeleteTmp}
+        style={{ cursor: 'pointer' }}
+      />
+      <DateLayout>{info.createDate}</DateLayout>
     </Layout>
   );
 };

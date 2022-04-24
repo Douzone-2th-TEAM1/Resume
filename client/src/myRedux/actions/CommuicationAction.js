@@ -94,3 +94,10 @@ export const viewTempResume = () => {
     type: CommunicationType.VIEW_TEMP_RESUME,
   };
 };
+
+export const getTempResume = (temps) => {
+  return {
+    type: CommunicationType.GET_TEMP_RESUME,
+    temps: temps,
+  };
+};

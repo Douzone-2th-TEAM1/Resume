@@ -9,6 +9,17 @@ export default function ResumeReducer(state = INIT_STATE, action) {
         info: action.info,
       };
 
+    case ResumeActionType.TEMP_INFO:
+      return {
+        ...state,
+        getTemp: action.getTemp,
+      };
+
+    case ResumeActionType.SETTED_TEMP_INFO:
+      return {
+        ...state,
+        getTemp: action.getTemp,
+      };
     default:
       return state;
   }
