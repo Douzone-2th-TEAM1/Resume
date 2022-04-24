@@ -20,6 +20,7 @@ Techs.belongsTo(Resumes, {
 
 export async function findAllById(id) {
   return Techs.findAll({
+    attributes: ['techName'],
     where: { r_id: id },
   });
 }

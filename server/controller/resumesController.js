@@ -8,7 +8,7 @@ import * as educationsTable from '../data/resumes/educations.js';
 import * as projectsTable from '../data/resumes/projects.js';
 import * as qnasTable from '../data/resumes/qnas.js';
 import * as techsTable from '../data/resumes/techs.js';
-import * as usersTable from "../data/users.js";
+import * as usersTable from '../data/users.js';
 
 // 이력서 저장
 export async function saveResume(req, res) {
@@ -70,7 +70,8 @@ export async function saveResume(req, res) {
     }));
   techs &&
     (await techs.map((item) => {
-      const tech = Object.assign({ r_id: r_id }, item);
+      const tech = Object.assign({ r_id: r_id }, { techName: item });
+      console.log(tech);
       techsTable.createTech(tech);
     }));
 
@@ -96,6 +97,8 @@ export async function findResume(req, res) {
       const projects = await projectsTable.findAllById(r_id);
       const qnas = await qnasTable.findAllById(r_id);
       const techs = await techsTable.findAllById(r_id);
+      const techsArr = [];
+      techs && techs.map((item) => techsArr.push(item.techName));
 
       const resume = {
         r_id,
@@ -113,7 +116,7 @@ export async function findResume(req, res) {
         educations,
         projects,
         qnas,
-        techs,
+        techs: techsArr,
       };
       resumesAll.push(resume);
     }

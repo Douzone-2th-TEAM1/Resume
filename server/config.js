@@ -20,6 +20,9 @@ export const config = {
     secretKey: required('JWT_SECRET'),
     expiresInSec: parseInt(required('JWT_EXPIRES_SEC')),
   },
+  bcrypt: {
+    saltRounds: parseInt(required('BCRYPT_SALT_ROUNDS')),
+  },
   host: {
     port: parseInt(required('HOST_PORT')),
   },

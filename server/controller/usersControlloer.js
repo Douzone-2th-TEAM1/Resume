@@ -1,3 +1,4 @@
+import bcrypt from 'bcrypt';
 import {} from 'express-async-errors';
 import { config } from '../config.js';
 import * as usersTable from '../data/users.js';
@@ -16,10 +17,11 @@ export async function findUser(req, res) {
 export async function updateUser(req, res) {
   const id = req.id;
   const { pwd, name, phone } = req.body;
+  const hashed = await bcrypt.hash(pwd, config.bcrypt.saltRounds);
   const updatedRow = await usersTable.updateUser({
     // update는 몇 개의 row에 영향을 줬는지를 리턴한다.
     id: id,
-    pwd,
+    pwd: hashed,
     name,
     phone,
   });

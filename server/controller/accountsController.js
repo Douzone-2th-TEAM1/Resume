@@ -1,4 +1,5 @@
 import jwt from 'jsonwebtoken';
+import bcrypt from 'bcrypt';
 import {} from 'express-async-errors';
 import { config } from '../config.js';
 import * as usersTable from '../data/users.js';
@@ -10,10 +11,10 @@ export async function signup(req, res) {
   if (found) {
     return res.json({ resCode: 1 }); // Error: email already exists
   }
-
+  const hashed = await bcrypt.hash(pwd, config.bcrypt.saltRounds);
   const user = await usersTable.createUser({
     email,
-    pwd,
+    pwd: hashed,
     name,
     phone,
   });
@@ -25,11 +26,11 @@ export async function login(req, res) {
   const { email, pwd } = req.body;
   const user = await usersTable.findByEmail(email);
   if (!user) {
-    return res.json({ resCode: 1 });
+    return res.json({ resCode: 1, msg: '사용자 없음' });
   }
-  const isValidPassword = pwd === user.pwd;
+  const isValidPassword = await bcrypt.compare(pwd, user.pwd);
   if (!isValidPassword) {
-    return res.json({ resCode: 1 });
+    return res.json({ resCode: 1, msg: '비밀번호 틀림' });
   }
   const token = createJwtToken(user.id);
   res.json({ resCode: 0, token, email });
