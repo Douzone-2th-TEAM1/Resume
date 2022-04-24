@@ -21,8 +21,9 @@ export async function saveTemp(req, res) {
 // 임시 저장 불러오기
 export async function loadTemp(req, res) {
   const id = req.id;
-  if (!(await tempsTable.findByuId(id))) {
-    res.json({ resCode: 1 });
+  const found = await tempsTable.findByuId(id);
+  if (!found) {
+    res.json({ resCode: 0 });
   } else {
     const { temp_data } = await tempsTable.findByuId(id);
     const temp_data_JSON = temp_data.replace("'[", '[').replace("]'", ']');

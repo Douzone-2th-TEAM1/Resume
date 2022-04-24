@@ -71,7 +71,6 @@ export async function saveResume(req, res) {
   techs &&
     (await techs.map((item) => {
       const tech = Object.assign({ r_id: r_id }, { techName: item });
-      console.log(tech);
       techsTable.createTech(tech);
     }));
 
