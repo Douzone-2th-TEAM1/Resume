@@ -76,7 +76,7 @@ export const LeftIndex2 = styled.div`
   margin-top: 7.5px;
   margin-bottom: 7.5px;
   padding-left: 5px;
-  height: 18px;
+  /* height: 18px; */
   width: 183.5px;
   font-size: 12px;
   font-weight: normal;

@@ -43,6 +43,7 @@ const imgHeader = {
 // }
 
 function signupAPI(info) {
+  console.log('회원가입 ', info);
   const result = axios
     .post('/accounts/signup', info)
     .then((res) => {
@@ -55,6 +56,7 @@ function signupAPI(info) {
 }
 
 function signInAPI(info) {
+  console.log('로그인 ', info);
   const result = axios
     .post('/accounts/login', info)
     .then((res) => {
@@ -67,6 +69,7 @@ function signInAPI(info) {
   return result;
 }
 function viewInfoAPI() {
+  console.log('회원 정보 조회');
   const result = axios
     .post('/users/', '', getHeader())
     .then((res) => {
@@ -80,6 +83,7 @@ function viewInfoAPI() {
 }
 
 function modifyAPI(info) {
+  console.log('회원정보 수정 ', info);
   const result = axios
     .post('/users/edit', info, getHeader())
     .then((res) => {
@@ -92,6 +96,7 @@ function modifyAPI(info) {
 }
 
 function postWithdrawal() {
+  console.log('회원정보 삭제 ');
   const result = axios
     .post('/users/resign', '', getHeader())
     .then((res) => {
@@ -105,6 +110,7 @@ function postWithdrawal() {
 }
 
 function resumeViewAPI() {
+  console.log('이력서 조회');
   const result = axios
     .post('/resumes/load', '', getHeader())
     .then((res) => {
@@ -118,6 +124,7 @@ function resumeViewAPI() {
 }
 
 function photoAPI(info) {
+  console.log('사진 조회 ', info);
   let form = new FormData();
   console.log(info.img);
   form.append('image', info.img);
@@ -134,6 +141,7 @@ function photoAPI(info) {
 }
 
 function resumeStoreAPI(info, photo) {
+  debugger;
   const {
     title,
     department,
@@ -162,6 +170,7 @@ function resumeStoreAPI(info, photo) {
     techs,
   };
 
+  console.log('이력서 저장', packedMsg);
   const result = axios
     .post('/resumes/save', packedMsg, getHeader())
     .then((res) => {
@@ -177,7 +186,7 @@ function resumeStoreAPI(info, photo) {
 function resumeRemoveAPI(id) {
   // debugger;
   const packedMsg = { r_id: id };
-
+  console.log('이력서 삭제', id);
   const result = axios
     .post('/resumes/delete', packedMsg, getHeader())
     .then((res) => {
@@ -216,7 +225,7 @@ function tempResumeStoreAPI(payload) {
     qnas,
     techs,
   };
-
+  console.log('이력서 임시 저장', packedMsg);
   const result = axios
     .post('/temps/save', packedMsg, getHeader())
     .then((res) => {
@@ -229,6 +238,7 @@ function tempResumeStoreAPI(payload) {
 }
 
 function tempResumeAPI() {
+  console.log('임시 이력서 조회');
   const result = axios
     .post('/temps/load', '', getHeader())
     .then((res) => {
@@ -356,7 +366,10 @@ function* postResumeStore() {
     });
 
     const data = yield call(photoAPI, resumeInfo.info);
-    const resultStore = yield call(resumeStoreAPI, resumeInfo.info, data.url);
+    let resultStore;
+    if (data.url != undefined) {
+      resultStore = yield call(resumeStoreAPI, resumeInfo.info, data.url);
+    }
 
     if (resultStore.resCode === 0) {
       yield put(viewResume());

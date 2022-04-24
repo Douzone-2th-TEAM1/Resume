@@ -28,6 +28,11 @@ export async function saveResume(req, res) {
     techs,
   } = req.body;
 
+  // 콘솔
+  if (!photo) {
+    res.json({ resCode: 1, msg: '사진이 경로가 없습니다.' });
+  }
+
   const r_id = await resumesTable.createResume({
     u_id: id,
     title,

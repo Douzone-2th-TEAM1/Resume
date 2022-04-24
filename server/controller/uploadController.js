@@ -10,7 +10,9 @@ const unlinkFile = util.promisify(fs.unlink);
 
 export async function uploadFileToS3(req, res, next) {
   const file = req.file;
-  console.log(file);
+  if (!file) {
+    res.json({ resCode: 1, msg: '파일이 없습니다.' });
+  }
   const uploadInfo = await uploadFile(file);
   await unlinkFile(file.path);
   res.json({ url: uploadInfo.Key });

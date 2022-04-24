@@ -43,7 +43,19 @@ export const Form2Page = ({ match }) => {
           </LF_Form>
           <LF_Form>
             <LF_Logo>💻 TECH SKILLS</LF_Logo>
-            <LF_Data>{data.techs && data.techs.map((item) => item)}</LF_Data>
+            <LF_Data>
+              {data.techs &&
+                data.techs.map((item, index) => {
+                  return (
+                    <div
+                      key={index}
+                      style={{ height: '100%', display: 'flex', flexDirection: 'column' }}
+                    >
+                      {item}
+                    </div>
+                  );
+                })}
+            </LF_Data>
           </LF_Form>
           <LF_Form>
             <LF_Logo>📚 CERTIFICATIONS</LF_Logo>
@@ -58,7 +70,7 @@ export const Form2Page = ({ match }) => {
               data.awards.map((item, index) => {
                 return (
                   <LF_Data key={index}>
-                    ㅇ {item.awardName} {item.awardCntns} 수상
+                    ㅇ {item.awrdName} {item.awrdCntns} 수상
                   </LF_Data>
                 );
               })}

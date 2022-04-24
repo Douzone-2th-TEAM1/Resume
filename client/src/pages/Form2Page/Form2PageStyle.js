@@ -50,9 +50,9 @@ export const LF_Data = styled.div`
   color: white;
 
   display: block;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
+  /* text-overflow: ellipsis; */
+  /* white-space: nowrap; */
+  /* overflow: hidden; */
 `;
 // -------------------------------------------
 export const RightForm = styled.div`

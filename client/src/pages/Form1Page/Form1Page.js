@@ -33,7 +33,7 @@ export const Form1Page = ({ match }) => {
                   ? `http://localhost:8080/resumes/${data.photo}`
                   : ''
               }
-              style={{ width: '100%' }}
+              style={{ width: '100%', height: '100%' }}
             />
           </ProPhoto>
           <ProText>
@@ -46,7 +46,19 @@ export const Form1Page = ({ match }) => {
 
         <TopLeftForm>
           <LeftIndex1>TECH SKILLS</LeftIndex1>
-          <LeftIndex2>{data.techs && data.techs.map((item, index) => item)}</LeftIndex2>
+          <LeftIndex2>
+            {data.techs &&
+              data.techs.map((item, index) => {
+                return (
+                  <div
+                    key={index}
+                    style={{ height: '100%', display: 'flex', flexDirection: 'column' }}
+                  >
+                    {item}
+                  </div>
+                );
+              })}
+          </LeftIndex2>
           <LeftIndex1>CERTIFICATIONS</LeftIndex1>
           {data.certifications &&
             data.certifications.map((item, index) => {
@@ -57,7 +69,7 @@ export const Form1Page = ({ match }) => {
             data.awards.map((item, index) => {
               return (
                 <LeftIndex2 key={index}>
-                  ㅇ {item.awardName} {item.awardCntns} 수상
+                  ㅇ {item.awrdName} {item.awrdCntns} 수상
                 </LeftIndex2>
               );
             })}
