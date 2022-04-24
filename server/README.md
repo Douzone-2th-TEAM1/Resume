@@ -268,11 +268,9 @@ Body/form-data
 ```javascript
 {
     "resCode": 0,
-    "title": "이력서1-1",
     "photo": "사진1-1",
     "department": "직무1-1",
     "portfolio": "포트폴리오1-1",
-    "template": 1,
     "awards": [
         {
             "id": 1,
@@ -310,11 +308,9 @@ Body/form-data
 ```javascript
 {
     "resCode": 0,
-    "title": "이력서1-1",
     "photo": "사진1-1",
     "department": "직무1-1",
     "portfolio": "포트폴리오1-1",
-    "template": 1,
     "awards": [
         {
             "id": 1,
