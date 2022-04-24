@@ -4,7 +4,7 @@ import Card from 'components/Card';
 import MyPage from 'pages/MyPage';
 import TemplatePage from 'pages/TemplatePage';
 import { useDispatch, useSelector } from 'react-redux';
-import { viewResume } from 'myRedux/actions/CommuicationAction';
+import { viewResume, viewTempResume } from 'myRedux/actions/CommuicationAction';
 
 export const MainPage = () => {
   const dispatch = useDispatch();
@@ -42,6 +42,7 @@ export const MainPage = () => {
 
   useEffect(() => {
     dispatch(viewResume());
+    dispatch(viewTempResume());
   }, []);
   // useEffect(() => {
   //   if (!openTemplatePage) onClickCancel();

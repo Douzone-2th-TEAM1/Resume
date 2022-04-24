@@ -21,14 +21,6 @@ export const signin = (email, pwd, history) => {
   };
 };
 
-// export const setInfo = (email, token) => {
-//   return {
-//     type: CommunicationType.GET_TOKEN,
-//     email: email,
-//     token: token,
-//   };
-// };
-
 export const viewInfo = () => {
   return {
     type: CommunicationType.VIEW_INFO,
@@ -87,5 +79,18 @@ export const removeResume = (id) => {
   return {
     type: CommunicationType.REMOVE_RESUME,
     id: id,
+  };
+};
+
+export const storeTempResume = (payload) => {
+  return {
+    type: CommunicationType.STORE_TEMP_RESUME,
+    payload: payload,
+  };
+};
+
+export const viewTempResume = () => {
+  return {
+    type: CommunicationType.VIEW_TEMP_RESUME,
   };
 };

@@ -12,6 +12,7 @@ import theme from 'styles/theme';
 import { useDispatch, useSelector } from 'react-redux';
 import { storeInfo } from 'myRedux/actions/ResumeActions';
 import { openAlert } from 'myRedux/actions/AlertActions';
+import { storeTempResume } from 'myRedux/actions/CommuicationAction';
 
 export const Card = ({ cardRef, onClickIcon, onClickCancel, height, onClickTemplateChoice }) => {
   const dispatch = useDispatch();
@@ -335,7 +336,7 @@ export const Card = ({ cardRef, onClickIcon, onClickCancel, height, onClickTempl
   };
 
   const onClickTempStore = () => {
-    dispatch(storeInfo(info));
+    dispatch(storeTempResume(info));
   };
 
   const onClickCancelStore = () => {

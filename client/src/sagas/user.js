@@ -182,6 +182,58 @@ function resumeRemoveAPI(id) {
   return result;
 }
 
+function tempResumeStoreAPI(payload) {
+  // debugger;
+  const cnvertPhoto = URL.createObjectURL(payload.img);
+
+  const {
+    department,
+    portfolio,
+    awards,
+    careers,
+    certifications,
+    educations,
+    projects,
+    qnas,
+    techs,
+  } = payload;
+
+  const packedMsg = {
+    photo: cnvertPhoto,
+    department,
+    portfolio,
+    awards,
+    careers,
+    certifications,
+    educations,
+    projects,
+    qnas,
+    techs,
+  };
+
+  const result = axios
+    .post('/temps/save', packedMsg, getHeader())
+    .then((res) => {
+      return res.data;
+    })
+    .catch((err) => {
+      return err;
+    });
+  return result;
+}
+
+function tempResumeAPI() {
+  const result = axios
+    .post('/temps/load', '', getHeader())
+    .then((res) => {
+      return res.data;
+    })
+    .catch((err) => {
+      return err;
+    });
+  return result;
+}
+
 function* postData() {
   try {
     const data = yield select((state) => {
@@ -328,6 +380,33 @@ function* postResumeRemove() {
   }
 }
 
+function* postTempResumeStore() {
+  try {
+    const tmpResumeInfo = yield select((state) => {
+      return state.CommunicationReducer;
+    });
+
+    const data = yield call(tempResumeStoreAPI, tmpResumeInfo.payload);
+    console.log(data);
+    if (data.resCode === 0) {
+      yield put(openAlert('이력서 임시저장이 완료되었습니다.', 'success'));
+    } else {
+      yield put(openAlert('에러가 발생했습니다.', 'fail'));
+    }
+  } catch (e) {
+    console.log(e);
+  }
+}
+
+function* postViewTempResume() {
+  try {
+    const data = yield call(tempResumeAPI);
+    console.log(data);
+  } catch (e) {
+    console.log(e);
+  }
+}
+
 function* watchAlert() {
   yield takeLatest(CommunicationType.SIGN_UP, postData);
   yield takeLatest(CommunicationType.SIGN_IN, postSginIn);
@@ -338,6 +417,8 @@ function* watchAlert() {
   yield takeLatest(CommunicationType.VIEW_RESUME, postResumeView);
   yield takeLatest(CommunicationType.STORE_RESUME, postResumeStore);
   yield takeLatest(CommunicationType.REMOVE_RESUME, postResumeRemove);
+  yield takeLatest(CommunicationType.STORE_TEMP_RESUME, postTempResumeStore);
+  yield takeLatest(CommunicationType.VIEW_TEMP_RESUME, postViewTempResume);
 }
 
 export default function* userSaga() {
