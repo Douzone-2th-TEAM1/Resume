@@ -29,11 +29,19 @@ const getHeader = () => {
   };
 };
 
-const imgHeader = {
-  headers: {
+// const imgHeader = {
+//   headers: {
+//     Authorization: `Bearer ${localStorage.getItem('TOKEN')}`,
+//     'Content-Type': 'multipart/form-data',
+//   },
+// };
+
+const getImgHeader = () => {
+  const headers = {
     Authorization: `Bearer ${localStorage.getItem('TOKEN')}`,
     'Content-Type': 'multipart/form-data',
-  },
+  };
+  return { headers };
 };
 
 // function setLoaclStorate({ token, email }) {
@@ -43,7 +51,6 @@ const imgHeader = {
 // }
 
 function signupAPI(info) {
-  console.log('회원가입 ', info);
   const result = axios
     .post('/accounts/signup', info)
     .then((res) => {
@@ -130,7 +137,7 @@ function photoAPI(info) {
   form.append('image', info.img);
 
   const result = axios
-    .post('/resumes/upload', form, imgHeader)
+    .post('/resumes/upload', form, getImgHeader())
     .then((res) => {
       return res.data;
     })
@@ -141,7 +148,6 @@ function photoAPI(info) {
 }
 
 function resumeStoreAPI(info, photo) {
-  debugger;
   const {
     title,
     department,
@@ -366,6 +372,7 @@ function* postResumeStore() {
     });
 
     const data = yield call(photoAPI, resumeInfo.info);
+    console.log(data);
     let resultStore;
     if (data.url != undefined) {
       resultStore = yield call(resumeStoreAPI, resumeInfo.info, data.url);

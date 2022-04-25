@@ -125,16 +125,16 @@ export const Form1Page = ({ match }) => {
               {Object.keys(data).length > 0 && data.qnas.length > 0 && data.qnas[0].quest}
             </FF_Logo>
             <FF_Data>
-              {Object.keys(data).length > 0 && data.qnas.length > 0 && data.qnas[0].quest}
+              {Object.keys(data).length > 0 && data.qnas.length > 0 && data.qnas[0].answer}
             </FF_Data>
           </FreeForm1>
           <FreeForm2>
             <FF_Logo>
-              {Object.keys(data).length > 0 && data.qnas.length > 0 && data.qnas[0].quest}
+              {Object.keys(data).length > 1 && data.qnas.length > 1 && data.qnas[1].quest}
             </FF_Logo>
-            <FF_Logo>
-              {Object.keys(data).length > 0 && data.qnas.length > 0 && data.qnas[0].quest}
-            </FF_Logo>
+            <FF_Data>
+              {Object.keys(data).length > 1 && data.qnas.length > 1 && data.qnas[1].answer}
+            </FF_Data>
           </FreeForm2>
         </BottomForm>
       </Form>

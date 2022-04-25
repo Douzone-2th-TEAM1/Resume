@@ -353,8 +353,6 @@ export const Card = ({ cardRef, onClickIcon, onClickCancel, height, onClickTempl
     } else if (info?.projects) {
       checkStatus('projects', 3);
     }
-
-    // dispatch(setTempResumeInfo());
   }, [info]);
 
   const onClickStore = () => {

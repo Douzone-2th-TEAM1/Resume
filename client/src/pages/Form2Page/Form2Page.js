@@ -129,10 +129,10 @@ export const Form2Page = ({ match }) => {
           </QAForm>
           <QAForm>
             <QAName>
-              {Object.keys(data).length > 0 && data.qnas.length > 0 && data.qnas[0].quest}
+              {Object.keys(data).length > 0 && data.qnas.length > 1 && data.qnas[1].quest}
             </QAName>
             <QAData>
-              {Object.keys(data).length > 0 && data.qnas.length > 0 && data.qnas[0].answer}
+              {Object.keys(data).length > 0 && data.qnas.length > 1 && data.qnas[1].answer}
             </QAData>
           </QAForm>
         </RightForm>
