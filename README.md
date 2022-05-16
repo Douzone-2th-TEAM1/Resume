@@ -2,6 +2,8 @@
 
 > 사용자가 작성한 내용을 기반으로 템플릿을 설정하여 손쉽게 이력서를 구성할 수 있도록 도움을 주는 웹서비스
 
+<br/>
+
 ---
 
 <br/>
@@ -301,6 +303,13 @@ Body/form-data
 <br/>
 
 ### /temps
+#### Header 공통 사항
+
+```javascript
+{
+  Authorization: `Bearer ${token}`;
+}
+```
 #### 임시 저장(/save) - REQ
 
 ```javascript
