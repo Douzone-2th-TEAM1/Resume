@@ -78,8 +78,11 @@
 
 <br/>
 
-## APIs
+## 🙆‍♂️ APIs
 [기능 및 통신 규약 바로가기 ❯❯](https://docs.google.com/spreadsheets/d/1QLRFI2PsCro8UEG763mlF89_F4TUMyL7RWg1OlkRZXc/edit#gid=1296835179)
+
+<br/>
+
 ### /accounts
 #### 회원가입(/signup) - REQ
 
