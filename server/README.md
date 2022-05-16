@@ -175,88 +175,13 @@ DB_PASSWORD = 사용자 비밀번호
     "resCode": 0,
     "resumes": [
         {
-            "r_id": 3,
-            "title": "이력서2",
-            "photo": "사진2",
-            "department": "직무2",
-            "portfolio": "포트폴리오2",
-            "template": 2,
-            "createdDate": "2022-04-22",
-            "awards": [
-                {
-                    "id": 1,
-                    "awardName": "수상2",
-                    "awardDate": "2022-04-20",
-                    "awardCntns": "수상2",
-                    "r_id": 3
-                },
-            ],
-            "careers": [
-                {
-                    "id": 1,
-                    "cmpnyName": "careers",
-                    "workStartDate": "2022-04-20",
-                    "workEndDate": "2022-04-20",
-                    "workCntns": "workCnts",
-                    "r_id": 3
-                }
-
-            ],
-            "certifications": [
-                {
-                    "id": 1,
-                    "certiName": "certName",
-                    "certiScore": "certScore",
-                    "certiDate": "2022-04-20",
-                    "r_id": 3
-                }
-            ],
-            "educations": [
-                {
-                    "id": 1,
-                    "eduName": "eduName",
-                    "eduStartDate": "2022-04-20",
-                    "eduEndDate": "2022-04-20",
-                    "eduCntns": "eduCntns",
-                    "r_id": 3
-                }
-            ],
-            "projects": [
-                {
-                    "id": 1,
-                    "prjName": "prjName",
-                    "prjStartDate": "2022-04-20",
-                    "prjEndDate": "2022-04-20",
-                    "prjCntns": "prjCntns",
-                    "r_id": 3
-                }
-            ],
-            "qnas": [
-                {
-                    "id": 1,
-                    "quest": "quest",
-                    "answer": "answer",
-                    "r_id": 3
-                }
-            ],
-            "techs": [
-                {
-                    "id": 1,
-                    "techName": "tech1",
-                    "r_id": 3
-                }
-            ]
+          이력서1...
         },
         {
-            "r_id": 4,
-            "title": "이력서2",
-            "photo": "사진2",
-            "department": "직무2",
-            "portfolio": "포트폴리오2",
-            "template": 2,
-            "createdDate": "2022-04-22",
-            "awards": [
-```
+          이력서2...
+        }
+     ]
+  }
 
 #### 이력서 삭제(/get) - REQ
 
