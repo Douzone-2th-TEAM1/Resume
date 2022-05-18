@@ -1,14 +1,19 @@
-# Resume
+# 📑 Resume 
+
+<p >
+  <img alt="top-language" src="https://img.shields.io/github/languages/top/Douzone-2th-TEAM1/Resume?color=yellow&label=javascript&logo=javascript&style=for-the-badge" />
+  
+  <img src="https://img.shields.io/github/languages/code-size/Douzone-2th-TEAM1/Resume?color=lightgreen&logo=github&style=for-the-badge"/>
+</p>
+
+
 
 > 사용자가 작성한 내용을 기반으로 템플릿을 설정하여 손쉽게 이력서를 구성할 수 있도록 도움을 주는 웹서비스
 
 <br/>
 
----
 
-<br/>
-
-## 👩‍💻 팀원 소개
+## 🙋 팀원 소개
 
 |   포지션 | 이름                               |
 | ----------- | ---------------------------------- |
@@ -17,7 +22,7 @@
 | 팀원 / 백앤드     | 엄태문            |
 | 팀원 / 백앤드     | 이동훈            |
 
----
+
 
 <br/>
 
@@ -25,11 +30,11 @@
 
 [피그마 바로가기 ❯❯](https://www.figma.com/file/ohyqyTXrCwDdLpyqqw3wqH/Resume?node-id=0%3A1)
 
----
+
 
 <br/>
 
-## 💻 주요 기능
+## 📍 주요 기능
 
 #### 회원 정보 관리
 
@@ -44,7 +49,38 @@
 - 나의 이력서 조회
 - 템플릿 선택 및 적용
 
----
+<br/>
+
+## 🤹🏼‍♀️ 데모
+
+`회원가입`
+
+![회원가입](https://user-images.githubusercontent.com/40657327/168961852-4ffdac93-aeca-42a3-9704-6102f2782eb3.gif)
+
+
+`로그인`
+
+![로그인](https://user-images.githubusercontent.com/40657327/168962084-73bb5d5a-27fb-4a02-b2d2-e7711f1ac133.gif)
+
+
+`이력서 임시저장`
+
+![임시저장](https://user-images.githubusercontent.com/40657327/168962636-61c93540-1b8c-4572-a737-f6516fc937b8.gif)
+
+
+`이력서 저장`
+
+![이력서 저장](https://user-images.githubusercontent.com/40657327/168963933-5963dec2-27b8-44be-9f3d-a56033132768.gif)
+
+`임시저장 이력서 조회`
+
+![임시저장 조회](https://user-images.githubusercontent.com/40657327/168963953-1eecc516-eb25-42ac-a710-98a9335a91ca.gif)
+
+
+`이력서 조회`
+
+![이력서 조회](https://user-images.githubusercontent.com/40657327/168964001-429b568d-d0d7-4a88-a21b-021cf045c34b.gif)
+
 
 <br/>
 
@@ -60,7 +96,6 @@
 | utils       | 공통 함수                          |
 | App.js      | public, private Route 정리.        |
 
----
 
 <br/>
 
@@ -76,12 +111,11 @@
 | config.js   | 환경변수 접근                    |
 | server.js   | 서버 실행                        |
 
----
 
 <br/>
 
 ## 🙆‍♂️ APIs
-[기능 및 통신 규약 바로가기 ❯❯](https://docs.google.com/spreadsheets/d/1QLRFI2PsCro8UEG763mlF89_F4TUMyL7RWg1OlkRZXc/edit?usp=sharing)
+[기능 및 통신 규약 바로가기 ❯❯](https://docs.google.com/spreadsheets/d/1QLRFI2PsCro8UEG763mlF89_F4TUMyL7RWg1OlkRZXc/edit#gid=1296835179)
 
 <br/>
 
